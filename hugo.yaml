@@ -56,7 +56,7 @@ params:
   profileMode:
     enabled: true
     title: "Xiong Zuping"
-    subtitle: "Ph.D. Student / 博士生"
+    subtitle: "Zhejiang University | Polymer Science · Clusteroluminescence · AIE"
     imageUrl: ""
     imageTitle: "avatar"
     buttons:
@@ -70,22 +70,19 @@ params:
   socialIcons:
     - name: google scholar
       title: Google Scholar
-      url: "https://scholar.google.com/"
-    - name: researchgate
-      title: ResearchGate
-      url: "https://www.researchgate.net/"
+      url: "https://scholar.google.com/citations?user=YOUR_ID"
     - name: orcid
       title: ORCID
-      url: "https://orcid.org/"
+      url: "https://orcid.org/0000-0003-2661-6615"
     - name: github
       title: GitHub
       url: "https://github.com/xiongzuping"
     - name: email
       title: Email
-      url: "mailto:your-email@example.com"
+      url: "mailto:xiongzuping@zju.edu.cn"
 
   env: production
-  description: "个人学术主页 - Personal Academic Homepage"
+  description: "Zuping Xiong | Zhejiang University | Nonconjugated Luminescent Polymers, Clusteroluminescence, Through-Space Conjugation"
   author: "Xiong Zuping"
   DateFormat: "2006-01-02"
   defaultTheme: auto
