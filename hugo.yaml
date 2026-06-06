@@ -1,0 +1,185 @@
+baseURL: "https://xiongzuping.github.io/"
+locale: "zh-cn"
+title: "Xiong Zuping | 学术主页"
+theme: "PaperMod"
+enableEmoji: true
+hasCJKLanguage: true
+
+paginate: 10
+
+markup:
+  highlight:
+    style: monokai
+    noClasses: false
+  goldmark:
+    renderer:
+      unsafe: true
+
+buildDrafts: false
+buildFuture: false
+buildExpired: false
+
+menu:
+  main:
+    - identifier: home
+      name: 首页
+      url: /
+      weight: 1
+    - identifier: publications
+      name: 论文
+      url: /publications/
+      weight: 2
+    - identifier: projects
+      name: 项目
+      url: /projects/
+      weight: 3
+    - identifier: posts
+      name: 动态
+      url: /posts/
+      weight: 4
+    - identifier: about
+      name: 关于
+      url: /about/
+      weight: 5
+    - identifier: search
+      name: 搜索
+      url: /search/
+      weight: 6
+
+outputs:
+  home:
+    - HTML
+    - RSS
+    - JSON
+
+params:
+  profileMode:
+    enabled: true
+    title: "Xiong Zuping"
+    subtitle: "Ph.D. Student / 博士生"
+    imageUrl: ""
+    imageTitle: "avatar"
+    buttons:
+      - name: 论文
+        url: /publications/
+      - name: 关于我
+        url: /about/
+      - name: CV
+        url: /cv.pdf
+
+  socialIcons:
+    - name: google scholar
+      title: Google Scholar
+      url: "https://scholar.google.com/"
+    - name: researchgate
+      title: ResearchGate
+      url: "https://www.researchgate.net/"
+    - name: orcid
+      title: ORCID
+      url: "https://orcid.org/"
+    - name: github
+      title: GitHub
+      url: "https://github.com/xiongzuping"
+    - name: email
+      title: Email
+      url: "mailto:your-email@example.com"
+
+  env: production
+  description: "个人学术主页 - Personal Academic Homepage"
+  author: "Xiong Zuping"
+  DateFormat: "2006-01-02"
+  defaultTheme: auto
+  disableThemeToggle: false
+  ShowShareButtons: false
+  ShowReadingTime: true
+  ShowWordCount: true
+  ShowBreadCrumbs: true
+  ShowPostNavLinks: true
+  ShowCodeCopyButtons: true
+
+  fuseOpts:
+    isCaseSensitive: false
+    shouldSort: true
+    location: 0
+    distance: 1000
+    threshold: 0.4
+    minMatchCharLength: 0
+    keys:
+      - title
+      - permalink
+      - summary
+      - content
+
+languages:
+  zh:
+    label: "中文"
+    weight: 1
+    menu:
+      main:
+        - identifier: home
+          name: 首页
+          url: /
+          weight: 1
+        - identifier: publications
+          name: 论文
+          url: /publications/
+          weight: 2
+        - identifier: projects
+          name: 项目
+          url: /projects/
+          weight: 3
+        - identifier: posts
+          name: 动态
+          url: /posts/
+          weight: 4
+        - identifier: about
+          name: 关于
+          url: /about/
+          weight: 5
+        - identifier: search
+          name: 搜索
+          url: /search/
+          weight: 6
+  en:
+    label: "English"
+    weight: 2
+    menu:
+      main:
+        - identifier: home
+          name: Home
+          url: /
+          weight: 1
+        - identifier: publications
+          name: Publications
+          url: /publications/
+          weight: 2
+        - identifier: projects
+          name: Projects
+          url: /projects/
+          weight: 3
+        - identifier: posts
+          name: Posts
+          url: /posts/
+          weight: 4
+        - identifier: about
+          name: About
+          url: /about/
+          weight: 5
+        - identifier: search
+          name: Search
+          url: /search/
+          weight: 6
+
+privacy:
+  disqus:
+    disable: true
+  googleAnalytics:
+    disable: true
+  instagram:
+    disable: true
+  x:
+    disable: true
+  vimeo:
+    disable: true
+  youtube:
+    disable: true
