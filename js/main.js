@@ -215,15 +215,17 @@
         ctx.beginPath(); ctx.arc(x, y, 4.4 * DPR, 0, Math.PI * 2); ctx.stroke();
         ctx.font = FONT; ctx.textAlign = "center"; ctx.textBaseline = "middle";
         if (label === "C") {
-          /* carbonyl C=O side group */
+          /* carbonyl C=O: parallel double bond from node edge to O edge */
           const tx = x + n[0] * 11 * DPR, ty = y + n[1] * 11 * DPR;
           const px = -n[1], py = n[0];
+          const sx = x + n[0] * 5 * DPR, sy = y + n[1] * 5 * DPR;
+          const ex = tx - n[0] * 3.5 * DPR, ey = ty - n[1] * 3.5 * DPR;
           ctx.strokeStyle = "rgba(" + CO + ",.5)";
           ctx.lineWidth = 1.4 * DPR;
           for (let s = -1; s <= 1; s += 2) {
             ctx.beginPath();
-            ctx.moveTo(x + px * s * 1.8 * DPR, y + py * s * 1.8 * DPR);
-            ctx.lineTo(tx + px * s * 1.8 * DPR, ty + py * s * 1.8 * DPR);
+            ctx.moveTo(sx + px * s * 1.8 * DPR, sy + py * s * 1.8 * DPR);
+            ctx.lineTo(ex + px * s * 1.8 * DPR, ey + py * s * 1.8 * DPR);
             ctx.stroke();
           }
           ctx.fillStyle = "#0a0f22";
@@ -312,15 +314,15 @@
         ctx.lineWidth = 1.8 * s;
         ctx.beginPath(); ctx.moveTo(x1 * s, y1 * s); ctx.lineTo(x2 * s, y2 * s); ctx.stroke();
       };
-      const dbl = (x1, y1, x2, y2) => {
+      const dbl = (x1, y1, x2, y2, r1, r2) => {
         const dx = x2 - x1, dy = y2 - y1, L = Math.hypot(dx, dy);
-        const px = -dy / L * 1.8, py = dx / L * 1.8;
+        const ux = dx / L, uy = dy / L, px = -uy * 1.8, py = ux * 1.8;
         ctx.strokeStyle = "rgba(248,113,113,.5)";
         ctx.lineWidth = 1.2 * s;
         for (const sg of [1, -1]) {
           ctx.beginPath();
-          ctx.moveTo((x1 + px * sg) * s, (y1 + py * sg) * s);
-          ctx.lineTo((x2 + px * sg) * s, (y2 + py * sg) * s);
+          ctx.moveTo((x1 + ux * (r1 + 0.5) + px * sg) * s, (y1 + uy * (r1 + 0.5) + py * sg) * s);
+          ctx.lineTo((x2 - ux * (r2 + 0.5) + px * sg) * s, (y2 - uy * (r2 + 0.5) + py * sg) * s);
           ctx.stroke();
         }
       };
@@ -335,7 +337,7 @@
         bond(0, 0, 28, 0);
         atom(0, 0, 7, CN, "N", "rgba(147,197,253,.6)", 9);
         atom(28, 0, 7, CC, "", null, 0);
-        dbl(28, 0, 20, -18);
+        dbl(28, 0, 20, -18, 7, 4);
         atom(20, -19, 4, CO, "O", "rgba(252,165,165,.55)", -10);
         hdot(0, 0);
       } else if (g.kind === "biuret") {
@@ -345,9 +347,9 @@
         atom(52, 0, 7, CN, "N", "rgba(147,197,253,.6)", 9);
         atom(78, -6, 7, CC, "", null, 0);
         atom(104, 0, 7, CN, "", null, 0);
-        dbl(26, -6, 18, -24);
+        dbl(26, -6, 18, -24, 7, 4);
         atom(18, -25, 4, CO, "O", "rgba(252,165,165,.55)", -10);
-        dbl(78, -6, 70, -24);
+        dbl(78, -6, 70, -24, 7, 4);
         atom(70, -25, 4, CO, "O", "rgba(252,165,165,.55)", -10);
         hdot(0, 0); hdot(104, 0);
       } else { /* urethane: O–C(=O)–N(H) */
@@ -355,7 +357,7 @@
         atom(0, 0, 7, CO, "O", "rgba(252,165,165,.55)", 9);
         atom(26, 0, 7, CC, "", null, 0);
         atom(52, 0, 7, CN, "N", "rgba(147,197,253,.6)", 9);
-        dbl(26, 0, 18, -18);
+        dbl(26, 0, 18, -18, 7, 4);
         atom(18, -19, 4, CO, "O", "rgba(252,165,165,.55)", -10);
         hdot(52, 0);
       }
