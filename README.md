@@ -39,7 +39,7 @@ Publications 区每篇论文卡片左侧有一个方形图位：
 
 ```
 # 2027
-natchem-2027-hbond.svg
+natchem-2027-hbond.jpg*
 # 2026
 jacs-2026-coreshell.svg        chem-2026-cpl.svg              ncomms-2026-switch.svg
 csr-2026-tsi.svg               chem-asian-j-2026-carbohelicene.svg  chem-sci-2026-bipyrenyl.svg
@@ -67,7 +67,7 @@ analchem-2022-pec.svg
 chemsci-2021-photochromism.svg aom-2021-silole.svg            analchem-2021-hof.svg
 ```
 
-带 `*` 的三张（Chem 2025、JACS 2023、Angew 2024）是论文真实 TOC 图（.jpg）；其余 50 张为按论文主题生成的示意图（.svg，深色科技风）。
+带 `*` 的四张（Nat. Chem. 2027、Chem 2025、JACS 2023、Angew 2024）是论文真实 TOC / 封面图（.jpg）；其余 49 张为按论文主题生成的示意图（.svg，深色科技风）。
 
 **换成官方 TOC 图**：拿到某篇论文的官方 TOC 图后，把图命名为 `<对应文件名>.jpg` 放入 `assets/tocs/`，并把 `index.html` 中该卡片 `<img>` 的 `src` 从 `.svg` 改回 `.jpg` 即可。
 

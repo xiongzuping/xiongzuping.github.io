@@ -383,6 +383,7 @@ img { display: block; max-width: 100%; }
   width: 100%; height: 100%; object-fit: cover;
   transition: transform .45s;
 }
+.paper-fig img.cover { object-fit: contain; }
 .paper:hover .paper-fig img { transform: scale(1.07); }
 .paper-fig img.gone { display: none; }
 .paper-fig .paper-ph {
