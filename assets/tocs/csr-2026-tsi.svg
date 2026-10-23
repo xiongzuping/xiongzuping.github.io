@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" role="img" aria-label="TSI schematic">
+<defs>
+<linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#111b3e"/><stop offset="1" stop-color="#0a0f22"/></linearGradient>
+<filter id="f" x="-80%" y="-80%" width="260%" height="260%"><feGaussianBlur stdDeviation="11"/></filter>
+</defs>
+<rect width="400" height="400" fill="url(#bg)"/>
+<circle cx="200" cy="196" r="150" fill="#6d7cff" opacity="0.06" filter="url(#f)"/>
+<g stroke-linecap="round"><path d="M166.5 218 L118 246 L69.5 218 L69.5 162 L118 134 L166.5 162 Z" fill="none" stroke="#6d7cff" stroke-opacity="1" stroke-width="3" stroke-linejoin="round"/><circle cx="118" cy="150" r="6" fill="#6d7cff" opacity="1"/><circle cx="118" cy="230" r="6" fill="#6d7cff" opacity="1"/><path d="M330.5 218 L282 246 L233.5 218 L233.5 162 L282 134 L330.5 162 Z" fill="none" stroke="#a78bfa" stroke-opacity="1" stroke-width="3" stroke-linejoin="round"/><circle cx="282" cy="150" r="6" fill="#a78bfa" opacity="1"/><circle cx="282" cy="230" r="6" fill="#a78bfa" opacity="1"/><line x1="168" y1="150" x2="232" y2="150" stroke="#22d3ee" stroke-opacity="1" stroke-width="3" stroke-linecap="round" stroke-dasharray="5 5"/><line x1="168" y1="190" x2="232" y2="190" stroke="#22d3ee" stroke-opacity="1" stroke-width="3" stroke-linecap="round" stroke-dasharray="5 5"/><line x1="168" y1="230" x2="232" y2="230" stroke="#22d3ee" stroke-opacity="1" stroke-width="3" stroke-linecap="round" stroke-dasharray="5 5"/><circle cx="200" cy="190" r="66" fill="#22d3ee" opacity="0.25" filter="url(#f)"/></g>
+<g><rect x="14" y="14" rx="9" width="38" height="24" fill="#060913" opacity="0.85" stroke="#ffffff" stroke-opacity="0.14"/><text x="33" y="31" font-family="Segoe UI, Arial, sans-serif" font-size="12.5" font-weight="700" letter-spacing="2.5" fill="#6d7cff" text-anchor="middle">TSI</text></g>
+</svg>

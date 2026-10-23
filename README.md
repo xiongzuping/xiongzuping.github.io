@@ -40,34 +40,36 @@ Publications 区每篇论文卡片左侧有一个方形图位：
 
 ```
 # 2027
-natchem-2027-hbond.jpg
+natchem-2027-hbond.svg
 # 2026
-jacs-2026-coreshell.jpg        chem-2026-cpl.jpg              ncomms-2026-switch.jpg
-csr-2026-tsi.jpg               chem-asian-j-2026-carbohelicene.jpg  chem-sci-2026-bipyrenyl.jpg
-ccschem-2026-helical.jpg       ncomms-2026-atropisomer.jpg    chemmater-2026-rotaxane.jpg
-acsami-2026-saccharide.jpg     mater-today-bio-2026-orchitis.jpg  advhealthcare-2026-hydrogel.jpg
-polymchem-2026-polyurethane.jpg
+jacs-2026-coreshell.svg        chem-2026-cpl.svg              ncomms-2026-switch.svg
+csr-2026-tsi.svg               chem-asian-j-2026-carbohelicene.svg  chem-sci-2026-bipyrenyl.svg
+ccschem-2026-helical.svg       ncomms-2026-atropisomer.svg    chemmater-2026-rotaxane.svg
+acsami-2026-saccharide.svg     mater-today-bio-2026-orchitis.svg  advhealthcare-2026-hydrogel.svg
+polymchem-2026-polyurethane.svg
 # 2025
-chem-2025-nir.jpg*             ncomms-2025-emergent.jpg       angew-2025-cof.jpg
-afm-2025-sulfur.jpg            polymchem-2025-magnetism.jpg   macromolecules-2025-ring.jpg
+chem-2025-nir.jpg*             ncomms-2025-emergent.svg       angew-2025-cof.svg
+afm-2025-sulfur.svg            polymchem-2025-magnetism.svg   macromolecules-2025-ring.svg
 # 2024
-natrevchem-2024-covalency.jpg  acsmaterlett-2024-lonepair.jpg angew-2024-tsc-length.jpg*
-angew-2024-pressure.jpg        angew-2024-twophoton.jpg       scichinachem-2024-tsvstb.jpg
-jmca-2024-picric.jpg           angew-2024-cycloarene.jpg      angew-2024-radicals.jpg
-natphotonics-2024-scintillator.jpg  ncomms-2024-polyester.jpg materhoriz-2024-polyester.jpg
+natrevchem-2024-covalency.svg  acsmaterlett-2024-lonepair.svg angew-2024-tsc-length.jpg*
+angew-2024-pressure.svg        angew-2024-twophoton.svg       scichinachem-2024-tsvstb.svg
+jmca-2024-picric.svg           angew-2024-cycloarene.svg      angew-2024-radicals.svg
+natphotonics-2024-scintillator.svg  ncomms-2024-polyester.svg materhoriz-2024-polyester.svg
 # 2023
-jacs-2023-oddeven.jpg*         ccschem-2023-clusterolum.jpg   cej-2023-heavyatom.jpg
-tetrahedron-2023-photochromism.jpg  smartmol-2023-diphenylmethane.jpg  macromolecules-2023-enolate.jpg
-angew-2023-phenolic.jpg        biosens-2023-porphyrin.jpg     ocf-2023-pyrone.jpg
+jacs-2023-oddeven.jpg*         ccschem-2023-clusterolum.svg   cej-2023-heavyatom.svg
+tetrahedron-2023-photochromism.svg  smartmol-2023-diphenylmethane.svg  macromolecules-2023-enolate.svg
+angew-2023-phenolic.svg        biosens-2023-porphyrin.svg     ocf-2023-pyrone.svg
 # 2022
-analchem-2022-esterase.jpg     photonicsres-2022-led.jpg      aggregate-2022-carbonyl.jpg
-chemcommun-2022-antihae.jpg    jmcc-2022-photochromism.jpg    analchem-2022-membrane.jpg
-analchem-2022-pec.jpg
+analchem-2022-esterase.svg     photonicsres-2022-led.svg      aggregate-2022-carbonyl.svg
+chemcommun-2022-antihae.svg    jmcc-2022-photochromism.svg    analchem-2022-membrane.svg
+analchem-2022-pec.svg
 # 2021
-chemsci-2021-photochromism.jpg aom-2021-silole.jpg            analchem-2021-hof.jpg
+chemsci-2021-photochromism.svg aom-2021-silole.svg            analchem-2021-hof.svg
 ```
 
-带 `*` 的三张（Chem 2025、JACS 2023、Angew 2024）已放入真实 TOC 图；其余待补。
+带 `*` 的三张（Chem 2025、JACS 2023、Angew 2024）是论文真实 TOC 图（.jpg）；其余 48 张为按论文主题生成的示意图（.svg，深色科技风）。
+
+**换成官方 TOC 图**：拿到某篇论文的官方 TOC 图后，把图命名为 `<对应文件名>.jpg` 放入 `assets/tocs/`，并把 `index.html` 中该卡片 `<img>` 的 `src` 从 `.svg` 改回 `.jpg` 即可。
 
 ## 常见修改
 

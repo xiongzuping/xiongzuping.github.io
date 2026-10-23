@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" role="img" aria-label="2P IMAGING schematic">
+<defs>
+<linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#111b3e"/><stop offset="1" stop-color="#0a0f22"/></linearGradient>
+<filter id="f" x="-80%" y="-80%" width="260%" height="260%"><feGaussianBlur stdDeviation="11"/></filter>
+</defs>
+<rect width="400" height="400" fill="url(#bg)"/>
+<circle cx="200" cy="196" r="150" fill="#2dd4bf" opacity="0.06" filter="url(#f)"/>
+<g stroke-linecap="round"><line x1="64" y1="332" x2="178" y2="216" stroke="#2dd4bf" stroke-opacity="1" stroke-width="3" stroke-linecap="round"/><path d="M178 216l-3.3 12.6M178 216l-12.5 3.5" stroke="#2dd4bf" stroke-width="3" stroke-linecap="round" fill="none" opacity="1"/><line x1="336" y1="332" x2="222" y2="216" stroke="#2dd4bf" stroke-opacity="1" stroke-width="3" stroke-linecap="round"/><path d="M222 216l12.5 3.5M222 216l3.3 12.6" stroke="#2dd4bf" stroke-width="3" stroke-linecap="round" fill="none" opacity="1"/><circle cx="200" cy="196" r="46" fill="#2dd4bf" opacity="0.25" filter="url(#f)"/><circle cx="200" cy="196" r="7" fill="#2dd4bf" opacity="1"/><ellipse cx="200" cy="196" rx="72" ry="54" fill="none" stroke="#2dd4bf" stroke-opacity="0.35" stroke-width="3" stroke-dasharray="7 6"/><text x="800 nm  x  2" y="200" font-family="Segoe UI, Arial, sans-serif" font-size="14" font-weight="600" letter-spacing="3" fill="#5eead4" text-anchor="middle">362</text></g>
+<g><rect x="14" y="14" rx="9" width="94" height="24" fill="#060913" opacity="0.85" stroke="#ffffff" stroke-opacity="0.14"/><text x="61" y="31" font-family="Segoe UI, Arial, sans-serif" font-size="12.5" font-weight="700" letter-spacing="2.5" fill="#2dd4bf" text-anchor="middle">2P IMAGING</text></g>
+</svg>

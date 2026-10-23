@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" role="img" aria-label="CPL schematic">
+<defs>
+<linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#111b3e"/><stop offset="1" stop-color="#0a0f22"/></linearGradient>
+<filter id="f" x="-80%" y="-80%" width="260%" height="260%"><feGaussianBlur stdDeviation="11"/></filter>
+</defs>
+<rect width="400" height="400" fill="url(#bg)"/>
+<circle cx="200" cy="196" r="150" fill="#22d3ee" opacity="0.06" filter="url(#f)"/>
+<g stroke-linecap="round"><path d="M60 230 Q 110 120 160 230 T 260 230 T 360 230" fill="none" stroke="#22d3ee" stroke-width="3.5" opacity="0.9"/><circle cx="110" cy="158" r="6" fill="#22d3ee" opacity="1"/><circle cx="210" cy="158" r="6" fill="#22d3ee" opacity="1"/><circle cx="310" cy="158" r="6" fill="#22d3ee" opacity="1"/><circle cx="200" cy="190" r="60" fill="#22d3ee" opacity="0.25" filter="url(#f)"/><text x="L" y="74" font-family="Segoe UI, Arial, sans-serif" font-size="20" font-weight="600" letter-spacing="3" fill="#67e8f9" text-anchor="middle">128</text><text x="R" y="326" font-family="Segoe UI, Arial, sans-serif" font-size="20" font-weight="600" letter-spacing="3" fill="#67e8f9" text-anchor="middle">128</text><line x1="88" y1="134" x2="60" y2="160" stroke="#22d3ee" stroke-opacity="0.5" stroke-width="3" stroke-linecap="round" stroke-dasharray="4 4"/><line x1="312" y1="134" x2="340" y2="160" stroke="#22d3ee" stroke-opacity="0.5" stroke-width="3" stroke-linecap="round" stroke-dasharray="4 4"/></g>
+<g><rect x="14" y="14" rx="9" width="38" height="24" fill="#060913" opacity="0.85" stroke="#ffffff" stroke-opacity="0.14"/><text x="33" y="31" font-family="Segoe UI, Arial, sans-serif" font-size="12.5" font-weight="700" letter-spacing="2.5" fill="#22d3ee" text-anchor="middle">CPL</text></g>
+</svg>

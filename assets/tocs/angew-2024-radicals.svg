@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" role="img" aria-label="RADICAL NIR schematic">
+<defs>
+<linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#111b3e"/><stop offset="1" stop-color="#0a0f22"/></linearGradient>
+<filter id="f" x="-80%" y="-80%" width="260%" height="260%"><feGaussianBlur stdDeviation="11"/></filter>
+</defs>
+<rect width="400" height="400" fill="url(#bg)"/>
+<circle cx="200" cy="196" r="150" fill="#f87171" opacity="0.06" filter="url(#f)"/>
+<g stroke-linecap="round"><circle cx="160" cy="200" r="15" fill="#f87171" opacity="1"/><ellipse cx="160" cy="200" rx="36" ry="14" fill="none" stroke="#f87171" stroke-width="2" stroke-dasharray="4 4" transform="rotate(-18 160 200)"/><circle cx="193" cy="192" r="4" fill="#f87171" opacity="1"/><line x1="200" y1="200" x2="298" y2="200" stroke="#f87171" stroke-opacity="1" stroke-width="3" stroke-linecap="round"/><path d="M298 200l-11.3 6.5M298 200l-11.3 -6.5" stroke="#f87171" stroke-width="3" stroke-linecap="round" fill="none" opacity="1"/><circle cx="300" cy="200" r="50" fill="#f87171" opacity="0.25" filter="url(#f)"/><text x=">900 nm" y="280" font-family="Segoe UI, Arial, sans-serif" font-size="14" font-weight="600" letter-spacing="3" fill="#fca5a5" text-anchor="middle">150</text></g>
+<g><rect x="14" y="14" rx="9" width="102" height="24" fill="#060913" opacity="0.85" stroke="#ffffff" stroke-opacity="0.14"/><text x="65" y="31" font-family="Segoe UI, Arial, sans-serif" font-size="12.5" font-weight="700" letter-spacing="2.5" fill="#f87171" text-anchor="middle">RADICAL NIR</text></g>
+</svg>

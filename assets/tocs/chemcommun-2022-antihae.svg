@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" role="img" aria-label="ANTI-HAE schematic">
+<defs>
+<linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#111b3e"/><stop offset="1" stop-color="#0a0f22"/></linearGradient>
+<filter id="f" x="-80%" y="-80%" width="260%" height="260%"><feGaussianBlur stdDeviation="11"/></filter>
+</defs>
+<rect width="400" height="400" fill="url(#bg)"/>
+<circle cx="200" cy="196" r="150" fill="#60a5fa" opacity="0.06" filter="url(#f)"/>
+<g stroke-linecap="round"><circle cx="200" cy="222" r="20" fill="#60a5fa" opacity="0.2" filter="url(#f)"/><circle cx="200" cy="222" r="11" fill="#60a5fa" opacity="1"/><path d="M172.9 189 L140 208 L107.1 189 L107.1 151 L140 132 L172.9 151 Z" fill="none" stroke="#22d3ee" stroke-opacity="1" stroke-width="3" stroke-linejoin="round"/><path d="M292.9 189 L260 208 L227.1 189 L227.1 151 L260 132 L292.9 151 Z" fill="none" stroke="#22d3ee" stroke-opacity="1" stroke-width="3" stroke-linejoin="round"/><circle cx="140" cy="170" r="5" fill="#22d3ee" opacity="1"/><circle cx="260" cy="170" r="5" fill="#22d3ee" opacity="1"/><line x1="168" y1="192" x2="190" y2="210" stroke="#60a5fa" stroke-opacity="1" stroke-width="3" stroke-linecap="round"/><line x1="232" y1="192" x2="210" y2="210" stroke="#60a5fa" stroke-opacity="1" stroke-width="3" stroke-linecap="round"/><line x1="200" y1="196" x2="200" y2="118" stroke="#60a5fa" stroke-opacity="1" stroke-width="3" stroke-linecap="round"/><path d="M200 118l6.5 11.3M200 118l-6.5 11.3" stroke="#60a5fa" stroke-width="3" stroke-linecap="round" fill="none" opacity="1"/><circle cx="200" cy="96" r="44" fill="#22d3ee" opacity="0.25" filter="url(#f)"/><text x="F" y="200" font-family="Segoe UI, Arial, sans-serif" font-size="15" font-weight="600" letter-spacing="3" fill="#67e8f9" text-anchor="middle">72</text></g>
+<g><rect x="14" y="14" rx="9" width="78" height="24" fill="#060913" opacity="0.85" stroke="#ffffff" stroke-opacity="0.14"/><text x="53" y="31" font-family="Segoe UI, Arial, sans-serif" font-size="12.5" font-weight="700" letter-spacing="2.5" fill="#60a5fa" text-anchor="middle">ANTI-HAE</text></g>
+</svg>

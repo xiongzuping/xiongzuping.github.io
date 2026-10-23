@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" role="img" aria-label="NANOCRYSTAL schematic">
+<defs>
+<linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#111b3e"/><stop offset="1" stop-color="#0a0f22"/></linearGradient>
+<filter id="f" x="-80%" y="-80%" width="260%" height="260%"><feGaussianBlur stdDeviation="11"/></filter>
+</defs>
+<rect width="400" height="400" fill="url(#bg)"/>
+<circle cx="200" cy="196" r="150" fill="#f87171" opacity="0.06" filter="url(#f)"/>
+<g stroke-linecap="round"><path d="M200 80 L262 170 L200 300 L138 170 Z" fill="none" stroke="#f87171" stroke-width="3"/><line x1="138" y1="170" x2="262" y2="170" stroke="#f87171" stroke-opacity="1" stroke-width="2.5" stroke-linecap="round"/><line x1="200" y1="80" x2="200" y2="300" stroke="#f87171" stroke-opacity="1" stroke-width="2.5" stroke-linecap="round"/><circle cx="200" cy="190" r="80" fill="#f87171" opacity="0.25" filter="url(#f)"/><circle cx="200" cy="190" r="8" fill="#f87171" opacity="1"/><circle cx="120" cy="120" r="5" fill="#fca5a5" opacity="1"/><circle cx="292" cy="96" r="4" fill="#fca5a5" opacity="1"/><circle cx="310" cy="250" r="4" fill="#fca5a5" opacity="1"/></g>
+<g><rect x="14" y="14" rx="9" width="102" height="24" fill="#060913" opacity="0.85" stroke="#ffffff" stroke-opacity="0.14"/><text x="65" y="31" font-family="Segoe UI, Arial, sans-serif" font-size="12.5" font-weight="700" letter-spacing="2.5" fill="#f87171" text-anchor="middle">NANOCRYSTAL</text></g>
+</svg>

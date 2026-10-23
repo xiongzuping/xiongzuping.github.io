@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" role="img" aria-label="SACCHARIDE schematic">
+<defs>
+<linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#111b3e"/><stop offset="1" stop-color="#0a0f22"/></linearGradient>
+<filter id="f" x="-80%" y="-80%" width="260%" height="260%"><feGaussianBlur stdDeviation="11"/></filter>
+</defs>
+<rect width="400" height="400" fill="url(#bg)"/>
+<circle cx="200" cy="196" r="150" fill="#f472b6" opacity="0.06" filter="url(#f)"/>
+<g stroke-linecap="round"><path d="M188.1 202 L150 224 L111.9 202 L111.9 158 L150 136 L188.1 158 Z" fill="none" stroke="#f472b6" stroke-opacity="1" stroke-width="3" stroke-linejoin="round"/><circle cx="150" cy="180" r="7" fill="#f472b6" opacity="1"/><circle cx="150" cy="224" r="8" fill="#fbbf24" opacity="1"/><path d="M296.1 202 L258 224 L219.9 202 L219.9 158 L258 136 L296.1 158 Z" fill="none" stroke="#f472b6" stroke-opacity="1" stroke-width="3" stroke-linejoin="round"/><circle cx="258" cy="180" r="7" fill="#f472b6" opacity="1"/><circle cx="258" cy="224" r="8" fill="#fbbf24" opacity="1"/><line x1="194" y1="180" x2="214" y2="180" stroke="#f472b6" stroke-opacity="1" stroke-width="3" stroke-linecap="round"/><circle cx="204" cy="150" r="5" fill="#22d3ee" opacity="0.9"/><circle cx="184" cy="214" r="5" fill="#22d3ee" opacity="0.9"/><circle cx="224" cy="214" r="5" fill="#22d3ee" opacity="0.9"/><circle cx="204" cy="196" r="60" fill="#f472b6" opacity="0.15" filter="url(#f)"/></g>
+<g><rect x="14" y="14" rx="9" width="94" height="24" fill="#060913" opacity="0.85" stroke="#ffffff" stroke-opacity="0.14"/><text x="61" y="31" font-family="Segoe UI, Arial, sans-serif" font-size="12.5" font-weight="700" letter-spacing="2.5" fill="#f472b6" text-anchor="middle">SACCHARIDE</text></g>
+</svg>

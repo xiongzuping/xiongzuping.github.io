@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" role="img" aria-label="MEMBRANE schematic">
+<defs>
+<linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#111b3e"/><stop offset="1" stop-color="#0a0f22"/></linearGradient>
+<filter id="f" x="-80%" y="-80%" width="260%" height="260%"><feGaussianBlur stdDeviation="11"/></filter>
+</defs>
+<rect width="400" height="400" fill="url(#bg)"/>
+<circle cx="200" cy="196" r="150" fill="#2dd4bf" opacity="0.06" filter="url(#f)"/>
+<g stroke-linecap="round"><ellipse cx="200" cy="200" rx="142" ry="82" fill="none" stroke="#2dd4bf" stroke-width="3"/><ellipse cx="200" cy="200" rx="134" ry="74" fill="none" stroke="#2dd4bf" stroke-opacity="0.35" stroke-width="3"/><circle cx="150" cy="122" r="6" fill="#2dd4bf" opacity="1"/><circle cx="150" cy="122" r="18" fill="#2dd4bf" opacity="0.25" filter="url(#f)"/><circle cx="216" cy="118" r="6" fill="#2dd4bf" opacity="1"/><circle cx="216" cy="118" r="18" fill="#2dd4bf" opacity="0.25" filter="url(#f)"/><circle cx="268" cy="138" r="6" fill="#2dd4bf" opacity="1"/><circle cx="268" cy="138" r="18" fill="#2dd4bf" opacity="0.25" filter="url(#f)"/><text x="restriction-induced emission" y="200" font-family="Segoe UI, Arial, sans-serif" font-size="13" font-weight="600" letter-spacing="3" fill="#5eead4" text-anchor="middle">330</text></g>
+<g><rect x="14" y="14" rx="9" width="78" height="24" fill="#060913" opacity="0.85" stroke="#ffffff" stroke-opacity="0.14"/><text x="53" y="31" font-family="Segoe UI, Arial, sans-serif" font-size="12.5" font-weight="700" letter-spacing="2.5" fill="#2dd4bf" text-anchor="middle">MEMBRANE</text></g>
+</svg>
