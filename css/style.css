@@ -241,20 +241,20 @@ img { display: block; max-width: 100%; }
   white-space: nowrap;
 }
 .badge-float b { color: var(--accent-2); }
-.badge-float.f1 { top: 0%; left: -14%; animation-delay: -1s; }
+.badge-float.f1 { top: 0%; left: -8%; animation-delay: -1s; }
 .badge-float.f2 { top: 4%; right: -16%; animation-delay: -1.6s; }
-.badge-float.f3 { top: 28%; left: -24%; animation-delay: -2.2s; }
+.badge-float.f3 { top: 28%; left: -15%; animation-delay: -2.2s; }
 .badge-float.f4 { top: 34%; right: -20%; animation-delay: -2.8s; }
-.badge-float.f5 { bottom: 10%; left: -16%; animation-delay: -3.4s; }
+.badge-float.f5 { bottom: 10%; left: -9%; animation-delay: -3.4s; }
 .badge-float.f6 { bottom: 0%; right: -6%; animation-delay: -4s; }
 @keyframes floaty { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
 @media (max-width: 900px) {
   .hero-inner { grid-template-columns: 1fr; gap: 44px; }
   .hero-visual { order: -1; }
   .hero-text { padding: 22px 20px; }
-  .badge-float.f1 { left: -2%; } .badge-float.f2 { right: -2%; }
-  .badge-float.f3 { left: -8%; } .badge-float.f4 { right: -8%; }
-  .badge-float.f5 { left: -4%; } .badge-float.f6 { right: -4%; }
+  .badge-float.f1 { left: -1%; } .badge-float.f2 { right: -2%; }
+  .badge-float.f3 { left: -4%; } .badge-float.f4 { right: -8%; }
+  .badge-float.f5 { left: -2%; } .badge-float.f6 { right: -4%; }
 }
 .scroll-hint {
   position: absolute; bottom: 26px; left: 50%; transform: translateX(-50%);

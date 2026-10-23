@@ -60,7 +60,7 @@
     const CN = "96,165,250", CO = "248,113,113", CC = "148,163,184";
     const FONT = Math.round(6.5 * DPR) + 'px Arial, sans-serif';
 
-    /* benzene ring: hexagon + Kekulé double bonds + aromatic circle */
+    /* benzene ring: regular hexagon + Kekulé double bonds */
     function hexPath(r) {
       ctx.beginPath();
       for (let i = 0; i < 6; i++) {
@@ -76,25 +76,28 @@
       ctx.save();
       ctx.translate(b.x, b.y);
       ctx.rotate(b.rot);
-      ctx.strokeStyle = "rgba(" + b.c + ",.2)";
-      ctx.lineWidth = 1.5 * DPR;
+      ctx.strokeStyle = "rgba(" + b.c + ",.3)";
+      ctx.lineWidth = 1.7 * DPR;
       hexPath(b.r); ctx.stroke();
       const verts = [];
       for (let i = 0; i < 6; i++) {
         const a = Math.PI / 6 + i * Math.PI / 3;
         verts.push([Math.cos(a) * b.r, Math.sin(a) * b.r]);
       }
-      ctx.strokeStyle = "rgba(" + b.c + ",.38)";
+      ctx.strokeStyle = "rgba(" + b.c + ",.42)";
       ctx.lineWidth = 2.2 * DPR;
       for (let i = 0; i < 6; i += 2) {
         const A = verts[i], B = verts[(i + 1) % 6];
-        const mx = (A[0] + B[0]) / 2, my = (A[1] + B[1]) / 2;
-        const d = Math.hypot(mx, my), nx = -mx / d, ny = -my / d;
+        /* double bond inset from both vertices (textbook Kekulé style) */
+        const ax = A[0] + (B[0] - A[0]) * 0.22, ay = A[1] + (B[1] - A[1]) * 0.22;
+        const bx = A[0] + (B[0] - A[0]) * 0.78, by = A[1] + (B[1] - A[1]) * 0.78;
+        const mx = (ax + bx) / 2, my = (ay + by) / 2;
+        const d = Math.hypot(mx, my) || 1, nx = -mx / d, ny = -my / d;
         for (let k = 0; k < 2; k++) {
           const off = (2.2 + 2.8 * k) * DPR;
           ctx.beginPath();
-          ctx.moveTo(A[0] + nx * off, A[1] + ny * off);
-          ctx.lineTo(B[0] + nx * off, B[1] + ny * off);
+          ctx.moveTo(ax + nx * off, ay + ny * off);
+          ctx.lineTo(bx + nx * off, by + ny * off);
           ctx.stroke();
         }
       }
