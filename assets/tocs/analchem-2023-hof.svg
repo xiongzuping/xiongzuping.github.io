@@ -9,7 +9,7 @@
 </defs>
 <rect width="400" height="400" fill="url(#bg)"/>
 <rect width="400" height="400" fill="url(#dots)"/>
-<text x="200" y="70" font-family="Segoe UI, Arial, sans-serif" font-size="13" font-weight="700" letter-spacing="4" fill="#5eead4" text-anchor="middle">HOF</text>
+<text x="200" y="70" font-family="Arial, sans-serif" font-size="13" font-weight="700" letter-spacing="4" fill="#5eead4" text-anchor="middle">HOF</text>
 <!-- 2D hydrogen-bonded framework: dashed H-bonds -->
 <g stroke="#22d3ee" stroke-opacity="0.8" stroke-width="2.4" stroke-linecap="round" stroke-dasharray="4 5">
 <line x1="132" y1="102" x2="188" y2="102"/><line x1="212" y1="102" x2="268" y2="102"/>
@@ -50,7 +50,7 @@
 <!-- electrode -->
 <rect x="90" y="308" width="220" height="8" rx="4" fill="#f87171" opacity="0.35" filter="url(#b)"/>
 <rect x="90" y="308" width="220" height="8" rx="4" fill="#f87171" opacity="0.9"/>
-<text x="200" y="352" font-family="Segoe UI, Arial, sans-serif" font-size="12" font-weight="500" letter-spacing="2" fill="#fca5a5" text-anchor="middle">ENHANCED ECL</text>
+<text x="200" y="352" font-family="Arial, sans-serif" font-size="12" font-weight="500" letter-spacing="2" fill="#fca5a5" text-anchor="middle">ENHANCED ECL</text>
 <rect width="400" height="400" fill="url(#vig)"/>
-<g><rect x="15" y="15" rx="13" width="116" height="26" fill="#070b1a" opacity="0.9" stroke="url(#tgb)" stroke-width="1"/><text x="73" y="32.5" font-family="Segoe UI, Arial, sans-serif" font-size="12" font-weight="700" letter-spacing="2.5" fill="#2dd4bf" text-anchor="middle">HOF REACTOR</text></g>
+<g><rect x="15" y="15" rx="13" width="116" height="26" fill="#070b1a" opacity="0.9" stroke="url(#tgb)" stroke-width="1"/><text x="73" y="32.5" font-family="Arial, sans-serif" font-size="12" font-weight="700" letter-spacing="2.5" fill="#2dd4bf" text-anchor="middle">HOF REACTOR</text></g>
 </svg>

@@ -22,8 +22,8 @@
   --radius-sm: 10px;
   --nav-h: 64px;
   --shadow: 0 20px 60px -20px rgba(4, 8, 30, 0.9);
-  --font: "Segoe UI", "PingFang SC", "Microsoft YaHei", -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
-  --mono: "Cascadia Mono", "Consolas", "SF Mono", monospace;
+  --font: Arial, "PingFang SC", "Microsoft YaHei", -apple-system, BlinkMacSystemFont, "Helvetica Neue", sans-serif;
+  --mono: Arial, sans-serif;
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }

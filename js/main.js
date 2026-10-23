@@ -58,7 +58,7 @@
     const R = (a, b) => a + Math.random() * (b - a);
     const PALETTE = [[109,124,255],[34,211,238],[167,139,250],[52,211,153],[251,191,36]];
     const CN = "96,165,250", CO = "248,113,113", CC = "148,163,184";
-    const FONT = Math.round(6.5 * DPR) + 'px "Segoe UI", Arial, sans-serif';
+    const FONT = Math.round(6.5 * DPR) + 'px Arial, sans-serif';
 
     /* benzene ring: hexagon + Kekulé double bonds + aromatic circle */
     function hexPath(r) {
@@ -76,7 +76,7 @@
       ctx.save();
       ctx.translate(b.x, b.y);
       ctx.rotate(b.rot);
-      ctx.strokeStyle = "rgba(" + b.c + ",.16)";
+      ctx.strokeStyle = "rgba(" + b.c + ",.2)";
       ctx.lineWidth = 1.5 * DPR;
       hexPath(b.r); ctx.stroke();
       const verts = [];
@@ -84,25 +84,20 @@
         const a = Math.PI / 6 + i * Math.PI / 3;
         verts.push([Math.cos(a) * b.r, Math.sin(a) * b.r]);
       }
-      ctx.strokeStyle = "rgba(" + b.c + ",.3)";
-      ctx.lineWidth = 1.9 * DPR;
+      ctx.strokeStyle = "rgba(" + b.c + ",.38)";
+      ctx.lineWidth = 2.2 * DPR;
       for (let i = 0; i < 6; i += 2) {
         const A = verts[i], B = verts[(i + 1) % 6];
         const mx = (A[0] + B[0]) / 2, my = (A[1] + B[1]) / 2;
         const d = Math.hypot(mx, my), nx = -mx / d, ny = -my / d;
         for (let k = 0; k < 2; k++) {
-          const off = (2.6 + 2.8 * k) * DPR;
+          const off = (2.2 + 2.8 * k) * DPR;
           ctx.beginPath();
           ctx.moveTo(A[0] + nx * off, A[1] + ny * off);
           ctx.lineTo(B[0] + nx * off, B[1] + ny * off);
           ctx.stroke();
         }
       }
-      ctx.setLineDash([2.5 * DPR, 4 * DPR]);
-      ctx.strokeStyle = "rgba(" + b.c + ",.2)";
-      ctx.lineWidth = 1.2 * DPR;
-      ctx.beginPath(); ctx.arc(0, 0, b.r * 0.55, 0, Math.PI * 2); ctx.stroke();
-      ctx.setLineDash([]);
       ctx.restore();
     }
 
@@ -303,7 +298,7 @@
         ctx.lineWidth = 1.3 * s;
         ctx.beginPath(); ctx.arc(x * s, y * s, r * s, 0, Math.PI * 2); ctx.stroke();
         if (label) {
-          ctx.font = Math.round(6 * s) + 'px "Segoe UI", Arial, sans-serif';
+          ctx.font = Math.round(6 * s) + 'px Arial, sans-serif';
           ctx.textAlign = "center"; ctx.textBaseline = "middle";
           ctx.fillStyle = labCol;
           ctx.fillText(label, x * s, (y + (dy || 0)) * s);
