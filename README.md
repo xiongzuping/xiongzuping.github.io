@@ -45,7 +45,7 @@ jacs-2026-coreshell.svg        chem-2026-cpl.svg              ncomms-2026-switch
 csr-2026-tsi.svg               chem-asian-j-2026-carbohelicene.svg  chem-sci-2026-bipyrenyl.svg
 ccschem-2026-helical.svg       ncomms-2026-atropisomer.svg    chemmater-2026-rotaxane.svg
 acsami-2026-saccharide.svg     mater-today-bio-2026-orchitis.svg  advhealthcare-2026-hydrogel.svg
-polymchem-2026-polyurethane.svg
+polymchem-2026-polyurethane.svg  scichinachem-2026-liquidionic.svg
 # 2025
 chem-2025-nir.jpg*             ncomms-2025-emergent.svg       angew-2025-cof.svg
 afm-2025-sulfur.svg            polymchem-2025-magnetism.svg   macromolecules-2025-ring.svg
@@ -58,6 +58,7 @@ natphotonics-2024-scintillator.svg  ncomms-2024-polyester.svg materhoriz-2024-po
 jacs-2023-oddeven.jpg*         ccschem-2023-clusterolum.svg   cej-2023-heavyatom.svg
 tetrahedron-2023-photochromism.svg  smartmol-2023-diphenylmethane.svg  macromolecules-2023-enolate.svg
 angew-2023-phenolic.svg        biosens-2023-porphyrin.svg     ocf-2023-pyrone.svg
+analchem-2023-hof.svg
 # 2022
 analchem-2022-esterase.svg     photonicsres-2022-led.svg      aggregate-2022-carbonyl.svg
 chemcommun-2022-antihae.svg    jmcc-2022-photochromism.svg    analchem-2022-membrane.svg
@@ -66,7 +67,7 @@ analchem-2022-pec.svg
 chemsci-2021-photochromism.svg aom-2021-silole.svg            analchem-2021-hof.svg
 ```
 
-带 `*` 的三张（Chem 2025、JACS 2023、Angew 2024）是论文真实 TOC 图（.jpg）；其余 48 张为按论文主题生成的示意图（.svg，深色科技风）。
+带 `*` 的三张（Chem 2025、JACS 2023、Angew 2024）是论文真实 TOC 图（.jpg）；其余 50 张为按论文主题生成的示意图（.svg，深色科技风）。
 
 **换成官方 TOC 图**：拿到某篇论文的官方 TOC 图后，把图命名为 `<对应文件名>.jpg` 放入 `assets/tocs/`，并把 `index.html` 中该卡片 `<img>` 的 `src` 从 `.svg` 改回 `.jpg` 即可。
 
