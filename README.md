@@ -76,3 +76,8 @@ chemsci-2021-photochromism.svg aom-2021-silole.svg            analchem-2021-hof.
 - **改论文/加论文**：编辑 `index.html` 中 `#tab2026` / `#tab2025` 内的 `<article class="paper">` 卡片；年份小标题 `# 篇数` 需同步更新。
 - **换头像**：覆盖 `assets/portrait.jpg`。
 - **改文字**：直接编辑 `index.html` 对应区块。
+
+## 访问统计（百度统计）
+
+- 代码已在 `index.html` 的 `<head>` 中预埋（`BAIDU_TONGJI_ID` 占位，未填时完全静默、不发任何请求）。
+- 启用步骤：在 [tongji.baidu.com](https://tongji.baidu.com) 注册并添加站点 `https://xiongzuping.github.io/` → 把统计代码里的 32 位 ID 替换 `index.html` 中的 `BAIDU_TONGJI_ID` → `git add -A; git commit -m "enable baidu tongji"; git push` → 回百度统计后台点「代码安装检查」验证 → 后台即可查看访问量 / 访客明细。
