@@ -1,6 +1,6 @@
 # Zuping Xiong — Personal Academic Website
 
-深色科技风静态个人学术主页。线上地址：**https://xiongzuping.github.io/**
+深色科技风静态个人学术主页。线上地址：**https://xiongzuping.com/**（旧地址 xiongzuping.github.io 自动 301 跳转到新域名）。
 
 ## 文件结构
 
@@ -8,6 +8,7 @@
 index.html          页面内容（全部文案、论文条目、图片路径都在这里）
 css/style.css       深色科技风设计系统（颜色、卡片、动效）
 js/main.js          交互脚本（星空、滚动动效、画廊、Tab 切换）
+CNAME               自定义域名绑定（内容为 xiongzuping.com，勿删）
 assets/             图片
   portrait.jpg      头像
   acad-*.jpg        学术活动区（Academic Activities）照片
@@ -15,6 +16,15 @@ assets/             图片
   tocs/             论文 TOC 图（详见下方命名规则）
 .github/workflows/deploy.yml   自动发布配置
 ```
+
+## 域名（重要）
+
+- 主域名 **xiongzuping.com**（2026-10-24 启用），域名在 Spaceship 注册（每年续费），DNS 托管在用户自己的 Cloudflare 账号（免费）。
+- DNS 记录（全部「仅 DNS」灰云，**不要开代理橙云**，否则 GitHub Pages 绑定失效）：
+  - 4 条 A 记录 `@` → 185.199.108.153 / 185.199.109.153 / 185.199.110.153 / 185.199.111.153
+  - 1 条 CNAME `www` → xiongzuping.github.io
+- GitHub 绑定靠仓库根目录的 `CNAME` 文件 + Settings → Pages 里的自定义域名（两者必须一致）。
+- 换域名时：改 Cloudflare DNS 记录 → 改 `CNAME` 文件 → Settings → Pages 确认并勾选 Enforce HTTPS。
 
 ## 本地预览
 
