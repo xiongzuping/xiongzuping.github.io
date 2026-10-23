@@ -10,8 +10,7 @@ css/style.css       深色科技风设计系统（颜色、卡片、动效）
 js/main.js          交互脚本（星空、滚动动效、画廊、Tab 切换）
 assets/             图片
   portrait.jpg      头像
-  feat-*.jpg        学术活动区「Highlighted Work」配图
-  acad-*.jpg        学术活动区证书照片
+  acad-*.jpg        学术活动区（Academic Activities）照片
   gallery/          生活画廊（34 张）
   tocs/             论文 TOC 图（详见下方命名规则）
 .github/workflows/deploy.yml   自动发布配置

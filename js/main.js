@@ -44,48 +44,162 @@
     { src: "assets/gallery/ljDwaz0dEq8Bqir7KbjSHVkajKHD.jpg", cap: "" }
   ];
 
-  /* ---------------- starfield ---------------- */
+  /* ---------------- materials-chemistry background ----------------
+     A dark lab sky: faint stars + drifting polymer chains +
+     glowing clusteroluminescence blobs + floating benzene rings. */
   const canvas = document.getElementById("starfield");
   if (canvas) {
     const ctx = canvas.getContext("2d");
-    let stars = [], W = 0, H = 0, raf = null;
+    let stars = [], clusters = [], chains = [], hexes = [],
+        W = 0, H = 0, raf = null, t = 0;
     const DPR = Math.min(window.devicePixelRatio || 1, 2);
+    const R = (a, b) => a + Math.random() * (b - a);
+    const PALETTE = [[109,124,255], [34,211,238], [167,139,250], [52,211,153], [251,191,36]];
+
+    function hexPath(r) {
+      ctx.beginPath();
+      for (let i = 0; i < 6; i++) {
+        const a = Math.PI / 6 + i * Math.PI / 3;
+        const x = Math.cos(a) * r, y = Math.sin(a) * r;
+        if (i) ctx.lineTo(x, y); else ctx.moveTo(x, y);
+      }
+      ctx.closePath();
+    }
 
     function resize() {
       W = canvas.width = innerWidth * DPR;
       H = canvas.height = innerHeight * DPR;
       canvas.style.width = innerWidth + "px";
       canvas.style.height = innerHeight + "px";
-      const n = Math.min(140, Math.floor((innerWidth * innerHeight) / 9000));
-      stars = Array.from({ length: n }, () => ({
-        x: Math.random() * W,
-        y: Math.random() * H,
-        r: (Math.random() * 1.4 + 0.3) * DPR,
-        v: Math.random() * 0.25 + 0.05,
-        a: Math.random() * 0.6 + 0.15,
-        tw: Math.random() * 0.02 + 0.004
+      stars = Array.from({ length: Math.min(110, Math.floor((innerWidth * innerHeight) / 11000)) }, () => ({
+        x: Math.random() * W, y: Math.random() * H,
+        r: (Math.random() * 1.3 + 0.3) * DPR,
+        v: Math.random() * 0.22 + 0.04,
+        a: Math.random() * 0.5 + 0.12
+      }));
+      clusters = Array.from({ length: Math.max(6, Math.min(12, Math.floor(innerWidth / 150))) }, () => ({
+        x: Math.random() * W, y: Math.random() * H,
+        r: R(26, 58) * DPR,
+        c: PALETTE[Math.floor(Math.random() * PALETTE.length)],
+        ph: Math.random() * Math.PI * 2,
+        vy: R(0.05, 0.14) * DPR,
+        vx: R(-0.06, 0.06) * DPR
+      }));
+      chains = Array.from({ length: 4 }, () => ({
+        y0: R(0.15, 0.85) * H,
+        f: R(1.6, 3.2),
+        amp: R(34, 78) * DPR,
+        ph: Math.random() * Math.PI * 2,
+        v: R(0.004, 0.011),
+        c: PALETTE[Math.floor(Math.random() * 3)]
+      }));
+      hexes = Array.from({ length: 6 }, () => ({
+        x: Math.random() * W, y: Math.random() * H,
+        r: R(11, 26) * DPR,
+        rot: Math.random() * Math.PI,
+        vr: R(-0.004, 0.004),
+        vy: R(0.03, 0.09) * DPR,
+        c: PALETTE[Math.floor(Math.random() * PALETTE.length)]
       }));
     }
+
+    function drawCluster(cl, tt) {
+      const pulse = 1 + Math.sin(tt * 0.012 + cl.ph) * 0.12;
+      const r = cl.r * pulse;
+      let g = ctx.createRadialGradient(cl.x, cl.y, 0, cl.x, cl.y, r);
+      g.addColorStop(0, "rgba(" + cl.c[0] + "," + cl.c[1] + "," + cl.c[2] + ",0.5)");
+      g.addColorStop(0.55, "rgba(" + cl.c[0] + "," + cl.c[1] + "," + cl.c[2] + ",0.13)");
+      g.addColorStop(1, "rgba(" + cl.c[0] + "," + cl.c[1] + "," + cl.c[2] + ",0)");
+      ctx.fillStyle = g;
+      ctx.beginPath(); ctx.arc(cl.x, cl.y, r, 0, Math.PI * 2); ctx.fill();
+      g = ctx.createRadialGradient(cl.x, cl.y, 0, cl.x, cl.y, r * 0.45);
+      g.addColorStop(0, "rgba(" + cl.c[0] + "," + cl.c[1] + "," + cl.c[2] + ",0.32)");
+      g.addColorStop(1, "rgba(" + cl.c[0] + "," + cl.c[1] + "," + cl.c[2] + ",0)");
+      ctx.fillStyle = g;
+      ctx.beginPath(); ctx.arc(cl.x, cl.y, r * 0.45, 0, Math.PI * 2); ctx.fill();
+      ctx.fillStyle = "rgba(255,255,255,0.5)";
+      ctx.beginPath(); ctx.arc(cl.x, cl.y, r * 0.12, 0, Math.PI * 2); ctx.fill();
+    }
+
+    function chainY(ch, x, tt) {
+      return ch.y0 + Math.sin((x / W) * Math.PI * 2 * ch.f + ch.ph) * ch.amp +
+             Math.sin(tt * 0.006 + ch.ph * 3) * 14 * DPR;
+    }
+
+    function drawChain(ch, tt) {
+      ch.ph += ch.v;
+      const step = 46 * DPR;
+      ctx.strokeStyle = "rgba(" + ch.c[0] + "," + ch.c[1] + "," + ch.c[2] + ",0.13)";
+      ctx.lineWidth = 2.2 * DPR;
+      ctx.beginPath();
+      for (let x = -step, first = true; x < W + step * 2; x += step) {
+        const y = chainY(ch, x, tt);
+        if (first) { ctx.moveTo(x, y); first = false; } else ctx.lineTo(x, y);
+      }
+      ctx.stroke();
+      for (let x = 0; x < W + step; x += step) {
+        const y = chainY(ch, x, tt);
+        ctx.fillStyle = "#0a0f22";
+        ctx.beginPath(); ctx.arc(x, y, 4.6 * DPR, 0, Math.PI * 2); ctx.fill();
+        ctx.strokeStyle = "rgba(" + ch.c[0] + "," + ch.c[1] + "," + ch.c[2] + ",0.28)";
+        ctx.lineWidth = 1.8 * DPR;
+        ctx.beginPath(); ctx.arc(x, y, 4.6 * DPR, 0, Math.PI * 2); ctx.stroke();
+      }
+    }
+
+    function drawHex(hx) {
+      hx.y -= hx.vy; hx.rot += hx.vr;
+      if (hx.y < -40) { hx.y = H + 40; hx.x = Math.random() * W; }
+      ctx.save();
+      ctx.translate(hx.x, hx.y);
+      ctx.rotate(hx.rot);
+      ctx.strokeStyle = "rgba(" + hx.c[0] + "," + hx.c[1] + "," + hx.c[2] + ",0.16)";
+      ctx.lineWidth = 1.6 * DPR;
+      hexPath(hx.r); ctx.stroke();
+      ctx.strokeStyle = "rgba(" + hx.c[0] + "," + hx.c[1] + "," + hx.c[2] + ",0.1)";
+      hexPath(hx.r * 0.6); ctx.stroke();
+      ctx.restore();
+    }
+
     function tick() {
+      t += 1;
       ctx.clearRect(0, 0, W, H);
       for (const s of stars) {
         s.y -= s.v * DPR;
         if (s.y < -4) { s.y = H + 4; s.x = Math.random() * W; }
         s.a += (Math.random() - 0.5) * 0.03;
-        s.a = Math.max(0.1, Math.min(0.85, s.a));
+        s.a = Math.max(0.08, Math.min(0.7, s.a));
         ctx.beginPath();
         ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
         ctx.fillStyle = "rgba(160,180,255," + s.a.toFixed(2) + ")";
         ctx.fill();
       }
+      for (const cl of clusters) {
+        cl.x += cl.vx; cl.y += cl.vy;
+        if (cl.y > H + 80) { cl.y = -80; cl.x = Math.random() * W; }
+        if (cl.x > W + 80) cl.x = -80;
+        if (cl.x < -80) cl.x = W + 80;
+        drawCluster(cl, t);
+      }
+      for (const ch of chains) drawChain(ch, t);
+      for (const hx of hexes) drawHex(hx);
       raf = requestAnimationFrame(tick);
     }
+
     const reduced = matchMedia("(prefers-reduced-motion: reduce)").matches;
-    if (reduced) { /* static faint dots */
-      resize(); ctx.fillStyle = "rgba(160,180,255,.35)";
+    resize();
+    if (reduced) { /* static render */
+      ctx.fillStyle = "rgba(160,180,255,.3)";
       stars.forEach(s => { ctx.beginPath(); ctx.arc(s.x, s.y, s.r, 0, 7); ctx.fill(); });
+      clusters.forEach(cl => drawCluster(cl, 0));
+      chains.forEach(ch => drawChain(ch, 0));
+      hexes.forEach(hx => {
+        ctx.save(); ctx.translate(hx.x, hx.y); ctx.rotate(hx.rot);
+        ctx.strokeStyle = "rgba(160,180,255,.15)";
+        hexPath(hx.r); ctx.stroke(); ctx.restore();
+      });
     } else {
-      resize(); tick();
+      tick();
     }
     addEventListener("resize", () => { cancelAnimationFrame(raf); resize(); if (!reduced) tick(); });
   }

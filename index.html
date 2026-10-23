@@ -36,6 +36,51 @@
 
 <!-- ================= HERO ================= -->
 <header class="hero" id="home">
+  <div class="hero-mol" aria-hidden="true">
+    <svg viewBox="0 0 1200 600" preserveAspectRatio="xMidYMid slice">
+      <defs>
+        <filter id="hmb" x="-80%" y="-80%" width="260%" height="260%"><feGaussianBlur stdDeviation="16"/></filter>
+        <radialGradient id="hmc1"><stop offset="0" stop-color="#22d3ee" stop-opacity=".55"/><stop offset=".55" stop-color="#22d3ee" stop-opacity=".13"/><stop offset="1" stop-color="#22d3ee" stop-opacity="0"/></radialGradient>
+        <radialGradient id="hmc2"><stop offset="0" stop-color="#a78bfa" stop-opacity=".5"/><stop offset=".55" stop-color="#a78bfa" stop-opacity=".12"/><stop offset="1" stop-color="#a78bfa" stop-opacity="0"/></radialGradient>
+        <radialGradient id="hmc3"><stop offset="0" stop-color="#6d7cff" stop-opacity=".45"/><stop offset=".55" stop-color="#6d7cff" stop-opacity=".11"/><stop offset="1" stop-color="#6d7cff" stop-opacity="0"/></radialGradient>
+      </defs>
+      <!-- polymer chains -->
+      <path d="M-40 470 Q 80 428 200 470 T 440 470 T 680 470 T 920 470 T 1220 470" stroke="#6d7cff" stroke-opacity=".38" stroke-width="4" fill="none"/>
+      <g fill="#0a0f22" stroke="#6d7cff" stroke-opacity=".55" stroke-width="2.5">
+        <circle cx="0" cy="470" r="8"/><circle cx="120" cy="488" r="8"/><circle cx="240" cy="470" r="8"/><circle cx="360" cy="452" r="8"/><circle cx="480" cy="470" r="8"/><circle cx="600" cy="488" r="8"/><circle cx="720" cy="470" r="8"/><circle cx="840" cy="452" r="8"/><circle cx="960" cy="470" r="8"/><circle cx="1080" cy="488" r="8"/><circle cx="1200" cy="470" r="8"/>
+      </g>
+      <path d="M680 128 Q 800 96 920 134 T 1220 120" stroke="#22d3ee" stroke-opacity=".3" stroke-width="3.5" fill="none"/>
+      <g fill="#0a0f22" stroke="#22d3ee" stroke-opacity=".45" stroke-width="2.2">
+        <circle cx="680" cy="128" r="6.5"/><circle cx="800" cy="112" r="6.5"/><circle cx="920" cy="136" r="6.5"/><circle cx="1040" cy="112" r="6.5"/><circle cx="1160" cy="128" r="6.5"/>
+      </g>
+      <!-- clusteroluminescence -->
+      <circle cx="980" cy="160" r="170" fill="url(#hmc1)"/>
+      <circle cx="150" cy="330" r="150" fill="url(#hmc3)"/>
+      <circle cx="1080" cy="450" r="130" fill="url(#hmc2)"/>
+      <g fill="#e2e8f0">
+        <circle cx="960" cy="150" r="3.5" opacity=".8"/><circle cx="1006" cy="172" r="3" opacity=".7"/><circle cx="952" cy="182" r="2.6" opacity=".65"/><circle cx="1012" cy="140" r="2.6" opacity=".6"/><circle cx="982" cy="124" r="3" opacity=".7"/>
+        <circle cx="140" cy="320" r="3" opacity=".75"/><circle cx="166" cy="338" r="2.6" opacity=".65"/><circle cx="128" cy="346" r="2.4" opacity=".6"/><circle cx="158" cy="308" r="2.8" opacity=".7"/>
+        <circle cx="1070" cy="440" r="3" opacity=".75"/><circle cx="1094" cy="462" r="2.6" opacity=".65"/><circle cx="1062" cy="470" r="2.4" opacity=".6"/>
+      </g>
+      <!-- benzene rings -->
+      <g fill="none" stroke="#22d3ee" stroke-opacity=".3" stroke-width="2.5">
+        <path d="M830 84 L862 66 L894 84 L894 120 L862 138 L830 120 Z"/>
+        <path d="M846 84 L862 72 L878 84 L878 112 L862 124 L846 112 Z" stroke-opacity=".2"/>
+      </g>
+      <g fill="none" stroke="#a78bfa" stroke-opacity=".28" stroke-width="2.5">
+        <path d="M292 140 L314 126 L336 140 L336 170 L314 184 L292 170 Z"/>
+        <path d="M306 140 L314 130 L322 140 L322 162 L314 172 L306 162 Z" stroke-opacity=".18"/>
+      </g>
+      <g fill="none" stroke="#6d7cff" stroke-opacity=".25" stroke-width="2">
+        <path d="M520 300 L536 288 L552 300 L552 324 L536 336 L520 324 Z"/>
+      </g>
+      <!-- floating bonds + photon -->
+      <g stroke="#22d3ee" stroke-opacity=".25" stroke-width="2" stroke-dasharray="6 6">
+        <line x1="620" y1="240" x2="700" y2="240"/><line x1="240" y1="200" x2="300" y2="200"/>
+      </g>
+      <text x="706" y="66" font-family="Segoe UI, Arial, sans-serif" font-size="34" font-weight="600" letter-spacing="2" fill="#67e8f9" opacity=".45">hn</text>
+    </svg>
+  </div>
   <div class="wrap hero-inner">
     <div>
       <div class="hero-kicker">RGC Junior Research Fellow · HKUST</div>
@@ -73,7 +118,7 @@
 <section class="section section-tight" id="stats" style="padding-top:10px">
   <div class="wrap">
     <div class="stats reveal">
-      <div class="stat"><div class="num" data-count="50">0</div><div class="lab">Research Articles</div></div>
+      <div class="stat"><div class="num" data-count="51">0</div><div class="lab">Research Articles</div></div>
       <div class="stat"><div class="num" data-count="29">0</div><div class="lab">First / Corresponding Author</div></div>
       <div class="stat"><div class="num" data-count="11">0</div><div class="lab">Invited &amp; Oral Talks</div></div>
       <div class="stat"><div class="num" data-count="15">0</div><div class="lab">Honors &amp; Awards</div></div>
@@ -92,7 +137,7 @@
       <div class="about-text reveal">
         <p class="hl"><b>Dr. Zuping Xiong</b> is currently a recipient of the <b>RGC Junior Research Fellow Scheme (JRFS)</b> at The Hong Kong University of Science and Technology (HKUST). He was invited to serve as an <b>Editorial Board Member</b> of <em>Scientific Reports</em> and <em>Discover Chemistry</em> (Springer Nature), 2026–Present.</p>
         <p>He received his Ph.D. degree from <b>Zhejiang University</b> ahead of schedule, under the supervision of <b>Prof. Ben Zhong Tang</b>, <b>Prof. Haoke Zhang</b> and <b>Prof. Jing Zhi Sun</b>, with interdisciplinary supervision by <b>Dr. Jun Qian</b>. In 2022, he joined Prof. Tang's group (admitted with first rank) and began research on <b>aggregation-induced emission (AIE)</b>.</p>
-        <p>He has authored <b>~50 research articles</b>, with <b>29 papers as first or corresponding author</b> in <em>Nat. Chem.</em>, <em>Nat. Rev. Chem.</em>, <em>J. Am. Chem. Soc.</em> (×2), <em>Chem</em> (×2), <em>Nat. Commun.</em>, <em>Angew. Chem. Int. Ed.</em> (×3), <em>ACS Materials Lett.</em>, <em>CCS Chem.</em>, <em>Chem. Sci.</em> and related journals.</p>
+        <p>He has authored <b>51 research articles</b>, with <b>29 papers as first or corresponding author</b> in <em>Nat. Chem.</em>, <em>Nat. Rev. Chem.</em>, <em>J. Am. Chem. Soc.</em> (×2), <em>Chem</em> (×2), <em>Nat. Commun.</em>, <em>Angew. Chem. Int. Ed.</em> (×3), <em>ACS Materials Lett.</em>, <em>CCS Chem.</em>, <em>Chem. Sci.</em> and related journals.</p>
         <p>He has delivered <b>more than 11 oral / invited presentations</b> at international and national conferences and received the <b>Best Oral Presentation</b> award.</p>
       </div>
       <div class="card info-card reveal d1">
@@ -930,7 +975,7 @@
   <div class="wrap">
     <div class="section-head reveal">
       <div class="kicker">Academic Activities</div>
-      <h2 class="section-title">Academic &amp; Highlights<span class="zh">学术活动</span></h2>
+      <h2 class="section-title">Academic Activities<span class="zh">学术活动</span></h2>
     </div>
     <div class="acad-row">
       <div class="card acad-item reveal">
@@ -954,26 +999,6 @@
       <figure class="card reveal" style="padding:10px;text-align:center"><img src="assets/acad-lindau.jpg" alt="74th Lindau Nobel Laureate Meetings" style="border-radius:10px;aspect-ratio:4/3;object-fit:cover;width:100%"><figcaption style="color:var(--muted);font-size:13px;padding:10px 4px 6px">74th Lindau Nobel Laureate Meetings</figcaption></figure>
       <figure class="card reveal d1" style="padding:10px;text-align:center"><img src="assets/acad-nsfc.jpg" alt="NSFC projects" style="border-radius:10px;aspect-ratio:4/3;object-fit:cover;width:100%"><figcaption style="color:var(--muted);font-size:13px;padding:10px 4px 6px">NSFC Research Projects</figcaption></figure>
       <figure class="card reveal d2" style="padding:10px;text-align:center"><img src="assets/acad-rsc.jpg" alt="RSC Excellent Student" style="border-radius:10px;aspect-ratio:4/3;object-fit:cover;width:100%"><figcaption style="color:var(--muted);font-size:13px;padding:10px 4px 6px">RSC Excellent Student 2024</figcaption></figure>
-    </div>
-    <h3 style="margin:44px 0 20px; font-size:20px" class="reveal">Highlighted Work</h3>
-    <div class="feat-grid">
-      <a class="card feat reveal" href="https://doi.org/10.1016/j.chempr.2024.08.022" target="_blank" rel="noopener">
-        <div class="thumb"><img src="assets/feat-chem2025.jpg" alt="Chem 2025" onerror="this.style.display='none'"><span class="jbadge flag">Chem 2025</span></div>
-        <div class="txt"><h3>Virtual Screening for an Ultra-Small NIR Emitter</h3><div class="meta">Only two isolated hexatomic rings</div>
-        <div class="links"><a href="https://mp.weixin.qq.com/s/WWiXmMaN0668qbP-9Elw9g" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M10 8l6 4-6 4V8z"/></svg>Animation</a></div></div>
-      </a>
-      <a class="card feat reveal d1" href="https://doi.org/10.1021/jacs.3c08164" target="_blank" rel="noopener">
-        <div class="thumb"><img src="assets/feat-jacs2023.jpg" alt="JACS 2024" onerror="this.style.display='none'"><span class="jbadge flag">JACS 2024</span></div>
-        <div class="txt"><h3>Excited-State Odd–Even Effect in Through-Space Interactions</h3><div class="meta">J. Am. Chem. Soc. 2023, 145, 21104–21113</div><div class="links"></div></div>
-      </a>
-      <a class="card feat reveal" href="https://doi.org/10.1002/anie.202318245" target="_blank" rel="noopener">
-        <div class="thumb"><img src="assets/feat-angew2024.jpg" alt="Angew 2024" onerror="this.style.display='none'"><span class="jbadge flag">Angew 2024</span></div>
-        <div class="txt"><h3>How the Length of TSC Influences Clusteroluminescence</h3><div class="meta">Angew. Chem. Int. Ed. 2024, 63, e202318245 · VIP</div><div class="links"></div></div>
-      </a>
-      <a class="card feat reveal d1" href="https://doi.org/10.1038/s41570-024-00672-5" target="_blank" rel="noopener">
-        <div class="thumb"><span class="jbadge flag">Nat. Rev. Chem.</span><div class="ph">NRC<br>2024</div></div>
-        <div class="txt"><h3>Exploring the Boundaries of Covalency</h3><div class="meta">News &amp; Views · Nat. Rev. Chem. 2024, 8, 875–876</div><div class="links"></div></div>
-      </a>
     </div>
   </div>
 </section>

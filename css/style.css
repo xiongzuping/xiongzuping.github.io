@@ -148,13 +148,21 @@ img { display: block; max-width: 100%; }
 
 /* ---------- hero ---------- */
 .hero {
+  position: relative; overflow: hidden;
   min-height: 100vh; display: flex; align-items: center;
   padding: calc(var(--nav-h) + 40px) 0 60px;
 }
+.hero-mol {
+  position: absolute; inset: 0; z-index: 0;
+  pointer-events: none; opacity: .55;
+}
+.hero-mol svg { width: 100%; height: 100%; display: block; }
 .hero-inner {
+  position: relative; z-index: 1;
   display: grid; grid-template-columns: 1.25fr 0.85fr;
   gap: 56px; align-items: center;
 }
+.hero .scroll-hint { z-index: 1; }
 .hero-kicker {
   font-family: var(--mono); font-size: 14px; letter-spacing: 4px;
   color: var(--accent-2); text-transform: uppercase;
@@ -325,37 +333,6 @@ img { display: block; max-width: 100%; }
 .honor .body .zh { color: var(--faint); font-size: 13px; margin-top: 2px; }
 .honors-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
 @media (max-width: 860px) { .honors-grid { grid-template-columns: 1fr; } }
-
-/* ---------- featured publications ---------- */
-.feat-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; }
-@media (max-width: 920px) { .feat-grid { grid-template-columns: 1fr; } }
-.feat {
-  display: flex; flex-direction: column; overflow: hidden; padding: 0;
-}
-.feat .thumb { position: relative; aspect-ratio: 16/8.4; overflow: hidden; background: var(--bg-2); }
-.feat .thumb img { width: 100%; height: 100%; object-fit: cover; transition: transform .5s; }
-.feat:hover .thumb img { transform: scale(1.05); }
-.feat .thumb .ph {
-  width: 100%; height: 100%; display: flex; align-items: center; justify-content: center;
-  background: radial-gradient(circle at 30% 30%, rgba(109,124,255,.18), rgba(6,9,19,0));
-  font-family: var(--mono); font-size: 30px; letter-spacing: 2px; color: var(--faint);
-}
-.jbadge {
-  position: absolute; top: 14px; left: 14px; z-index: 2;
-  font-family: var(--mono); font-size: 11.5px; font-weight: 700; letter-spacing: 1px;
-  padding: 5px 12px; border-radius: 999px; color: #fff;
-  background: rgba(6, 9, 19, 0.78); border: 1px solid var(--border-strong);
-  backdrop-filter: blur(6px);
-}
-.jbadge.flag { background: linear-gradient(120deg, #f59e0b, #ef4444); border: none; }
-.feat .txt { padding: 20px 22px 22px; display: flex; flex-direction: column; gap: 9px; flex: 1; }
-.feat .txt h3 { font-size: 16px; font-weight: 650; line-height: 1.45; }
-.feat .txt .meta { color: var(--faint); font-size: 13px; font-family: var(--mono); }
-.feat .txt .meta b { color: var(--accent-2); font-weight: 600; }
-.feat .links { margin-top: auto; display: flex; gap: 16px; padding-top: 6px; }
-.feat .links a { font-size: 13px; color: var(--accent-2); display: inline-flex; align-items: center; gap: 6px; }
-.feat .links a:hover { color: #7ce7fa; text-decoration: underline; }
-.feat .links a svg { width: 13px; height: 13px; }
 
 /* ---------- publications list ---------- */
 .pub-tabs { display: flex; gap: 10px; margin-bottom: 26px; flex-wrap: wrap; }
