@@ -415,6 +415,25 @@ img { display: block; max-width: 100%; }
 .tag.first { color: #fbbf24; border-color: rgba(251,191,36,.35); background: rgba(251,191,36,.07); }
 .tag.corr { color: #34d399; border-color: rgba(52,211,153,.35); background: rgba(52,211,153,.07); }
 .tag.star { color: #c4b5fd; border-color: rgba(167,139,250,.42); background: rgba(167,139,250,.09); }
+/* Featured (代表作) cards: gradient frame + TOC highlight */
+.paper:has(.tag.star) {
+  border: 1px solid transparent;
+  background:
+    linear-gradient(135deg, rgba(167,139,250,.55), rgba(34,211,238,.35)) border-box,
+    transparent padding-box;
+  box-shadow: 0 0 18px rgba(167,139,250,.10);
+  transition: background .2s, box-shadow .25s;
+}
+.paper:has(.tag.star):hover {
+  background:
+    linear-gradient(135deg, rgba(196,181,253,.7), rgba(34,211,238,.5)) border-box,
+    var(--card) padding-box;
+  box-shadow: 0 0 26px rgba(167,139,250,.18);
+}
+.paper:has(.tag.star) .paper-fig {
+  border-color: rgba(167,139,250,.5);
+  box-shadow: 0 0 14px rgba(167,139,250,.22);
+}
 .paper-links { display: flex; gap: 16px; flex-wrap: wrap; margin-top: 9px; }
 .paper-links a { font-size: 12.5px; color: var(--accent-2); display: inline-flex; align-items: center; gap: 5px; }
 .paper-links a:hover { color: #7ce7fa; text-decoration: underline; }
