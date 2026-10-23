@@ -205,10 +205,8 @@ img { display: block; max-width: 100%; }
   position: relative; width: min(340px, 78vw); aspect-ratio: 1; border-radius: 50%;
   padding: 6px;
   background: conic-gradient(from 0deg, #6d7cff, #22d3ee, #a78bfa, #6d7cff);
-  animation: spin-ring 12s linear infinite;
   box-shadow: 0 0 90px -18px rgba(109, 124, 255, 0.55);
 }
-@keyframes spin-ring { to { transform: rotate(360deg); } }
 .portrait-ring::before {
   content: ""; position: absolute; inset: 6px; border-radius: 50%;
   background: var(--bg-2);
@@ -360,7 +358,7 @@ img { display: block; max-width: 100%; }
 .feat .links a svg { width: 13px; height: 13px; }
 
 /* ---------- publications list ---------- */
-.pub-tabs { display: flex; gap: 10px; margin-bottom: 30px; flex-wrap: wrap; }
+.pub-tabs { display: flex; gap: 10px; margin-bottom: 26px; flex-wrap: wrap; }
 .pub-tab {
   padding: 10px 24px; border-radius: 999px; cursor: pointer;
   font-size: 14.5px; font-weight: 600; color: var(--muted);
@@ -373,33 +371,78 @@ img { display: block; max-width: 100%; }
 .pub-group { display: none; }
 .pub-group.active { display: block; animation: fadein .35s ease; }
 @keyframes fadein { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
-.pub {
-  display: flex; gap: 20px; padding: 17px 22px;
-  border: 1px solid transparent; border-radius: var(--radius-sm);
+.pub-year {
+  display: flex; align-items: center; gap: 16px;
+  font-family: var(--mono); font-size: 13px; letter-spacing: 2.5px;
+  text-transform: uppercase; color: var(--faint);
+  margin: 34px 0 16px;
+}
+.pub-year b { color: var(--accent-2); font-weight: 600; }
+.pub-year::after { content: ""; flex: 1; height: 1px; background: var(--border); }
+.paper {
+  display: grid; grid-template-columns: 128px 1fr; gap: 20px;
+  padding: 16px; align-items: start;
+  border: 1px solid transparent; border-radius: var(--radius);
   transition: background .2s, border-color .2s;
-  font-size: 14.5px; color: var(--muted);
 }
-.pub:hover { background: var(--card); border-color: var(--border); }
-.pub .idx {
-  font-family: var(--mono); font-size: 13px; color: var(--faint);
-  min-width: 30px; padding-top: 1px;
+.paper:hover { background: var(--card); border-color: var(--border); }
+.paper-fig {
+  position: relative; display: block; aspect-ratio: 1;
+  border-radius: var(--radius-sm); overflow: hidden;
+  background: var(--bg-2); border: 1px solid var(--border);
 }
-.pub .ref { flex: 1; }
-.pub .ref b { color: var(--text); font-weight: 650; }
-.pub .ref .me { color: var(--accent-2); font-weight: 700; }
-.pub .ref em { font-style: italic; color: var(--text); }
-.pub .ref a.doi { color: var(--accent-3); font-family: var(--mono); font-size: 12px; border-bottom: 1px dotted var(--border-strong); }
-.pub .ref a.doi:hover { color: #c4b5fd; }
-.pub .tag {
-  flex-shrink: 0; align-self: flex-start; margin-top: 2px;
+.paper-fig img {
+  position: absolute; inset: 0; z-index: 1;
+  width: 100%; height: 100%; object-fit: cover;
+  transition: transform .45s;
+}
+.paper:hover .paper-fig img { transform: scale(1.07); }
+.paper-fig img.gone { display: none; }
+.paper-fig .paper-ph {
+  position: absolute; inset: 0; z-index: 0;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  gap: 3px; padding: 8px; text-align: center;
+  font-family: var(--mono); font-size: 12.5px; letter-spacing: 1px;
+  line-height: 1.45; color: var(--faint);
+  background:
+    radial-gradient(circle at 30% 25%, rgba(109,124,255,.17), transparent 70%),
+    radial-gradient(circle at 75% 80%, rgba(34,211,238,.11), transparent 70%);
+}
+.paper-fig .paper-ph b { font-weight: 600; color: var(--muted); }
+.paper-fig .paper-ph span { font-size: 11px; opacity: .8; }
+.paper-body { min-width: 0; padding-top: 1px; }
+.paper-title { font-size: 15.5px; font-weight: 650; line-height: 1.5; color: var(--text); }
+.paper-title a { color: inherit; }
+.paper-title a:hover { color: var(--accent-2); }
+.paper-authors { font-size: 13px; color: var(--muted); margin-top: 7px; line-height: 1.7; }
+.paper-authors .me { color: var(--accent-2); font-weight: 700; }
+.paper-meta {
+  display: flex; flex-wrap: wrap; align-items: center; gap: 7px 16px;
+  margin-top: 10px; font-size: 13px; color: var(--faint);
+}
+.paper-meta b { color: var(--text); font-weight: 650; }
+.paper-meta a.doi { color: var(--accent-3); font-family: var(--mono); font-size: 12px; border-bottom: 1px dotted var(--border-strong); }
+.paper-meta a.doi:hover { color: #c4b5fd; }
+.tag {
+  display: inline-block;
   font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.5px;
   padding: 3px 10px; border-radius: 999px;
   border: 1px solid var(--border); color: var(--faint); white-space: nowrap;
 }
-.pub .tag.first { color: #fbbf24; border-color: rgba(251,191,36,.35); background: rgba(251,191,36,.07); }
-.pub .tag.corr { color: #34d399; border-color: rgba(52,211,153,.35); background: rgba(52,211,153,.07); }
-.legend { display: flex; gap: 22px; flex-wrap: wrap; color: var(--faint); font-size: 13px; margin-bottom: 22px; }
+.tag.first { color: #fbbf24; border-color: rgba(251,191,36,.35); background: rgba(251,191,36,.07); }
+.tag.corr { color: #34d399; border-color: rgba(52,211,153,.35); background: rgba(52,211,153,.07); }
+.tag.star { color: #c4b5fd; border-color: rgba(167,139,250,.42); background: rgba(167,139,250,.09); }
+.paper-links { display: flex; gap: 16px; flex-wrap: wrap; margin-top: 9px; }
+.paper-links a { font-size: 12.5px; color: var(--accent-2); display: inline-flex; align-items: center; gap: 5px; }
+.paper-links a:hover { color: #7ce7fa; text-decoration: underline; }
+.paper-links a svg { width: 12px; height: 12px; }
+.legend { display: flex; gap: 22px; flex-wrap: wrap; color: var(--faint); font-size: 13px; margin-bottom: 20px; }
 .legend .tag { margin-right: 8px; }
+@media (max-width: 640px) {
+  .paper { grid-template-columns: 92px 1fr; gap: 14px; padding: 12px; }
+  .paper-fig .paper-ph { font-size: 10.5px; letter-spacing: 0.5px; }
+  .paper-title { font-size: 14.5px; }
+}
 
 /* ---------- academic ---------- */
 .acad-row { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
