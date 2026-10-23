@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Zuping Xiong 熊祖平 | Personal Academic Website</title>
+<meta name="description" content="Zuping Xiong — RGC Junior Research Fellow at HKUST. Aggregation-induced emission, clusteroluminescence, through-space interactions, photophysics and computational chemistry.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%236d7cff'/%3E%3Cstop offset='1' stop-color='%2322d3ee'/%3E%3C/linearGradient%3E%3C/defs%3E%3Ccircle cx='16' cy='16' r='13' fill='url(%23g)'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<!-- ambient background -->
+<div class="bg-orbs" aria-hidden="true">
+  <div class="orb orb-1"></div><div class="orb orb-2"></div><div class="orb orb-3"></div>
+</div>
+<canvas id="starfield" aria-hidden="true"></canvas>
+
+<!-- ================= NAV ================= -->
+<nav class="nav" id="nav">
+  <div class="nav-inner">
+    <a class="logo" href="#home"><span class="dot"></span>Zuping Xiong <span class="zh">熊祖平</span></a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#home">Home</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#research">Research</a></li>
+      <li><a href="#honors">Honors</a></li>
+      <li><a href="#publications">Publications</a></li>
+      <li><a href="#academic">Academic</a></li>
+      <li><a href="#gallery">Gallery</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <button class="nav-burger" id="navBurger" aria-label="Menu"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+
+<!-- ================= HERO ================= -->
+<header class="hero" id="home">
+  <div class="wrap hero-inner">
+    <div>
+      <div class="hero-kicker">RGC Junior Research Fellow · HKUST</div>
+      <h1>Zuping <span class="grad">Xiong</span></h1>
+      <div class="zh-name">熊 祖 平</div>
+      <div class="hero-role"><b>RGC Junior Research Fellow</b></div>
+      <div class="hero-org">The Hong Kong University of Science and Technology (HKUST)<br>
+        Ph.D. in Chemistry, Zhejiang University · AIE &amp; Clusteroluminescence</div>
+      <div class="hero-quote">"Life is nothing but an electron looking for a place to rest."</div>
+      <div class="hero-cta">
+        <a class="btn btn-primary" href="#publications">View Publications
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
+        </a>
+        <a class="btn" href="#contact">Get in Touch
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+        </a>
+        <a class="btn" href="https://scholar.google.com/citations?user=pMjAS_4AAAAJ" target="_blank" rel="noopener">Google Scholar
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><path d="M15 3h6v6"/><path d="M10 14L21 3"/></svg>
+        </a>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="portrait-ring">
+        <img src="assets/portrait.jpg" alt="Portrait of Zuping Xiong" onerror="this.style.display='none';this.parentElement.style.background='var(--grad-soft)';this.parentElement.style.boxShadow='inset 0 0 0 1px var(--border)'">
+      </div>
+      <div class="hero-badges badge-float f1"><b>Nat. Chem.</b> 2027</div>
+      <div class="hero-badges badge-float f2"><b>JACS</b> ×2 · <b>Angew</b> ×3</div>
+      <div class="hero-badges badge-float f3"><b>Chem</b> ×2 · <b>Nat. Commun.</b></div>
+    </div>
+  </div>
+  <div class="scroll-hint">SCROLL</div>
+</header>
+
+<!-- ================= STATS ================= -->
+<section class="section section-tight" id="stats" style="padding-top:10px">
+  <div class="wrap">
+    <div class="stats reveal">
+      <div class="stat"><div class="num" data-count="50">0</div><div class="lab">Research Articles</div></div>
+      <div class="stat"><div class="num" data-count="29">0</div><div class="lab">First / Corresponding Author</div></div>
+      <div class="stat"><div class="num" data-count="11">0</div><div class="lab">Invited &amp; Oral Talks</div></div>
+      <div class="stat"><div class="num" data-count="15">0</div><div class="lab">Honors &amp; Awards</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= ABOUT ================= -->
+<section class="section" id="about">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="kicker">About</div>
+      <h2 class="section-title">Introduction<span class="zh">个人简介</span></h2>
+    </div>
+    <div class="about-grid">
+      <div class="about-text reveal">
+        <p class="hl"><b>Dr. Zuping Xiong</b> is currently a recipient of the <b>RGC Junior Research Fellow Scheme (JRFS)</b> at The Hong Kong University of Science and Technology (HKUST). He was invited to serve as an <b>Editorial Board Member</b> of <em>Scientific Reports</em> and <em>Discover Chemistry</em> (Springer Nature), 2026–Present.</p>
+        <p>He received his Ph.D. degree from <b>Zhejiang University</b> ahead of schedule, under the supervision of <b>Prof. Ben Zhong Tang</b>, <b>Prof. Haoke Zhang</b> and <b>Prof. Jing Zhi Sun</b>, with interdisciplinary supervision by <b>Dr. Jun Qian</b>. In 2022, he joined Prof. Tang's group (admitted with first rank) and began research on <b>aggregation-induced emission (AIE)</b>.</p>
+        <p>He has authored <b>~50 research articles</b>, with <b>29 papers as first or corresponding author</b> in <em>Nat. Chem.</em>, <em>Nat. Rev. Chem.</em>, <em>J. Am. Chem. Soc.</em> (×2), <em>Chem</em> (×2), <em>Nat. Commun.</em>, <em>Angew. Chem. Int. Ed.</em> (×3), <em>ACS Materials Lett.</em>, <em>CCS Chem.</em>, <em>Chem. Sci.</em> and related journals.</p>
+        <p>He has delivered <b>more than 11 oral / invited presentations</b> at international and national conferences and received the <b>Best Oral Presentation</b> award.</p>
+      </div>
+      <div class="card info-card reveal d1">
+        <div class="info-row"><span class="k">Position</span><span class="v">RGC Junior Research Fellow<br>HKUST, Hong Kong SAR, China</span></div>
+        <div class="info-row"><span class="k">Education</span><span class="v">Ph.D. in Chemistry, Zhejiang University (ahead of schedule)</span></div>
+        <div class="info-row"><span class="k">Email</span><span class="v"><a href="mailto:xiongzuping@ust.hk">xiongzuping@ust.hk</a><br><a href="mailto:xiongzuping@zju.edu.cn">xiongzuping@zju.edu.cn</a></span></div>
+        <div class="info-row"><span class="k">WeChat</span><span class="v">+86-17858880224</span></div>
+        <div class="info-row"><span class="k">Editorial</span><span class="v"><em>Scientific Reports</em> · <em>Discover Chemistry</em> (2026–Present)</span></div>
+        <div class="info-row"><span class="k">Scholar</span><span class="v"><a href="https://scholar.google.com/citations?user=pMjAS_4AAAAJ" target="_blank" rel="noopener">Google Scholar Profile →</a></span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= RESEARCH ================= -->
+<section class="section" id="research">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="kicker">Research Interests</div>
+      <h2 class="section-title">What I Work On<span class="zh">研究方向</span></h2>
+      <p class="section-sub">From the photophysics of aggregates to excited-state computational chemistry — understanding how light, electrons and space interact in molecular systems.</p>
+    </div>
+    <div class="grid-3">
+      <div class="card res-card reveal">
+        <div class="icon"><svg viewBox="0 0 24 24"><path d="M12 3v4M12 17v4M5 12H1M23 12h-4M6.3 6.3 3.5 3.5M20.5 20.5l-2.8-2.8M17.7 6.3l2.8-2.8M3.5 20.5l2.8-2.8"/><circle cx="12" cy="12" r="4.5"/></svg></div>
+        <h3>Materials Science</h3>
+        <p>Aggregation-induced emission (AIE), clusteroluminescence, and luminescent polymer systems for optoelectronic applications.</p>
+      </div>
+      <div class="card res-card reveal d1">
+        <div class="icon"><svg viewBox="0 0 24 24"><path d="M13 2 4.5 13.5H11L9.5 22 19 9.5h-6.5L13 2z"/></svg></div>
+        <h3>Photophysics</h3>
+        <p>Excited-state dynamics, through-space interactions, and structure–property relationships of emissive aggregates.</p>
+      </div>
+      <div class="card res-card reveal d2">
+        <div class="icon"><svg viewBox="0 0 24 24"><path d="M9 3h6M10 3v6.2L4.8 19a2 2 0 0 0 1.8 3h10.8a2 2 0 0 0 1.8-3L14 9.2V3"/><path d="M7.5 15h9"/></svg></div>
+        <h3>Photochemistry</h3>
+        <p>Photofluorochromic switches, photochromism, and light-driven molecular transformations.</p>
+      </div>
+      <div class="card res-card reveal d3">
+        <div class="icon"><svg viewBox="0 0 24 24"><path d="M3 12h4l2.5-6 4 12 2.5-6h5"/></svg></div>
+        <h3>Spectroscopy of Aggregates</h3>
+        <p>Femtosecond transient absorption, steady-state and time-resolved spectroscopy to unveil aggregate photophysics.</p>
+      </div>
+      <div class="card res-card reveal d4">
+        <div class="icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="2.2"/><ellipse cx="12" cy="12" rx="9.5" ry="4"/><ellipse cx="12" cy="12" rx="9.5" ry="4" transform="rotate(60 12 12)"/><ellipse cx="12" cy="12" rx="9.5" ry="4" transform="rotate(120 12 12)"/></svg></div>
+        <h3>Computational Chemistry</h3>
+        <p>Excited-state dynamics, high-pressure simulations, and virtual screening for functional emitters.</p>
+      </div>
+      <div class="card res-card reveal d4">
+        <div class="icon"><svg viewBox="0 0 24 24"><path d="M12 2 2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg></div>
+        <h3>Fundamental Bonding</h3>
+        <p>Exploring the boundaries of covalency, lone-pair interactions, and beyond-conjugation electronic effects.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= HONORS ================= -->
+<section class="section" id="honors">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="kicker">Academic Honors</div>
+      <h2 class="section-title">Honors &amp; Awards<span class="zh">学术荣誉</span></h2>
+    </div>
+    <div class="honors-grid">
+      <div class="card honor reveal"><span class="year">2026–27</span><div class="body"><h4>RGC Junior Research Fellow Scheme (HKUST-S01)</h4><div class="sub">Research Grants Council, Hong Kong</div><div class="zh">RGC 香港新晋学者计划研究员</div></div></div>
+      <div class="card honor reveal d1"><span class="year">2025</span><div class="body"><h4>ACS CAS Future Leader</h4><div class="sub">Top 35 globally; the only mainland China selectee in recent 8 years</div><div class="zh">美国化学会 CAS Future Leader（全球 35 名，近 8 年内地唯一入选者）</div></div></div>
+      <div class="card honor reveal"><span class="year">2025</span><div class="body"><h4>74th Lindau Nobel Laureate Meetings — NSFC-DFG Young Scientists</h4><div class="sub">Lindau, Germany</div><div class="zh">第 74 届林岛诺贝尔奖获得者大会 · 青年科学家</div></div></div>
+      <div class="card honor reveal d1"><span class="year">2024</span><div class="body"><h4>Royal Society of Chemistry Excellent Student</h4><div class="sub">One of 10 worldwide</div><div class="zh">英国皇家化学会 Excellent Student（10 人）</div></div></div>
+      <div class="card honor reveal"><span class="year">2024</span><div class="body"><h4>Aggregate Science New Talent Award (First rank) &amp; Best Poster Award</h4><div class="sub">Wiley &amp; Aggregate</div><div class="zh">聚集体科学新秀奖（一等）及最佳墙报</div></div></div>
+      <div class="card honor reveal d1"><span class="year">2024</span><div class="body"><h4>Annual Awards of SIMS (First rank)</h4><div class="sub">Stoddart Institute of Molecular Science</div><div class="zh">超分子工坊学术之星（一等）</div></div></div>
+      <div class="card honor reveal"><span class="year">25/24/21</span><div class="body"><h4>National Scholarship for Postgraduate Students (×3)</h4><div class="zh">研究生国家奖学金（3 次）</div></div></div>
+      <div class="card honor reveal d1"><span class="year">25/24/23</span><div class="body"><h4>Zhejiang Chemical Society Innovation Award (×3)</h4><div class="zh">浙江省化学会创新奖（3 次）</div></div></div>
+      <div class="card honor reveal"><span class="year">Grant</span><div class="body"><h4>NSFC PhD Student Project — Principal Investigator</h4><div class="sub">¥300,000, National Natural Science Foundation of China</div><div class="zh">国自然基金博士生项目（负责人，30 万元）</div></div></div>
+      <div class="card honor reveal d1"><span class="year">Grant</span><div class="body"><h4>Fundamental Research Funds for the Central Universities — Leader</h4><div class="sub">¥50,000, Ministry of Education</div><div class="zh">中央高校基本科研业务费（负责人，5 万元）</div></div></div>
+      <div class="card honor reveal"><span class="year">Program</span><div class="body"><h4>CAST Young Talent PhD Special Program (first cohort)</h4><div class="zh">首批中国科协青年托举博士生专项计划</div></div></div>
+      <div class="card honor reveal d1"><span class="year">Program</span><div class="body"><h4>Qiu-Shi Rising Star of Zhejiang University (first cohort)</h4><div class="sub">For interdisciplinary research</div><div class="zh">首批浙江大学求是新星培养计划</div></div></div>
+      <div class="card honor reveal"><span class="year">ZJU</span><div class="body"><h4>ZJU Top-10 Students (nomination) · Dept. of Polymer Top-10 Students</h4><div class="zh">浙江大学十佳大学生提名 · 高分子系十佳大学生</div></div></div>
+      <div class="card honor reveal d1"><span class="year">Editorial</span><div class="body"><h4>Editorial Board Member — <em>Scientific Reports</em> · <em>Discover Chemistry</em></h4><div class="sub">Springer Nature, 2026–Present</div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= PUBLICATIONS ================= -->
+<section class="section" id="publications">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="kicker">Publications</div>
+      <h2 class="section-title">Selected &amp; Full List<span class="zh">论文发表</span></h2>
+      <p class="section-sub">~50 research articles · 29 as first or corresponding author in <em>Nat. Chem.</em>, <em>JACS</em>, <em>Angew. Chem.</em>, <em>Chem</em>, <em>Nat. Commun.</em> and more.</p>
+    </div>
+
+    <!-- featured -->
+    <div class="feat-grid">
+      <div class="card feat reveal">
+        <div class="thumb"><span class="jbadge flag">Nat. Chem.</span><div class="ph">NAT<br>CHEM</div></div>
+        <div class="txt">
+          <h3>Hydrogen-Bond Disruption in Non-Aromatic Peptidomimetics and Peptides Drives Record-Long Intrinsic Near-Infrared Emission</h3>
+          <div class="meta">C. Zhu†; Z. Wang†; X. Liu†; G. Xiao† … <b>Z. Xiong</b>†* · 2027, in press</div>
+          <div class="links"></div>
+        </div>
+      </div>
+      <a class="card feat reveal d1" href="https://doi.org/10.1016/j.chempr.2025.102858" target="_blank" rel="noopener">
+        <div class="thumb"><span class="jbadge flag">Chem</span><div class="ph">CHEM<br>2026</div></div>
+        <div class="txt">
+          <h3>Intrinsic Circularly Polarized Luminescence with a Record-High Dissymmetry Factor via Dynamic Through-Space Conjugation</h3>
+          <div class="meta"><b>Z. Xiong</b>†; X. Liu; Z. Zhang … H. Zhang* · Chem 2026, 12, 102858 · Front Cover</div>
+          <div class="links"></div>
+        </div>
+      </a>
+      <a class="card feat reveal" href="https://doi.org/10.1038/s41467-026-76182-3" target="_blank" rel="noopener">
+        <div class="thumb"><span class="jbadge flag">Nat. Commun.</span><div class="ph">NC<br>2026</div></div>
+        <div class="txt">
+          <h3>Tunable Photofluorochromic Switch Driven by Dynamic Through-Space Conjugation</h3>
+          <div class="meta"><b>Z. Xiong</b>†; J. Zhang†; Q. Li† … B. Z. Tang; H. Zhang* · Nat. Commun. 2026, 17, 9223</div>
+          <div class="links"></div>
+        </div>
+      </a>
+      <a class="card feat reveal d1" href="https://doi.org/10.1016/j.chempr.2024.08.022" target="_blank" rel="noopener">
+        <div class="thumb"><img src="assets/feat-chem2025.jpg" alt="Virtual screening for an ultra-small NIR emitter" onerror="this.parentElement.innerHTML='<span class=&quot;jbadge flag&quot;>Chem</span><div class=&quot;ph&quot;>CHEM<br>2025</div>'"><span class="jbadge flag">Chem</span></div>
+        <div class="txt">
+          <h3>Virtual Screening for Ultra-Small NIR Emitter with Only Two Isolated Hexatomic Rings</h3>
+          <div class="meta"><b>Z. Xiong</b>†; J. Zhang; L. Wang … B. Z. Tang* · Chem 2025, 11, 102299</div>
+          <div class="links">
+            <a href="https://doi.org/10.1016/j.chempr.2024.08.022" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><path d="M15 3h6v6"/><path d="M10 14L21 3"/></svg>DOI</a>
+            <a href="https://mp.weixin.qq.com/s/WWiXmMaN0668qbP-9Elw9g" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M10 8l6 4-6 4V8z"/></svg>Animation</a>
+          </div>
+        </div>
+      </a>
+      <a class="card feat reveal" href="https://doi.org/10.1021/jacs.3c08164" target="_blank" rel="noopener">
+        <div class="thumb"><img src="assets/feat-jacs2023.jpg" alt="Excited-state odd–even effect in through-space interactions" onerror="this.parentElement.innerHTML='<span class=&quot;jbadge flag&quot;>JACS</span><div class=&quot;ph&quot;>JACS<br>2024</div>'"><span class="jbadge flag">J. Am. Chem. Soc.</span></div>
+        <div class="txt">
+          <h3>Excited-State Odd–Even Effect in Through-Space Interactions</h3>
+          <div class="meta"><b>Z. Xiong</b>†; J. Zhang; J. Z. Sun; H. Zhang*; B. Z. Tang* · J. Am. Chem. Soc. 2023, 145, 21104–21113</div>
+          <div class="links"><a href="https://doi.org/10.1021/jacs.3c08164" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><path d="M15 3h6v6"/><path d="M10 14L21 3"/></svg>DOI</a></div>
+        </div>
+      </a>
+      <a class="card feat reveal d1" href="https://doi.org/10.1002/anie.202318245" target="_blank" rel="noopener">
+        <div class="thumb"><img src="assets/feat-angew2024.jpg" alt="Clusteroluminescence of oligo(phenylene methylene)s" onerror="this.parentElement.innerHTML='<span class=&quot;jbadge flag&quot;>Angew</span><div class=&quot;ph&quot;>ANGEW<br>2024</div>'"><span class="jbadge flag">Angew. Chem.</span></div>
+        <div class="txt">
+          <h3>How the Length of Through-Space Conjugation Influences the Clusteroluminescence of Oligo(Phenylene Methylene)s</h3>
+          <div class="meta">L. Wang†; <b>Z. Xiong</b>† … B. Z. Tang* · Angew. Chem. Int. Ed. 2024, 63, e202318245 (VIP)</div>
+          <div class="links"><a href="https://doi.org/10.1002/anie.202318245" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><path d="M15 3h6v6"/><path d="M10 14L21 3"/></svg>DOI</a></div>
+        </div>
+      </a>
+    </div>
+
+    <!-- full list -->
+    <div style="margin-top:56px">
+      <div class="pub-tabs reveal">
+        <button class="pub-tab active" data-tab="tab2026">2026 – Present<span class="cnt">14</span></button>
+        <button class="pub-tab" data-tab="tab2025">2025 &amp; Earlier<span class="cnt">37</span></button>
+      </div>
+      <div class="legend reveal">
+        <span><span class="tag first">1st</span> (co-)first author</span>
+        <span><span class="tag corr">Corr</span> corresponding author</span>
+        <span>† equal contribution · * corresponding author</span>
+      </div>
+
+      <!-- 2026+ -->
+      <div class="pub-group active" id="tab2026">
+        <div class="pub reveal"><span class="idx">1</span><div class="ref">Changyi Zhu†; Ziwei Wang†; Xiong Liu†; Guanjun Xiao†; Yingying Wang; Xihan Yu; Bo Zou; Nan Jiang*; Martin R. Bryce*; <span class="me">Zuping Xiong</span>*. <em>Hydrogen-Bond Disruption in Non-Aromatic Peptidomimetics and Peptides Drives Record-Long Intrinsic Near-Infrared Emission.</em> <b>Nat. Chem.</b> 2027, in press.</div><span class="tag first">1st</span><span class="tag corr">Corr</span></div>
+        <div class="pub reveal"><span class="idx">2</span><div class="ref"><span class="me">Zuping Xiong</span>†; Lidong Du†; Xiong Liu†; Changhuo Xu*; Junlin Chen; Hanchen Shen; Longchen Zhu; Yingying Zhang; Tzu-Ming Liu; Xin Zhang; Jianyu Zhang*; Ben Zhong Tang*; Haoke Zhang*. <em>Core–Shell Structures Govern Through-Space Interactions in Triblock Copolymers toward Deep-Red Clusteroluminescence.</em> <b>J. Am. Chem. Soc.</b> 2026. <a class="doi" href="https://doi.org/10.1021/jacs.6c09727" target="_blank" rel="noopener">DOI</a></div><span class="tag first">1st</span></div>
+        <div class="pub reveal"><span class="idx">3</span><div class="ref"><span class="me">Zuping Xiong</span>†; Xiong Liu; Ziteng Zhang; Shuaitong Wei; Jiyong Liu; Qingyang Xu; Jing Zhi Sun; Jianyu Zhang*; Ben Zhong Tang*; Haoke Zhang*. <em>Intrinsic Circularly Polarized Luminescence with a Record-High Dissymmetry Factor via Dynamic Through-Space Conjugation.</em> <b>Chem</b> 2026, 12, 102858.</div><span class="tag first">1st</span></div>
+        <div class="pub reveal"><span class="idx">4</span><div class="ref"><span class="me">Zuping Xiong</span>†; Jianyu Zhang†; Qian Li†; Xiong Liu; Yanan Wang; Xiang Li; Zhaosheng Qian; Jing Zhi Sun; Ben Zhong Tang; Haoke Zhang*. <em>Tunable Photofluorochromic Switch Driven by Dynamic Through-Space Conjugation.</em> <b>Nat. Commun.</b> 2026, 17, 9223. <a class="doi" href="https://doi.org/10.1038/s41467-026-76182-3" target="_blank" rel="noopener">DOI</a></div><span class="tag first">1st</span></div>
+        <div class="pub reveal"><span class="idx">5</span><div class="ref">Jianyu Zhang†; <span class="me">Zuping Xiong</span>†; Xiong Liu; Qingyang Xu; Jacky W. Y. Lam; Jing Zhi Sun; Haoke Zhang*; Ben Zhong Tang*. <em>Through-Space Interactions of Optoelectronic Materials.</em> <b>Chem. Soc. Rev.</b> 2026, 55, 2493–2573.</div><span class="tag first">1st</span></div>
+        <div class="pub reveal"><span class="idx">6</span><div class="ref">Qing-Yue Song; <span class="me">Zuping Xiong</span>; Guiyi Yang; Yujie Tu; Yue Zhang; Yang Yu; Junzhi Liu; Klaus Müllen*; Zijie Qiu*. <em>Synthesis and Functionalization of π-Extended [7]Carbohelicene.</em> <b>Chem. Asian J.</b> 2026, 21, e01011.</div></div>
+        <div class="pub reveal"><span class="idx">7</span><div class="ref">Zhixin Xie; Junpeng Deng; Dan Liu; Jieyu Lin; Tao Jiang; Xiaohui Wang; Wei Liu; Lin Ma; Fengyan Song; <span class="me">Zuping Xiong</span>; Junru Chen; Jianyu Zhang; Carl Redshaw; Zujin Zhao; Xing Feng; Ben Zhong Tang*. <em>Unlocking Intrinsically Chiral Bipyrenyl-Based Aggregation-Induced Emission Luminogens: Circularly Polarized Luminescence and Dynamic Chirality Amplification.</em> <b>Chem. Sci.</b> 2026, Advance Article.</div></div>
+        <div class="pub reveal"><span class="idx">8</span><div class="ref">Ziteng Zhang†; <span class="me">Zuping Xiong</span>†; Yinong Wu; Yingying Zhang; Kailuo Chen; Xiong Liu; Xiang Li; Bo Chu; Lei Wang; Jing Zhi Sun; Jianyu Zhang; Xing-Hong Zhang; Xufeng Lin; Ben Zhong Tang; Haoke Zhang*. <em>Ultra-Strong Through-Space Conjugation Enabled by Chiral Transfer-Driven Helical Structure.</em> <b>CCS Chem.</b> 2026. <a class="doi" href="https://doi.org/10.31635/ccschem.026.202507017" target="_blank" rel="noopener">DOI</a></div><span class="tag first">1st</span></div>
+        <div class="pub reveal"><span class="idx">9</span><div class="ref">Qingyang Xu; Kangwei Luo; Yipu Wang; Jiajie Wu; Hongwei Lu; Manyu Chen; <span class="me">Zuping Xiong</span>; Jing Zhi Sun; Jianyu Zhang; Feihe Huang; Ben Zhong Tang; Haoke Zhang. <em>Fluorescence Mapping of Atropisomer Populations Enabled by Through-Space Conjugation.</em> <b>Nat. Commun.</b> 2026, 17, 2211.</div></div>
+        <div class="pub reveal"><span class="idx">10</span><div class="ref">Maolin Wang†; <span class="me">Zuping Xiong</span>†; Qimo Mao; Dejing Xu; Xiaoqing Wang; Haoke Zhang; Yuping Wang*. <em>Multiparameter Fluorescence Regulation via Mechanical Motion in Aggregation-Induced-Emission-Active Rotaxanes.</em> <b>Chem. Mater.</b> 2026, 38, 5790–5798.</div><span class="tag first">1st</span></div>
+        <div class="pub reveal"><span class="idx">11</span><div class="ref">Yuchen Cen†; Mingxiu Lv†; Tianxiao Yao†; Lijin Li†; Hanguang Sun†; Niandong Chen†; Zhaoyu Lv†; Shengpeng Yao†; Ziyi Yang†; <span class="me">Zuping Xiong</span>†; Haoke Zhang*. <em>Clusteroluminescent Monosaccharide, Oligosaccharide, and Polysaccharide.</em> <b>ACS Appl. Mater. Interfaces</b> 2026, 18, 23905–23921.</div><span class="tag first">1st</span></div>
+        <div class="pub reveal"><span class="idx">12</span><div class="ref">Lingling Wang†; Wenbo Tang†; <span class="me">Zuping Xiong</span>†; Fengfei Zhao†; Rendy Hosea; Yujun Zhang; Ben Zhong Tang*; Fei Sun*; Feiyi Sun*; Xinghua Yu*. <em>Intrinsic AIE Drug Nanocrystals Enable Imaging-Guided Orchitis Theranostics.</em> <b>Mater. Today Bio</b> 2026, in press.</div><span class="tag first">1st</span></div>
+        <div class="pub reveal"><span class="idx">13</span><div class="ref">Zihao Zhu; <span class="me">Zuping Xiong</span>; Kexin Chen; Xianchi Zhou; Wenzhong Cao; Yu Yan; Bo Yu; Fan Jia; Haoke Zhang; Youxiang Wang; Jian Ji; Peng Zhang*. <em>Anion–π Interaction-Triggered Self-Healing Zwitterionic Hydrogel as an Immunocompatible Platform for Injectable Therapies.</em> <b>Adv. Healthcare Mater.</b> 2026, 15, e71490.</div></div>
+        <div class="pub reveal"><span class="idx">14</span><div class="ref">Han Zhang†; Yingying Wang†; Zhongying Jin; Nan Jiang*; Changyi Zhu*; <span class="me">Zuping Xiong</span>*. <em>Non-Conjugated Luminescent Polyurethanes: Molecular Design, Microstructural Regulation and Emerging Applications.</em> <b>Polym. Chem.</b> 2026, Advance Article. <a class="doi" href="https://doi.org/10.1039/d6py00709k" target="_blank" rel="noopener">DOI</a></div><span class="tag corr">Corr</span></div>
+      </div>
+
+      <!-- 2025 & earlier -->
+      <div class="pub-group" id="tab2025">
+        <div class="pub reveal"><span class="idx">1</span><div class="ref"><span class="me">Zuping Xiong</span>†; Jianyu Zhang; Lei Wang; Xiong Liu; Jing Zhi Sun; Haoke Zhang*; Ben Zhong Tang*. <em>Virtual Screening for Ultra-Small NIR Emitter with Only Two Isolated Hexatomic Rings.</em> <b>Chem</b> 2025, 11, 102299. <a class="doi" href="https://doi.org/10.1016/j.chempr.2024.08.022" target="_blank" rel="noopener">DOI</a></div><span class="tag first">1st</span></div>
+        <div class="pub reveal"><span class="idx">2</span><div class="ref"><span class="me">Zuping Xiong</span>†; Haoke Zhang*. <em>Exploring the Boundaries of Covalency.</em> <b>Nat. Rev. Chem.</b> 2024, 8, 875–876. <a class="doi" href="https://doi.org/10.1038/s41570-024-00672-5" target="_blank" rel="noopener">DOI</a></div><span class="tag first">1st</span></div>
+        <div class="pub reveal"><span class="idx">3</span><div class="ref"><span class="me">Zuping Xiong</span>†; Jianyu Zhang; Ziteng Zhang; Lei Wang; Shuaitong Wei; Xiong Liu; Jing Zhi Sun; Haoke Zhang*; Ben Zhong Tang*. <em>Activating Electronic Delocalization: Through-Space Lone-Pair Interactions versus Hydrogen Bonding.</em> <b>ACS Materials Lett.</b> 2024, 6, 3941–3950.</div><span class="tag first">1st</span></div>
+        <div class="pub reveal"><span class="idx">4</span><div class="ref"><span class="me">Zuping Xiong</span>†; Jianyu Zhang; Jing Zhi Sun; Haoke Zhang*; Ben Zhong Tang*. <em>Excited-State Odd–Even Effect in Through-Space Interactions.</em> <b>J. Am. Chem. Soc.</b> 2023, 145, 21104–21113. <a class="doi" href="https://doi.org/10.1021/jacs.3c08164" target="_blank" rel="noopener">DOI</a></div><span class="tag first">1st</span></div>
+        <div class="pub reveal"><span class="idx">5</span><div class="ref"><span class="me">Zuping Xiong</span>†; Jianyu Zhang; Lei Wang; Yuan Xie; Yipu Wang; Zujin Zhao; Haoke Zhang*; Jing Zhi Sun*; Feihe Huang*; Ben Zhong Tang*. <em>Controllable Secondary Through-Space Interaction and Clusteroluminescence.</em> <b>CCS Chem.</b> 2023, 5, 2832–2844.</div><span class="tag first">1st</span></div>
+        <div class="pub reveal"><span class="idx">6</span><div class="ref"><span class="me">Zuping Xiong</span>†; Wenqi Gong; Pengfei Xu; Mengyi Jiang; Xuting Cai; Yuqing Zhu; Xinni Ping; Hui Feng; Huili Ma; Zhaosheng Qian*. <em>Reexamining the Heavy-Atom-Effect: The Universal Heavy-Atom-Induced Fluorescence Enhancement Principle for Through-Space Conjugated AIEgens.</em> <b>Chem. Eng. J.</b> 2023, 451, 139030.</div><span class="tag first">1st</span></div>
+        <div class="pub reveal"><span class="idx">7</span><div class="ref"><span class="me">Zuping Xiong</span>†; Xiaoxiao Zhang; Longxiang Liu; Qiaozhi Zhu; Zhenni Wang; Hui Feng; Zhaosheng Qian*. <em>Achieving Highly Efficient Aggregation-Induced Emission, Reversible and Irreversible Photochromism by Heavy Halogen-Regulated Photophysics and D–A Molecular Pattern-Controlled Photochemistry of Through-Space Conjugated Luminogens.</em> <b>Chem. Sci.</b> 2021, 12, 10710–10723.</div><span class="tag first">1st</span></div>
+        <div class="pub reveal"><span class="idx">8</span><div class="ref"><span class="me">Zuping Xiong</span>†; Zhenni Wang; Longxiang Liu; Mengyi Jiang; Xiaoxiao Zhang; Qiaozhi Zhu; Hui Feng; Zhaosheng Qian*. <em>Breaking Classic Heavy-Atom Effect to Achieve Heavy-Atom-Induced Dramatic Emission Enhancement of Silole-Based AIEgens with Through-Bond and Through-Space Conjugation.</em> <b>Adv. Opt. Mater.</b> 2021, 9, 2101228.</div><span class="tag first">1st</span></div>
+        <div class="pub reveal"><span class="idx">9</span><div class="ref">Lei Wang†; <span class="me">Zuping Xiong</span>†; Jing Zhi Sun; Feihe Huang; Haoke Zhang*; Ben Zhong Tang*. <em>How the Length of Through-Space Conjugation Influences the Clusteroluminescence of Oligo(Phenylene Methylene)s.</em> <b>Angew. Chem. Int. Ed.</b> 2024, 63, e202318245 (VIP). <a class="doi" href="https://doi.org/10.1002/anie.202318245" target="_blank" rel="noopener">DOI</a></div><span class="tag first">1st</span></div>
+        <div class="pub reveal"><span class="idx">10</span><div class="ref">Yayun Wang†; <span class="me">Zuping Xiong</span>†; Yanan Wang; Aisen Li; Yuanyuan Fang; Lei Li; Kai Wang*; Qian Li*; Haoke Zhang*. <em>Pressure-Engineered Through-Space Conjugation for Precise Control of Clusteroluminescence.</em> <b>Angew. Chem. Int. Ed.</b> 2024, e202420502.</div><span class="tag first">1st</span></div>
+        <div class="pub reveal"><span class="idx">11</span><div class="ref">Zhenni Wang†; <span class="me">Zuping Xiong</span>†; Weidong Liu; Qiaozhi Zhu; Xiaoxiao Zhang; Yuqing Ding; Chunyan Huang; Hui Feng; Kewei Zhang; Engao Zhu*; Zhaosheng Qian*. <em>Esterase-Activated Precipitating Strategy to Achieve Highly Specific Detection and Long-Term Imaging of Calcium Ions by Aggregation-Induced Phosphorescence Probe.</em> <b>Anal. Chem.</b> 2022, 94, 5406–5414.</div><span class="tag first">1st</span></div>
+        <div class="pub reveal"><span class="idx">12</span><div class="ref">Jianyu Zhang†; Hanchen Shen†; <span class="me">Zuping Xiong</span>†; Lidong Du; Moxin Li; Xinwen Ou; Xinyan Zhu; Jacky W. Y. Lam; Tzu-Ming Liu; Changhuo Xu; Haoke Zhang*; Ben Zhong Tang*. <em>Two-Photon Clusteroluminescence Enabled by Through-Space Conjugation for In Vivo Bioimaging.</em> <b>Angew. Chem. Int. Ed.</b> 2024, 63, e202413751.</div><span class="tag first">1st</span></div>
+        <div class="pub reveal"><span class="idx">13</span><div class="ref">Weihao Tu†; <span class="me">Zuping Xiong</span>†; Lei Wang; Jianyu Zhang; Jing Zhi Sun; Haoke Zhang*; Ben Zhong Tang*. <em>The Superiority of Nonconjugated Structures in Fluorescence: Through-Space vs. Through-Bond Charge Transfer.</em> <b>Sci. China Chem.</b> 2024, 67, 3121–3130.</div><span class="tag first">1st</span></div>
+        <div class="pub reveal"><span class="idx">14</span><div class="ref">Yuqing Zhu†; Yangbing Chen†; <span class="me">Zuping Xiong</span>*†; Mengyi Jiang; Hui Feng; Zhaosheng Qian*. <em>Base-Gated Photochromism of C3-Symmetric AIEgens through Multicyano-Sensitized Benzene Rings.</em> <b>Tetrahedron</b> 2023, 133, 133269.</div><span class="tag first">1st</span><span class="tag corr">Corr</span></div>
+        <div class="pub reveal"><span class="idx">15</span><div class="ref">Weihao Tu†; <span class="me">Zuping Xiong</span>†; Ziteng Zhang; Jianyu Zhang; Lei Wang; Yuan Xie; Yipu Wang; Haoke Zhang*; Jing Zhi Sun*; Ben Zhong Tang*. <em>Manipulation of the Through-Space Interactions in Diphenylmethane.</em> <b>Smart Molecules</b> 2023, 1, e20220006.</div><span class="tag first">1st</span></div>
+        <div class="pub reveal"><span class="idx">16</span><div class="ref">Jianyu Zhang; <span class="me">Zuping Xiong</span>; Haoke Zhang*; Ben Zhong Tang*. <em>Emergent Clusteroluminescence from Nonemissive Molecules.</em> <b>Nat. Commun.</b> 2025, 16, 3910.</div></div>
+        <div class="pub reveal"><span class="idx">17</span><div class="ref">Sheng Niu; Zhenyang Hu; Xiaoyi Xu; <span class="me">Zuping Xiong</span>; Hongzheng Chen; Alex K.-Y. Jen; Ning Huang. <em>Structural Regulation of Three-Dimensional Covalent Organic Frameworks for Efficient Photoredox Catalysis Toward Atom Transfer Radical Polymerization.</em> <b>Angew. Chem. Int. Ed.</b> 2025, 64, e202424860.</div></div>
+        <div class="pub reveal"><span class="idx">18</span><div class="ref">Xiong Liu; Jiafang Guo; <span class="me">Zuping Xiong</span>; Xiang Li; Yanbing Lv; Ziteng Zhang; Bo Chu; Haoke Zhang; Jing Zhi Sun; Xinghong Zhang; Ben Zhong Tang. <em>Sulfur-Bridged Pure Organic Ester Clusters Exhibiting Near-Infrared Fluorescence.</em> <b>Adv. Funct. Mater.</b> 2025, 35, 2420830.</div></div>
+        <div class="pub reveal"><span class="idx">19</span><div class="ref">Guangze Hu; Manyu Chen; <span class="me">Zuping Xiong</span>; Haoyuan Hu; Haoke Zhang; Jing Zhi Sun; Ben Zhong Tang*. <em>Ultrahigh Sensitivity and Extremely Low Limit of Detection of Picric Acid with Ionic-Liquid Modified Poly(Diphenylacetylene).</em> <b>J. Mater. Chem. A</b> 2024, 12, 28039–28045.</div></div>
+        <div class="pub reveal"><span class="idx">20</span><div class="ref">Manyu Chen; Guangze Hu; <span class="me">Zuping Xiong</span>; Haoyuan Hu; Jing Zhi Sun; Haoke Zhang; Ben Zhong Tang*. <em>Room-Temperature Magnetism in the Crystal of a 1,6-Heptadiyne Derivative and Its Processable Polymer.</em> <b>Polym. Chem.</b> 2025, 16, 1120–1125.</div></div>
+        <div class="pub reveal"><span class="idx">21</span><div class="ref">Rong Zhang; <span class="me">Zuping Xiong</span>; Dongyue An; Jiangyu Zhu; Yuanhe Gu; Haoke Zhang; Gang Zhou; Yunqi Liu; Xuefeng Lu*. <em>Four-Membered Ring-Embedded Cycloarene Enabling Anti-Aromaticity and Ultra-Narrowband Emission.</em> <b>Angew. Chem. Int. Ed.</b> 2024, 63, e202411415.</div></div>
+        <div class="pub reveal"><span class="idx">22</span><div class="ref">Ziteng Zhang; <span class="me">Zuping Xiong</span>; Jianyu Zhang; Bo Chu; Xiong Liu; Weihao Tu; Lei Wang; Jing Zhi Sun; Chengjian Zhang; Haoke Zhang*; Xinghong Zhang*; Ben Zhong Tang*. <em>Near-Infrared Emission Beyond 900 nm from Stable Radicals in Nonconjugated Poly(Diphenylmethane).</em> <b>Angew. Chem. Int. Ed.</b> 2024, 63, e202403827.</div></div>
+        <div class="pub reveal"><span class="idx">23</span><div class="ref">Xinyuan Du; Shan Zhao; Lu Wang; Haodi Wu; Fan Ye; Kan-Hao Xue; Shaoqian Peng; Jianlong Xia; Ziru Sang; Dongdong Zhang; <span class="me">Zuping Xiong</span>; Zhiping Zheng; Ling Xu; Guangda Niu*; Jiang Tang*. <em>Efficient and Ultrafast Organic Scintillators by Hot Exciton Manipulation.</em> <b>Nat. Photonics</b> 2024, 18, 162–169.</div></div>
+        <div class="pub reveal"><span class="idx">24</span><div class="ref">Bo Chu; Xiong Liu; <span class="me">Zuping Xiong</span>; Ziteng Zhang; Bin Liu; Chengjian Zhang; Jing Zhi Sun; Qing Yang; Haoke Zhang*; Ben Zhong Tang*; Xing-Hong Zhang. <em>Enabling Nonconjugated Polyesters Emit Full-Spectrum Fluorescence from Blue to Near-Infrared.</em> <b>Nat. Commun.</b> 2024, 15, 366. <a class="doi" href="https://doi.org/10.1038/s41467-023-44505-3" target="_blank" rel="noopener">DOI</a></div></div>
+        <div class="pub reveal"><span class="idx">25</span><div class="ref">Xiong Liu; Bo Chu; <span class="me">Zuping Xiong</span>; Bin Liu; Weihao Tu; Ziteng Zhang; Haoke Zhang; Jing Zhi Sun; Xinghong Zhang*; Ben Zhong Tang*. <em>Heteroatom-Facilitated Blue to Near-Infrared Emission of Nonconjugated Polyesters.</em> <b>Mater. Horiz.</b> 2024, 11, 1579–1587.</div></div>
+        <div class="pub reveal"><span class="idx">26</span><div class="ref">Yuan Xie; Weihao Tu; <span class="me">Zuping Xiong</span>; Dan Liu; Jianyu Zhang; Jing Zhi Sun; Zheng Zhao*; Dong Wang*; Feihe Huang*; Haoke Zhang*; Ben Zhong Tang*. <em>Enolate Enables Unexpected Red Luminescence from Through-Bond/Through-Space Complexation between Imide and Organic Base.</em> <b>Macromolecules</b> 2023, 56, 10082–10091.</div></div>
+        <div class="pub reveal"><span class="idx">27</span><div class="ref">Ziteng Zhang; Jianyu Zhang; <span class="me">Zuping Xiong</span>; Bo Chu; Chengjian Zhang; Jing Zhi Sun; Haoke Zhang*; Xing-Hong Zhang*; Ben Zhong Tang*. <em>NIR Clusteroluminescence of Non-Conjugated Phenolic Resins Enabled by Through-Space Interactions.</em> <b>Angew. Chem. Int. Ed.</b> 2023, 62, e202306762.</div></div>
+        <div class="pub reveal"><span class="idx">28</span><div class="ref">Xiang Hu; Xiajunpeng Wu; <span class="me">Zuping Xiong</span>; Xin-Tao Wang; Ai-Jun Wang; Pei-Xin Yuan*; Tiejun Zhao*; Jiu-Ju Feng*. <em>In Situ Electrostatic Assembly of Porphyrin as Enhanced PEC Photosensitizer for Bioassay of Single HCT-116 Cells via Competitive Reaction.</em> <b>Biosens. Bioelectron.</b> 2023, 236, 115405.</div></div>
+        <div class="pub reveal"><span class="idx">29</span><div class="ref">Jinhang Yu; Xinyuan Wang; Mengjiao Xu; Bei Zhang; <span class="me">Zuping Xiong</span>; Hui Mao; Xin Lv*; Liejin Zhou*. <em>Synthesis of α-Pyrones via Gold-Catalyzed Cycloisomerization/[2+1] Cycloaddition/Rearrangement of Enyne-Amides and Sulfur Ylides.</em> <b>Org. Chem. Front.</b> 2023, 10, 916–922.</div></div>
+        <div class="pub reveal"><span class="idx">30</span><div class="ref">Peiwei Lv; Zhenyang Liu; Jinxing Zhao; <span class="me">Zuping Xiong</span>; Lijin Wang; Xu Li; Zhaosheng Qian; Aiwei Tang*. <em>Solution-Processed Electroluminescent White-Light-Emitting Devices Based on AIE Molecules and Cu-In-Zn-S Nanocrystals.</em> <b>Photonics Res.</b> 2022, 10, 2622–2627.</div></div>
+        <div class="pub reveal"><span class="idx">31</span><div class="ref">Ziteng Zhang; <span class="me">Zuping Xiong</span>; Bo Chu; Zhiming Zhang; Yuan Xie; Lei Wang; Jing Zhi Sun; Haoke Zhang*; Xing-Hong Zhang*; Ben Zhong Tang*. <em>Manipulation of Clusteroluminescence in Carbonyl-Based Aliphatic Polymers.</em> <b>Aggregate</b> 2022, 3, e278.</div></div>
+        <div class="pub reveal"><span class="idx">32</span><div class="ref">Xuting Cai; <span class="me">Zuping Xiong</span>; Jiale Zhan; Xinni Ping; Yuqing Zhu; Jiaqi Zuo; Hui Feng; Zhaosheng Qian*. <em>Dramatic Emission Enhancement of Aggregation-Induced Emission Luminogens by Dynamic Metal Coordination Bonds and the Anti-Heavy-Atom Effect.</em> <b>Chem. Commun.</b> 2022, 58, 10837–10840.</div></div>
+        <div class="pub reveal"><span class="idx">33</span><div class="ref">Qiaozhi Zhu; Jiaqi Zuo; Xinni Ping; Yuqing Zhu; Xuting Cai; <span class="me">Zuping Xiong</span>; Zhaosheng Qian*; Hui Feng*. <em>Multiwavelength-Controlled Multicolor Photochromism and Fluorescence Switching Based on an Efficient Photocyclization Reaction by Introducing Two Photoactive Subunits into AIEgens.</em> <b>J. Mater. Chem. C</b> 2022, 10, 8674–8683.</div></div>
+        <div class="pub reveal"><span class="idx">34</span><div class="ref">Xiaoxiao Zhang; Zhenni Wang; Hao Chu; <span class="me">Zuping Xiong</span>; Yanjiang Li; Yi Chen; Qiaozhi Zhu; Hui Feng; Engao Zhu; Jin Zhou*; Peng Huang*; Zhaosheng Qian*. <em>Antipermeability Strategy to Achieve Extremely High Specificity and Ultralong Imaging of Diverse Cell Membranes Based on Restriction-Induced Emission of AIEgens.</em> <b>Anal. Chem.</b> 2022, 94, 4048–4058.</div></div>
+        <div class="pub reveal"><span class="idx">35</span><div class="ref">Xiang Hu; Ying Wang; <span class="me">Zuping Xiong</span>; Pei Song; Ai-Jun Wang; Zhaosheng Qian; Pei-Xin Yuan*; Tiejun Zhao*; Jiu-Ju Feng*. <em>Novel Aggregation-Enhanced PEC Photosensitizer Based on Electrostatic Linkage of Ionic Liquid with Protoporphyrin IX for Ultrasensitive Detection of Molt-4 Cells.</em> <b>Anal. Chem.</b> 2022, 94, 3708–3717.</div></div>
+        <div class="pub reveal"><span class="idx">36</span><div class="ref">Nuo Zhang; Xin-Tao Wang; <span class="me">Zuping Xiong</span>; Li-Yan Huang; Yu Jin; Ai-Jun Wang; Pei-Xin Yuan*; Ya-Bing He; Jiu-Ju Feng*. <em>Hydrogen Bond Organic Frameworks as a Novel Electrochemiluminescence Luminophore: Simple Synthesis and Ultrasensitive Biosensing.</em> <b>Anal. Chem.</b> 2021, 93, 17110–17118.</div></div>
+        <div class="pub reveal"><span class="idx">37</span><div class="ref">Kairu Qu†; <span class="me">Zuping Xiong</span>†; Anqi Gu; Shancheng Yang; Binjie Hu; Haoke Zhang; Zhenzhong Yang*. <em>AIEgen Functionalized Polymer Ring.</em> <b>Macromolecules</b> 2025, 58 (22). <a class="doi" href="https://doi.org/10.1021/acs.macromol.5c02698" target="_blank" rel="noopener">DOI</a></div><span class="tag first">1st</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= ACADEMIC ================= -->
+<section class="section" id="academic">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="kicker">Academic Activities</div>
+      <h2 class="section-title">Academic &amp; Highlights<span class="zh">学术活动</span></h2>
+    </div>
+    <div class="acad-row">
+      <div class="card acad-item reveal">
+        <div class="ico"><svg viewBox="0 0 24 24"><path d="M12 15a7 7 0 1 0 0-14 7 7 0 0 0 0 14z"/><path d="M8.2 13.9 7 23l5-3 5 3-1.2-9.1"/></svg></div>
+        <div><h4>NSFC-DFG Young Scientists</h4><p>74th Lindau Nobel Laureate Meetings · Lindau, Germany</p></div>
+      </div>
+      <div class="card acad-item reveal d1">
+        <div class="ico"><svg viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg></div>
+        <div><h4>NSFC Projects</h4><p>NSFC PhD Student Research Project (Leader) · Fundamental Research Funds for the Central Universities (Leader)</p></div>
+      </div>
+      <div class="card acad-item reveal">
+        <div class="ico"><svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 1 0 10 10h-2a8 8 0 1 1-8-8V2z"/><path d="M22 12a10 10 0 0 1-10 10"/></svg></div>
+        <div><h4>11+ Invited &amp; Oral Talks</h4><p>International and national conferences · Best Oral Presentation Award</p></div>
+      </div>
+      <div class="card acad-item reveal d1">
+        <div class="ico"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="6"/><path d="M15.5 13 17 22l-5-3-5 3 1.5-9"/></svg></div>
+        <div><h4>RSC Excellent Student 2024</h4><p>One of 10 worldwide · Royal Society of Chemistry</p></div>
+      </div>
+    </div>
+    <div class="grid-3" style="margin-top:28px">
+      <figure class="card reveal" style="padding:10px;text-align:center"><img src="assets/acad-lindau.jpg" alt="74th Lindau Nobel Laureate Meetings" style="border-radius:10px;aspect-ratio:4/3;object-fit:cover;width:100%"><figcaption style="color:var(--muted);font-size:13px;padding:10px 4px 6px">74th Lindau Nobel Laureate Meetings</figcaption></figure>
+      <figure class="card reveal d1" style="padding:10px;text-align:center"><img src="assets/acad-nsfc.jpg" alt="NSFC projects" style="border-radius:10px;aspect-ratio:4/3;object-fit:cover;width:100%"><figcaption style="color:var(--muted);font-size:13px;padding:10px 4px 6px">NSFC Research Projects</figcaption></figure>
+      <figure class="card reveal d2" style="padding:10px;text-align:center"><img src="assets/acad-rsc.jpg" alt="RSC Excellent Student" style="border-radius:10px;aspect-ratio:4/3;object-fit:cover;width:100%"><figcaption style="color:var(--muted);font-size:13px;padding:10px 4px 6px">RSC Excellent Student 2024</figcaption></figure>
+    </div>
+    <h3 style="margin:44px 0 20px; font-size:20px" class="reveal">Highlighted Work</h3>
+    <div class="feat-grid">
+      <a class="card feat reveal" href="https://doi.org/10.1016/j.chempr.2024.08.022" target="_blank" rel="noopener">
+        <div class="thumb"><img src="assets/feat-chem2025.jpg" alt="Chem 2025" onerror="this.style.display='none'"><span class="jbadge flag">Chem 2025</span></div>
+        <div class="txt"><h3>Virtual Screening for an Ultra-Small NIR Emitter</h3><div class="meta">Only two isolated hexatomic rings</div>
+        <div class="links"><a href="https://mp.weixin.qq.com/s/WWiXmMaN0668qbP-9Elw9g" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M10 8l6 4-6 4V8z"/></svg>Animation</a></div></div>
+      </a>
+      <a class="card feat reveal d1" href="https://doi.org/10.1021/jacs.3c08164" target="_blank" rel="noopener">
+        <div class="thumb"><img src="assets/feat-jacs2023.jpg" alt="JACS 2024" onerror="this.style.display='none'"><span class="jbadge flag">JACS 2024</span></div>
+        <div class="txt"><h3>Excited-State Odd–Even Effect in Through-Space Interactions</h3><div class="meta">J. Am. Chem. Soc. 2023, 145, 21104–21113</div><div class="links"></div></div>
+      </a>
+      <a class="card feat reveal" href="https://doi.org/10.1002/anie.202318245" target="_blank" rel="noopener">
+        <div class="thumb"><img src="assets/feat-angew2024.jpg" alt="Angew 2024" onerror="this.style.display='none'"><span class="jbadge flag">Angew 2024</span></div>
+        <div class="txt"><h3>How the Length of TSC Influences Clusteroluminescence</h3><div class="meta">Angew. Chem. Int. Ed. 2024, 63, e202318245 · VIP</div><div class="links"></div></div>
+      </a>
+      <a class="card feat reveal d1" href="https://doi.org/10.1038/s41570-024-00672-5" target="_blank" rel="noopener">
+        <div class="thumb"><span class="jbadge flag">Nat. Rev. Chem.</span><div class="ph">NRC<br>2024</div></div>
+        <div class="txt"><h3>Exploring the Boundaries of Covalency</h3><div class="meta">News &amp; Views · Nat. Rev. Chem. 2024, 8, 875–876</div><div class="links"></div></div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ================= GALLERY ================= -->
+<section class="section" id="gallery">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="kicker">Gallery</div>
+      <h2 class="section-title">Sunrise, Sunset &amp; Life<span class="zh">生活剪影</span></h2>
+      <p class="section-sub">"Life is nothing but an electron looking for a place to rest." — some memorable moments along the way.</p>
+    </div>
+    <div class="gallery reveal" id="galleryBox"></div>
+  </div>
+</section>
+
+<!-- ================= CONTACT ================= -->
+<section class="section" id="contact">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="kicker">Find Me</div>
+      <h2 class="section-title">Get in Touch<span class="zh">联系方式</span></h2>
+      <p class="section-sub">Welcome to collaborate — feel free to reach out for academic exchange or cooperation.</p>
+    </div>
+    <div class="contact-grid">
+      <div style="display:flex; flex-direction:column; gap:14px">
+        <div class="card c-item reveal">
+          <div class="ico"><svg viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="3"/><path d="m2 7 10 7L22 7"/></svg></div>
+          <div><div class="k">Email</div><div class="v"><a href="mailto:xiongzuping@ust.hk">xiongzuping@ust.hk</a><br><a href="mailto:xiongzuping@zju.edu.cn">xiongzuping@zju.edu.cn</a></div></div>
+        </div>
+        <div class="card c-item reveal d1">
+          <div class="ico"><svg viewBox="0 0 24 24"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg></div>
+          <div><div class="k">WeChat</div><div class="v">+86-17858880224</div></div>
+        </div>
+        <div class="card c-item reveal d2">
+          <div class="ico"><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+          <div><div class="k">Location</div><div class="v">The Hong Kong University of Science and Technology<br>Hong Kong SAR, China</div></div>
+        </div>
+      </div>
+      <div class="card form reveal d1" style="padding:26px">
+        <h3 style="font-size:18px; margin-bottom:4px">Leave a Message</h3>
+        <form id="msgForm">
+          <label for="fName">Name</label>
+          <input type="text" id="fName" name="name" placeholder="Your name" required>
+          <label for="fEmail">Email</label>
+          <input type="email" id="fEmail" name="email" placeholder="your@email.com" required>
+          <label for="fMsg">Message</label>
+          <textarea id="fMsg" name="message" rows="5" placeholder="Tell me what you think…" required></textarea>
+          <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+        <p class="form-note">Submitting opens your email client with the message addressed to xiongzuping@ust.hk.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    © 2026 Zuping Xiong · 熊祖平 · All rights reserved
+    <div class="motto">"Life is nothing but an electron looking for a place to rest."</div>
+  </div>
+</footer>
+
+<!-- lightbox -->
+<div class="lightbox" id="lightbox" aria-hidden="true">
+  <img src="" alt="preview" id="lbImg">
+  <div class="lb-cap" id="lbCap"></div>
+  <div class="lb-close" id="lbClose">×</div>
+</div>
+
+<script src="js/main.js"></script>
+</body>
+</html>
