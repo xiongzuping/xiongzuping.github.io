@@ -84,6 +84,25 @@ img { display: block; max-width: 100%; }
   margin-left: 12px; letter-spacing: 1px; vertical-align: 2px;
 }
 .section-sub { color: var(--muted); margin-top: 10px; max-width: 720px; font-size: 15.5px; }
+/* emphasised research statement (Research Interests): gradient text + glow */
+.section-sub.hl {
+  font-size: 17px;
+  max-width: 840px;
+  color: transparent;
+  background: var(--grad);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: none;
+  filter: drop-shadow(0 0 16px rgba(34, 211, 238, 0.22));
+}
+.section-sub.hl::after {
+  content: "";
+  display: block;
+  width: 140px; height: 2px; margin-top: 14px;
+  background: var(--grad);
+  border-radius: 2px;
+}
 .section-head .kicker, .section-title, .section-sub { text-shadow: 0 2px 16px rgba(6,9,19,.7); }
 
 /* ---------- nav ---------- */
