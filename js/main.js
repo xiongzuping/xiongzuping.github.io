@@ -48,11 +48,13 @@
      A dark lab sky: faint stars, polymer chains carrying amide /
      urethane / carbamate groups with labelled N·O atoms, pulsing
      N–H···O=C hydrogen-bond bridges between chains, glowing
-     clusteroluminescence aggregates and benzene rings. */
+     clusteroluminescence aggregates, benzene rings, and π-stacking
+     ring pairs whose p-orbital lobes overlap as the rings breathe
+     toward each other. */
   const canvas = document.getElementById("starfield");
   if (canvas) {
     const ctx = canvas.getContext("2d");
-    let stars = [], clusters = [], chains = [], rings = [], groups = [],
+    let stars = [], clusters = [], chains = [], rings = [], pairs = [], groups = [],
         W = 0, H = 0, raf = null, t = 0;
     const DPR = Math.min(window.devicePixelRatio || 1, 2);
     const R = (a, b) => a + Math.random() * (b - a);
@@ -70,21 +72,19 @@
       }
       ctx.closePath();
     }
-    function drawBenzene(b) {
-      b.y -= b.vy; b.rot += b.vr;
-      if (b.y < -30) { b.y = H + 30; b.x = Math.random() * W; }
+    function ringBody(x, y, r, rot, c) {
       ctx.save();
-      ctx.translate(b.x, b.y);
-      ctx.rotate(b.rot);
-      ctx.strokeStyle = "rgba(" + b.c + ",.3)";
+      ctx.translate(x, y);
+      ctx.rotate(rot);
+      ctx.strokeStyle = "rgba(" + c + ",.3)";
       ctx.lineWidth = 1.7 * DPR;
-      hexPath(b.r); ctx.stroke();
+      hexPath(r); ctx.stroke();
       const verts = [];
       for (let i = 0; i < 6; i++) {
         const a = Math.PI / 6 + i * Math.PI / 3;
-        verts.push([Math.cos(a) * b.r, Math.sin(a) * b.r]);
+        verts.push([Math.cos(a) * r, Math.sin(a) * r]);
       }
-      ctx.strokeStyle = "rgba(" + b.c + ",.42)";
+      ctx.strokeStyle = "rgba(" + c + ",.42)";
       ctx.lineWidth = 2.2 * DPR;
       for (let i = 0; i < 6; i += 2) {
         const A = verts[i], B = verts[(i + 1) % 6];
@@ -102,6 +102,47 @@
         }
       }
       ctx.restore();
+    }
+    function drawBenzene(b) {
+      b.y -= b.vy; b.rot += b.vr;
+      if (b.y < -30) { b.y = H + 30; b.x = Math.random() * W; }
+      ringBody(b.x, b.y, b.r, b.rot, b.c);
+    }
+    /* one ring of a π-stacking pair: p-orbital lobes (2 lobes per C,
+       here the facing lobe set) brighten as the pair overlaps */
+    function drawPiRing(x, y, r, rot, c, dir, ov) {
+      ringBody(x, y, r, rot, c);
+      ctx.save();
+      ctx.translate(x, y);
+      ctx.rotate(rot);
+      for (let i = 0; i < 6; i++) {
+        const a = Math.PI / 6 + i * Math.PI / 3;
+        const vx = Math.cos(a) * r, vy = Math.sin(a) * r;
+        const lx = vx, ly = vy + dir * r * 0.5;
+        ctx.fillStyle = "rgba(" + c + "," + (0.05 + 0.22 * ov).toFixed(3) + ")";
+        ctx.beginPath(); ctx.arc(lx, ly, 4.6 * DPR, 0, Math.PI * 2); ctx.fill();
+        ctx.strokeStyle = "rgba(" + c + "," + (0.28 + 0.3 * ov).toFixed(3) + ")";
+        ctx.lineWidth = 1.1 * DPR;
+        ctx.beginPath(); ctx.arc(lx, ly, 4.6 * DPR, 0, Math.PI * 2); ctx.stroke();
+      }
+      ctx.restore();
+    }
+    /* π-stacking pair: gap breathes; lobes and glow track the overlap */
+    function drawPiPair(pr, t) {
+      pr.y -= pr.vy; pr.rot += pr.vr;
+      if (pr.y < -90) { pr.y = H + 90; pr.x = Math.random() * W; }
+      const s = Math.sin(t * 0.012 + pr.ph);
+      const gap = pr.gap0 - s * pr.amp;
+      const ov = 0.5 + 0.5 * s; /* π-overlap factor 0..1 */
+      const g = ctx.createRadialGradient(pr.x, pr.y, 0, pr.x, pr.y, pr.r * 1.9);
+      g.addColorStop(0, "rgba(" + pr.c + "," + (0.08 + 0.42 * ov).toFixed(3) + ")");
+      g.addColorStop(1, "rgba(" + pr.c + ",0)");
+      ctx.fillStyle = g;
+      ctx.beginPath();
+      ctx.ellipse(pr.x, pr.y, pr.r * 1.7, pr.r * 0.8 + gap * 0.3, 0, 0, Math.PI * 2);
+      ctx.fill();
+      drawPiRing(pr.x, pr.y - gap / 2, pr.r, pr.rot, pr.c, 1, ov);
+      drawPiRing(pr.x, pr.y + gap / 2, pr.r, pr.rot, pr.c, -1, ov);
     }
 
     function resize() {
@@ -135,7 +176,7 @@
         ph: Math.random() * Math.PI * 2, v: R(0.003, 0.009),
         seq: seqs[i], c: PALETTE[i], hs: [], os: []
       }));
-      rings = Array.from({ length: 6 }, () => ({
+      rings = Array.from({ length: 3 }, () => ({
         x: Math.random() * W, y: Math.random() * H,
         r: R(12, 26) * DPR,
         rot: Math.random() * Math.PI,
@@ -143,6 +184,18 @@
         vy: R(0.03, 0.09) * DPR,
         c: PALETTE[Math.floor(Math.random() * PALETTE.length)].join(",")
       }));
+      /* π-stacking pairs: two rings per pair, gap breathes, lobes overlap */
+      pairs = Array.from({ length: 2 }, () => {
+        const r = R(14, 20) * DPR;
+        return {
+          x: Math.random() * W, y: Math.random() * H, r,
+          rot: Math.random() * Math.PI, vr: R(-0.004, 0.004),
+          vy: R(0.03, 0.08) * DPR,
+          gap0: 2 * r + 24 * DPR, amp: 12 * DPR,
+          ph: Math.random() * Math.PI * 2,
+          c: PALETTE[Math.floor(Math.random() * PALETTE.length)].join(",")
+        };
+      });
       groups = [
         { kind: "amide", x: R(0.15, 0.3) * W, y: R(0.15, 0.45) * H, s: DPR, rot: R(-0.25, 0.25), vr: R(-0.002, 0.002), vy: R(0.02, 0.05) * DPR },
         { kind: "biuret", x: R(0.42, 0.6) * W, y: R(0.5, 0.8) * H, s: DPR, rot: R(-0.25, 0.25), vr: R(-0.002, 0.002), vy: R(0.02, 0.05) * DPR },
@@ -324,21 +377,33 @@
           ctx.stroke();
         }
       };
-      const hdot = (x, y) => {
+      const hdot = (x, y, dx, dy) => {
+        if (dx === undefined) { dx = -7; dy = -11; }
         ctx.strokeStyle = "rgba(226,232,240,.4)";
         ctx.lineWidth = 1 * s;
-        ctx.beginPath(); ctx.moveTo(x * s, y * s); ctx.lineTo((x - 7) * s, (y - 11) * s); ctx.stroke();
+        ctx.beginPath(); ctx.moveTo(x * s, y * s); ctx.lineTo((x + dx) * s, (y + dy) * s); ctx.stroke();
         ctx.fillStyle = "rgba(226,232,240,.65)";
-        ctx.beginPath(); ctx.arc((x - 7) * s, (y - 11) * s, 2.6 * s, 0, Math.PI * 2); ctx.fill();
+        ctx.beginPath(); ctx.arc((x + dx) * s, (y + dy) * s, 2.6 * s, 0, Math.PI * 2); ctx.fill();
+      };
+      /* R-substituent stub: open bond + continuation ring, completes valences */
+      const rstub = (x, y, dx, dy) => {
+        bond(x, y, x + dx, y + dy);
+        ctx.strokeStyle = "rgba(148,163,184,.55)";
+        ctx.lineWidth = 1 * s;
+        ctx.beginPath(); ctx.arc((x + dx) * s, (y + dy) * s, 3 * s, 0, Math.PI * 2); ctx.stroke();
       };
       if (g.kind === "amide") {
+        /* amide bond R'–N(H)–C(=O)–R */
         bond(0, 0, 28, 0);
         atom(0, 0, 7, CN, "N", "rgba(147,197,253,.6)", 9);
         atom(28, 0, 7, CC, "", null, 0);
         dbl(28, 0, 20, -18, 7, 4);
         atom(20, -19, 4, CO, "O", "rgba(252,165,165,.55)", -10);
         hdot(0, 0);
+        rstub(0, 0, -19, 11);
+        rstub(28, 0, 17, 10);
       } else if (g.kind === "biuret") {
+        /* biuret H2N–CO–NH–CO–NH2 */
         bond(0, 0, 26, -6); bond(26, -6, 52, 0); bond(52, 0, 78, -6); bond(78, -6, 104, 0);
         atom(0, 0, 7, CN, "", null, 0);
         atom(26, -6, 7, CC, "", null, 0);
@@ -349,8 +414,10 @@
         atom(18, -25, 4, CO, "O", "rgba(252,165,165,.55)", -10);
         dbl(78, -6, 70, -24, 7, 4);
         atom(70, -25, 4, CO, "O", "rgba(252,165,165,.55)", -10);
-        hdot(0, 0); hdot(104, 0);
-      } else { /* urethane: O–C(=O)–N(H) */
+        hdot(0, 0); hdot(0, 0, -9, 9);
+        hdot(52, 0, -6, 14);
+        hdot(104, 0); hdot(104, 0, 9, 9);
+      } else { /* urethane (carbamate): R–O–C(=O)–N(H)–R */
         bond(0, 0, 26, 0); bond(26, 0, 52, 0);
         atom(0, 0, 7, CO, "O", "rgba(252,165,165,.55)", 9);
         atom(26, 0, 7, CC, "", null, 0);
@@ -358,6 +425,8 @@
         dbl(26, 0, 18, -18, 7, 4);
         atom(18, -19, 4, CO, "O", "rgba(252,165,165,.55)", -10);
         hdot(52, 0);
+        rstub(0, 0, -20, 0);
+        rstub(52, 0, 20, 0);
       }
       ctx.restore();
     }
@@ -385,6 +454,7 @@
       for (const ch of chains) drawChain(ch, t);
       drawHBonds(t);
       for (const b of rings) drawBenzene(b);
+      for (const pr of pairs) drawPiPair(pr, t);
       for (const g of groups) drawGroup(g, t, false);
       raf = requestAnimationFrame(tick);
     }
@@ -398,6 +468,7 @@
       chains.forEach(ch => drawChain(ch, 0));
       drawHBonds(0);
       rings.forEach(b => drawBenzene(b));
+      pairs.forEach(pr => drawPiPair(pr, 0));
       groups.forEach(g => drawGroup(g, 0, true));
     } else {
       tick();
