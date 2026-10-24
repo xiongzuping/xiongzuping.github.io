@@ -48,9 +48,10 @@
      A dark lab sky: faint stars, polymer chains carrying amide /
      urethane / carbamate groups with labelled N·O atoms, pulsing
      N–H···O=C hydrogen-bond bridges between chains, glowing
-     clusteroluminescence aggregates, benzene rings, and π-stacking
-     ring pairs whose p-orbital lobes overlap as the rings breathe
-     toward each other. */
+     clusteroluminescence aggregates, benzene rings, π-stacking
+     ring pairs whose double-bond π clouds overlap as the rings
+     breathe toward each other, and light motes that flock to the
+     pointer and glow once they cluster (interactive CTE). */
   const canvas = document.getElementById("starfield");
   if (canvas) {
     const ctx = canvas.getContext("2d");
@@ -453,6 +454,110 @@
       ctx.restore();
     }
 
+    /* ---------------- interactive clusteroluminescence ----------------
+       Light motes drift across the page; the pointer attracts nearby
+       motes, and once they crowd together the aggregate starts to glow
+       (density-triggered emission, like clusteroluminescence) and fires
+       a soft pulse ring each time a tight cluster forms. */
+    const motes = [], pulses = [];
+    const MOTE_N = Math.min(120, Math.max(70, Math.floor((innerWidth * innerHeight) / 9000)));
+    const MOTE_R = 240 * DPR;    /* attraction radius */
+    const MOTE_D = 55 * DPR;     /* crowding distance for emission */
+    let pmx = -1e4, pmy = -1e4, pActive = 0, pulseCd = 0;
+
+    function spawnMotes() {
+      while (motes.length < MOTE_N) {
+        motes.push({
+          x: Math.random() * W, y: Math.random() * H,
+          vx: 0, vy: 0,
+          c: Math.random() < 0.5 ? "34,211,238" : "109,124,255",
+          s: (0.6 + Math.random() * 1.1) * DPR,
+          ph: Math.random() * Math.PI * 2
+        });
+      }
+    }
+    addEventListener("pointermove", (e) => {
+      pmx = e.clientX * DPR; pmy = e.clientY * DPR; pActive = 1;
+    });
+    addEventListener("pointerdown", (e) => {
+      pmx = e.clientX * DPR; pmy = e.clientY * DPR; pActive = 1;
+    });
+    addEventListener("pointerleave", () => { pActive = 0; });
+
+    function drawMotes(tt) {
+      spawnMotes();
+      pActive = Math.max(0, pActive - 0.004);  /* pull fades ~4 s after rest */
+      /* drift toward the pointer + gentle Brownian jitter */
+      const r2a = MOTE_R * MOTE_R;
+      for (const m of motes) {
+        const dx = pmx - m.x, dy = pmy - m.y;
+        const d2 = dx * dx + dy * dy;
+        if (d2 < r2a && d2 > 0.01 && pActive > 0) {
+          const d = Math.sqrt(d2);
+          const f = 0.03 * pActive * (1 - d / MOTE_R);
+          m.vx += (dx / d) * f; m.vy += (dy / d) * f;
+        }
+        m.vx += (Math.random() - 0.5) * 0.03 * DPR;
+        m.vy += (Math.random() - 0.5) * 0.03 * DPR;
+        m.vx *= 0.9; m.vy *= 0.9;
+        m.x += m.vx; m.y += m.vy;
+        if (m.x < -24) m.x = W + 24; if (m.x > W + 24) m.x = -24;
+        if (m.y < -24) m.y = H + 24; if (m.y > H + 24) m.y = -24;
+      }
+      /* crowd count: neighbours within MOTE_D raise each mote's emission */
+      const d2n = MOTE_D * MOTE_D;
+      const crowd = new Float32Array(motes.length);
+      for (let i = 0; i < motes.length; i++) {
+        for (let j = i + 1; j < motes.length; j++) {
+          const dx = motes[i].x - motes[j].x, dy = motes[i].y - motes[j].y;
+          if (dx * dx + dy * dy < d2n) { crowd[i]++; crowd[j]++; }
+        }
+      }
+      let near = 0;
+      for (let i = 0; i < motes.length; i++) {
+        const m = motes[i];
+        const g = Math.min(1, crowd[i] / 4);
+        if (g > 0) {
+          const dx = m.x - pmx, dy = m.y - pmy;
+          if (dx * dx + dy * dy < 6400 * DPR * DPR) near++;
+        }
+        const tw = 0.5 + 0.5 * Math.sin(tt * 0.02 + m.ph);
+        const a = 0.1 + 0.55 * g + 0.12 * tw * (1 - g);
+        ctx.fillStyle = "rgba(" + m.c + "," + Math.min(0.95, a).toFixed(3) + ")";
+        ctx.beginPath(); ctx.arc(m.x, m.y, m.s * (1 + 1.1 * g), 0, Math.PI * 2); ctx.fill();
+      }
+      /* aggregate glow around the pointer while motes crowd there */
+      if (near > 3 && pActive > 0.03) {
+        const ga = Math.min(0.45, 0.06 + 0.035 * near);
+        const g = ctx.createRadialGradient(pmx, pmy, 0, pmx, pmy, 120 * DPR);
+        g.addColorStop(0, "rgba(165,240,255," + ga.toFixed(3) + ")");
+        g.addColorStop(0.55, "rgba(129,140,248," + (ga * 0.5).toFixed(3) + ")");
+        g.addColorStop(1, "rgba(129,140,248,0)");
+        ctx.fillStyle = g;
+        ctx.beginPath(); ctx.arc(pmx, pmy, 120 * DPR, 0, Math.PI * 2); ctx.fill();
+        /* tight cluster: white-hot core + emission pulse ring */
+        if (near >= 10) {
+          const cg = ctx.createRadialGradient(pmx, pmy, 0, pmx, pmy, 26 * DPR);
+          cg.addColorStop(0, "rgba(255,255,255," + (0.35 + 0.25 * Math.sin(tt * 0.05)).toFixed(3) + ")");
+          cg.addColorStop(1, "rgba(255,255,255,0)");
+          ctx.fillStyle = cg;
+          ctx.beginPath(); ctx.arc(pmx, pmy, 26 * DPR, 0, Math.PI * 2); ctx.fill();
+          if (tt > pulseCd) {
+            pulseCd = tt + 140;
+            pulses.push({ x: pmx, y: pmy, t0: tt });
+          }
+        }
+      }
+      /* expanding pulse rings emitted when a cluster forms */
+      for (let i = pulses.length - 1; i >= 0; i--) {
+        const p = pulses[i], age = (tt - p.t0) / 55;
+        if (age >= 1) { pulses.splice(i, 1); continue; }
+        ctx.strokeStyle = "rgba(103,232,249," + (0.45 * (1 - age)).toFixed(3) + ")";
+        ctx.lineWidth = 1.6 * DPR * (1 - age) + 0.3;
+        ctx.beginPath(); ctx.arc(p.x, p.y, 6 * DPR + age * 60 * DPR, 0, Math.PI * 2); ctx.stroke();
+      }
+    }
+
     function tick() {
       t += 1;
       ctx.clearRect(0, 0, W, H);
@@ -478,6 +583,7 @@
       for (const b of rings) drawBenzene(b);
       for (const pr of pairs) drawPiPair(pr, t);
       for (const g of groups) drawGroup(g, t, false);
+      drawMotes(t);
       raf = requestAnimationFrame(tick);
     }
 
