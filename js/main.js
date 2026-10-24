@@ -108,28 +108,35 @@
       if (b.y < -30) { b.y = H + 30; b.x = Math.random() * W; }
       ringBody(b.x, b.y, b.r, b.rot, b.c);
     }
-    /* one ring of a π-stacking pair: p-orbital lobes sit ON the carbons
-       facing the gap (ellipse along the ring normal, atom at its root)
-       and brighten as the pair overlaps */
+    /* one ring of a π-stacking pair: π clouds sit on the three C=C double
+       bonds of the ring (Kekulé alternation) along the ring normal; the
+       cloud on the bond facing the gap brightens as the pair overlaps */
     function drawPiRing(x, y, r, rot, c, dir, ov) {
       ringBody(x, y, r, rot, c);
       ctx.save();
       ctx.translate(x, y);
       ctx.rotate(rot);
-      const rx = r * 0.4, ry = r * 0.55;
-      for (let i = 0; i < 6; i++) {
-        const a = Math.PI / 6 + i * Math.PI / 3;
-        const vx = Math.cos(a) * r, vy = Math.sin(a) * r;
-        if (dir * vy <= 0) continue; /* only the 3 carbons facing the gap */
-        const lx = vx, ly = vy + dir * r * 0.3;
-        ctx.fillStyle = "rgba(" + c + "," + (0.08 + 0.22 * ov).toFixed(3) + ")";
-        ctx.beginPath(); ctx.ellipse(lx, ly, rx, ry, 0, 0, Math.PI * 2); ctx.fill();
-        ctx.strokeStyle = "rgba(" + c + "," + (0.28 + 0.3 * ov).toFixed(3) + ")";
+      /* midpoints of the three double bonds (edges v0-v1, v2-v3, v4-v5) */
+      const mids = [
+        [0.433 * r, 0.75 * r], [-0.866 * r, 0], [0.433 * r, -0.75 * r]
+      ];
+      for (const m of mids) {
+        const d = Math.hypot(m[0], m[1]) || 1;
+        const ox = m[0] / d, oy = m[1] / d;   /* outward normal */
+        const facing = dir * m[1] > 0;        /* this double bond faces the gap */
+        const al = facing ? ov : 0.12;
+        const lx = m[0] + ox * r * 0.3, ly = m[1] + oy * r * 0.3;
+        const ang = Math.atan2(oy, ox);
+        ctx.fillStyle = "rgba(" + c + "," + (0.06 + 0.24 * al).toFixed(3) + ")";
+        ctx.beginPath(); ctx.ellipse(lx, ly, r * 0.45, r * 0.55, ang, 0, Math.PI * 2); ctx.fill();
+        ctx.strokeStyle = "rgba(" + c + "," + (0.24 + 0.32 * al).toFixed(3) + ")";
         ctx.lineWidth = 1.1 * DPR;
-        ctx.beginPath(); ctx.ellipse(lx, ly, rx, ry, 0, 0, Math.PI * 2); ctx.stroke();
-        /* bright core where the electron density concentrates */
-        ctx.fillStyle = "rgba(" + c + "," + (0.1 + 0.3 * ov).toFixed(3) + ")";
-        ctx.beginPath(); ctx.ellipse(lx, ly, rx * 0.45, ry * 0.45, 0, 0, Math.PI * 2); ctx.fill();
+        ctx.beginPath(); ctx.ellipse(lx, ly, r * 0.45, r * 0.55, ang, 0, Math.PI * 2); ctx.stroke();
+        if (facing) {
+          /* bright core where the electron density concentrates */
+          ctx.fillStyle = "rgba(" + c + "," + (0.1 + 0.3 * ov).toFixed(3) + ")";
+          ctx.beginPath(); ctx.ellipse(lx, ly, r * 0.2, r * 0.24, ang, 0, Math.PI * 2); ctx.fill();
+        }
       }
       ctx.restore();
     }
@@ -150,10 +157,10 @@
       ctx.fill();
       drawPiRing(pr.x, pr.y - gap / 2, pr.r, pr.rot, pr.c, 1, ov);
       drawPiRing(pr.x, pr.y + gap / 2, pr.r, pr.rot, pr.c, -1, ov);
-      /* bright nodes where opposing p lobes merge */
+      /* bright node where the opposing π clouds merge */
       ctx.fillStyle = "rgba(224,242,254," + (0.15 + 0.7 * ov).toFixed(3) + ")";
-      for (const sgn of [-1, 0, 1]) {
-        const lx = sgn * 0.866 * pr.r, ly = 0;
+      {
+        const lx = 0.433 * pr.r, ly = 0;
         const wx = pr.x + Math.cos(pr.rot) * lx - Math.sin(pr.rot) * ly;
         const wy = pr.y + Math.sin(pr.rot) * lx + Math.cos(pr.rot) * ly;
         ctx.beginPath(); ctx.arc(wx, wy, 2.6 * DPR, 0, Math.PI * 2); ctx.fill();
@@ -204,9 +211,9 @@
         const r = R(14, 20) * DPR;
         return {
           x: Math.random() * W, y: Math.random() * H, r,
-          rot: Math.random() * Math.PI, vr: R(-0.004, 0.004),
+          rot: 0, vr: 0,
           vy: R(0.03, 0.08) * DPR,
-          gap0: 3.7 * r + 2 * DPR, amp: 20 * DPR,
+          gap0: 3 * r, amp: 0.5 * r,
           ph: Math.random() * Math.PI * 2,
           c: PALETTE[Math.floor(Math.random() * PALETTE.length)].join(",")
         };
