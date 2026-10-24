@@ -108,26 +108,33 @@
       if (b.y < -30) { b.y = H + 30; b.x = Math.random() * W; }
       ringBody(b.x, b.y, b.r, b.rot, b.c);
     }
-    /* one ring of a π-stacking pair: p-orbital lobes (2 lobes per C,
-       here the facing lobe set) brighten as the pair overlaps */
+    /* one ring of a π-stacking pair: p-orbital lobes sit ON the carbons
+       facing the gap (ellipse along the ring normal, atom at its root)
+       and brighten as the pair overlaps */
     function drawPiRing(x, y, r, rot, c, dir, ov) {
       ringBody(x, y, r, rot, c);
       ctx.save();
       ctx.translate(x, y);
       ctx.rotate(rot);
+      const rx = r * 0.4, ry = r * 0.55;
       for (let i = 0; i < 6; i++) {
         const a = Math.PI / 6 + i * Math.PI / 3;
         const vx = Math.cos(a) * r, vy = Math.sin(a) * r;
-        const lx = vx, ly = vy + dir * r * 0.5;
-        ctx.fillStyle = "rgba(" + c + "," + (0.05 + 0.22 * ov).toFixed(3) + ")";
-        ctx.beginPath(); ctx.arc(lx, ly, 4.6 * DPR, 0, Math.PI * 2); ctx.fill();
+        if (dir * vy <= 0) continue; /* only the 3 carbons facing the gap */
+        const lx = vx, ly = vy + dir * r * 0.3;
+        ctx.fillStyle = "rgba(" + c + "," + (0.08 + 0.22 * ov).toFixed(3) + ")";
+        ctx.beginPath(); ctx.ellipse(lx, ly, rx, ry, 0, 0, Math.PI * 2); ctx.fill();
         ctx.strokeStyle = "rgba(" + c + "," + (0.28 + 0.3 * ov).toFixed(3) + ")";
         ctx.lineWidth = 1.1 * DPR;
-        ctx.beginPath(); ctx.arc(lx, ly, 4.6 * DPR, 0, Math.PI * 2); ctx.stroke();
+        ctx.beginPath(); ctx.ellipse(lx, ly, rx, ry, 0, 0, Math.PI * 2); ctx.stroke();
+        /* bright core where the electron density concentrates */
+        ctx.fillStyle = "rgba(" + c + "," + (0.1 + 0.3 * ov).toFixed(3) + ")";
+        ctx.beginPath(); ctx.ellipse(lx, ly, rx * 0.45, ry * 0.45, 0, 0, Math.PI * 2); ctx.fill();
       }
       ctx.restore();
     }
-    /* π-stacking pair: gap breathes; lobes and glow track the overlap */
+    /* π-stacking pair: gap breathes; lobes, glow and merge-nodes track it.
+       gap0 is tuned so facing lobes just touch at rest (r: ring radius). */
     function drawPiPair(pr, t) {
       pr.y -= pr.vy; pr.rot += pr.vr;
       if (pr.y < -90) { pr.y = H + 90; pr.x = Math.random() * W; }
@@ -143,6 +150,14 @@
       ctx.fill();
       drawPiRing(pr.x, pr.y - gap / 2, pr.r, pr.rot, pr.c, 1, ov);
       drawPiRing(pr.x, pr.y + gap / 2, pr.r, pr.rot, pr.c, -1, ov);
+      /* bright nodes where opposing p lobes merge */
+      ctx.fillStyle = "rgba(224,242,254," + (0.15 + 0.7 * ov).toFixed(3) + ")";
+      for (const sgn of [-1, 0, 1]) {
+        const lx = sgn * 0.866 * pr.r, ly = 0;
+        const wx = pr.x + Math.cos(pr.rot) * lx - Math.sin(pr.rot) * ly;
+        const wy = pr.y + Math.sin(pr.rot) * lx + Math.cos(pr.rot) * ly;
+        ctx.beginPath(); ctx.arc(wx, wy, 2.6 * DPR, 0, Math.PI * 2); ctx.fill();
+      }
     }
 
     function resize() {
@@ -191,7 +206,7 @@
           x: Math.random() * W, y: Math.random() * H, r,
           rot: Math.random() * Math.PI, vr: R(-0.004, 0.004),
           vy: R(0.03, 0.08) * DPR,
-          gap0: 2 * r + 24 * DPR, amp: 12 * DPR,
+          gap0: 3.7 * r + 2 * DPR, amp: 20 * DPR,
           ph: Math.random() * Math.PI * 2,
           c: PALETTE[Math.floor(Math.random() * PALETTE.length)].join(",")
         };

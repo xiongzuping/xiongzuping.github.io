@@ -53,6 +53,8 @@ var _hmt = _hmt || [];
         <radialGradient id="hmc1"><stop offset="0" stop-color="#22d3ee" stop-opacity=".5"/><stop offset=".55" stop-color="#22d3ee" stop-opacity=".12"/><stop offset="1" stop-color="#22d3ee" stop-opacity="0"/></radialGradient>
         <radialGradient id="hmc2"><stop offset="0" stop-color="#a78bfa" stop-opacity=".45"/><stop offset=".55" stop-color="#a78bfa" stop-opacity=".11"/><stop offset="1" stop-color="#a78bfa" stop-opacity="0"/></radialGradient>
         <radialGradient id="hmc3"><stop offset="0" stop-color="#6d7cff" stop-opacity=".4"/><stop offset=".55" stop-color="#6d7cff" stop-opacity=".1"/><stop offset="1" stop-color="#6d7cff" stop-opacity="0"/></radialGradient>
+        <radialGradient id="hmL1"><stop offset="0" stop-color="#6d7cff" stop-opacity=".55"/><stop offset="1" stop-color="#6d7cff" stop-opacity=".08"/></radialGradient>
+        <radialGradient id="hmL2"><stop offset="0" stop-color="#22d3ee" stop-opacity=".55"/><stop offset="1" stop-color="#22d3ee" stop-opacity=".08"/></radialGradient>
         <!-- benzene: hexagon + Kekulé double bonds + aromatic circle -->
         <g id="hmbz">
           <path d="M17.32 -10 L0 -20 L-17.32 -10 L-17.32 10 L0 20 L17.32 10 Z" fill="none" stroke="currentColor" stroke-opacity=".45" stroke-width="2.2" stroke-linejoin="round"/>
@@ -172,24 +174,30 @@ var _hmt = _hmt || [];
       <use href="#hmbz" x="300" y="150" color="#22d3ee"/>
       <use href="#hmbz" x="590" y="205" color="#a78bfa"/>
       <use href="#hmbz" x="1090" y="300" color="#6d7cff"/>
-      <!-- π-stacking pair: rings breathe together, p-orbital lobes overlap -->
+      <!-- π-stacking pair: p-orbital lobes sit on the carbons facing the
+           gap (ellipses along the ring normal) and merge as the rings breathe -->
       <g transform="translate(790 370)">
         <ellipse class="pi-glow" cx="0" cy="0" rx="30" ry="26" fill="#67e8f9" filter="url(#hmb)"/>
         <g class="pi-bot" color="#22d3ee">
           <use href="#hmbz" transform="translate(0 28) scale(.75)"/>
-          <g>
-            <circle cx="-13" cy="13" r="4.6" fill="#22d3ee" fill-opacity=".16" stroke="#22d3ee" stroke-opacity=".4" stroke-width="1"/>
-            <circle cx="0" cy="5.5" r="4.6" fill="#22d3ee" fill-opacity=".16" stroke="#22d3ee" stroke-opacity=".4" stroke-width="1"/>
-            <circle cx="13" cy="13" r="4.6" fill="#22d3ee" fill-opacity=".16" stroke="#22d3ee" stroke-opacity=".4" stroke-width="1"/>
+          <g stroke="#22d3ee" stroke-opacity=".35" stroke-width="1">
+            <ellipse cx="0" cy="9" rx="6" ry="9" fill="url(#hmL2)"/>
+            <ellipse cx="-13" cy="16.5" rx="6" ry="9" fill="url(#hmL2)"/>
+            <ellipse cx="13" cy="16.5" rx="6" ry="9" fill="url(#hmL2)"/>
           </g>
         </g>
         <g class="pi-top" color="#6d7cff">
           <use href="#hmbz" transform="translate(0 -28) scale(.75)"/>
-          <g>
-            <circle cx="-13" cy="-13" r="4.6" fill="#6d7cff" fill-opacity=".16" stroke="#6d7cff" stroke-opacity=".4" stroke-width="1"/>
-            <circle cx="0" cy="-5.5" r="4.6" fill="#6d7cff" fill-opacity=".16" stroke="#6d7cff" stroke-opacity=".4" stroke-width="1"/>
-            <circle cx="13" cy="-13" r="4.6" fill="#6d7cff" fill-opacity=".16" stroke="#6d7cff" stroke-opacity=".4" stroke-width="1"/>
+          <g stroke="#6d7cff" stroke-opacity=".35" stroke-width="1">
+            <ellipse cx="0" cy="-9" rx="6" ry="9" fill="url(#hmL1)"/>
+            <ellipse cx="-13" cy="-16.5" rx="6" ry="9" fill="url(#hmL1)"/>
+            <ellipse cx="13" cy="-16.5" rx="6" ry="9" fill="url(#hmL1)"/>
           </g>
+        </g>
+        <g class="pi-node" fill="#e0f2fe">
+          <circle cx="0" cy="0" r="3"/>
+          <circle cx="-13" cy="0" r="3"/>
+          <circle cx="13" cy="0" r="3"/>
         </g>
       </g>
     </svg>
