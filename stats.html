@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Site Statistics — Zuping Xiong</title>
+<meta name="robots" content="noindex">
+<style>
+  :root {
+    --bg: #060913;
+    --card: rgba(139, 155, 255, 0.045);
+    --card-hover: rgba(139, 155, 255, 0.09);
+    --border: rgba(139, 155, 255, 0.16);
+    --border-strong: rgba(139, 155, 255, 0.32);
+    --text: #e9edfb;
+    --muted: #98a2c4;
+    --faint: #6b7596;
+    --grad: linear-gradient(120deg, #6d7cff 0%, #22d3ee 55%, #a78bfa 100%);
+    --bar: #6d7cff;
+    --bar-hover: #8f9bff;
+    --bar-today: #aeb8ff;
+    --grid: rgba(139, 155, 255, 0.10);
+    --font: Arial, "SimHei", "黑体", "PingFang SC", "Microsoft YaHei", "Noto Sans SC", -apple-system, BlinkMacSystemFont, "Helvetica Neue", sans-serif;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: var(--font); background: var(--bg); color: var(--text); min-height: 100vh; padding: 48px 20px 64px; }
+  .wrap { max-width: 960px; margin: 0 auto; }
+
+  header { display: flex; align-items: baseline; justify-content: space-between; flex-wrap: wrap; gap: 10px; margin-bottom: 28px; }
+  header h1 { font-size: 26px; font-weight: 700; background: var(--grad); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; color: transparent; }
+  header .sub { color: var(--muted); font-size: 13px; margin-top: 4px; }
+  header a { color: var(--muted); font-size: 13px; text-decoration: none; border-bottom: 1px solid var(--border-strong); padding-bottom: 2px; }
+  header a:hover { color: var(--text); }
+
+  .tiles { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 14px; margin-bottom: 18px; }
+  .tile { background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 18px 20px; }
+  .tile .t-label { font-size: 12px; color: var(--faint); text-transform: uppercase; letter-spacing: 0.8px; }
+  .tile .t-value { font-size: 30px; font-weight: 700; margin-top: 6px; }
+  .tile .t-note { font-size: 11.5px; color: var(--faint); margin-top: 2px; }
+
+  .panel { background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 20px 20px 16px; }
+
+  .filters { display: flex; align-items: center; gap: 8px; margin-bottom: 18px; }
+  .filters .f-label { font-size: 12.5px; color: var(--faint); margin-right: 4px; }
+  .filters button {
+    font-family: var(--font); font-size: 13px; color: var(--muted);
+    background: transparent; border: 1px solid var(--border); border-radius: 999px;
+    padding: 5px 14px; cursor: pointer;
+  }
+  .filters button:hover { background: var(--card-hover); color: var(--text); }
+  .filters button.sel { border-color: var(--border-strong); color: var(--text); font-weight: 700; background: var(--card-hover); }
+
+  .sc-plot { position: relative; height: 280px; transition: opacity .2s; }
+  .sc-plot.loading { opacity: .55; }
+  .sc-yaxis { position: absolute; left: 0; top: 0; bottom: 0; width: 44px; }
+  .sc-yaxis .tick { position: absolute; right: 8px; transform: translateY(50%); font-size: 11px; color: var(--faint); font-variant-numeric: tabular-nums; }
+  .sc-grid { position: absolute; left: 44px; right: 0; top: 0; bottom: 0; }
+  .sc-grid .line { position: absolute; left: 0; right: 0; height: 1px; background: var(--grid); }
+  .sc-bars { position: absolute; left: 44px; right: 0; top: 0; bottom: 0; overflow-x: auto; overflow-y: hidden; scrollbar-width: thin; scrollbar-color: var(--border-strong) transparent; }
+  .sc-bars:focus { outline: none; }
+  .sc-bars-inner { position: relative; height: 100%; display: flex; align-items: flex-end; }
+  .bar-wrap { position: relative; height: 100%; flex: 0 0 auto; display: flex; align-items: flex-end; }
+  .bar { width: 100%; border-radius: 4px 4px 0 0; background: var(--bar); min-height: 0; }
+  .bar-wrap.sel .bar { background: var(--bar-hover); }
+  .bar-wrap.today .bar { background: var(--bar-today); }
+  .bar-wrap .v-label { position: absolute; left: 50%; transform: translateX(-50%); font-size: 11px; color: var(--muted); font-variant-numeric: tabular-nums; white-space: nowrap; }
+
+  .sc-xaxis { position: relative; left: 44px; right: 0; height: 24px; overflow: hidden; margin-top: 6px; }
+  .sc-xaxis-inner { position: relative; height: 100%; }
+  .sc-xaxis .tick { position: absolute; font-size: 11px; color: var(--faint); font-variant-numeric: tabular-nums; transform: translateX(-50%); }
+
+  .tooltip { position: absolute; pointer-events: none; z-index: 5; background: rgba(10, 15, 34, 0.96); border: 1px solid var(--border-strong); border-radius: 10px; padding: 8px 12px; font-size: 12.5px; display: none; }
+  .tooltip .tt-val { font-size: 15px; font-weight: 700; }
+  .tooltip .tt-date { color: var(--muted); margin-top: 2px; }
+
+  .table { margin-top: 16px; border-top: 1px solid var(--border); padding-top: 10px; }
+  .table summary { cursor: pointer; font-size: 13px; color: var(--muted); user-select: none; }
+  .table summary:hover { color: var(--text); }
+  .table .tbl { margin-top: 10px; max-height: 220px; overflow-y: auto; border: 1px solid var(--border); border-radius: 10px; }
+  .table table { width: 100%; border-collapse: collapse; font-size: 12.5px; }
+  .table th, .table td { padding: 6px 14px; text-align: right; }
+  .table th:first-child, .table td:first-child { text-align: left; }
+  .table th { color: var(--faint); font-weight: 400; border-bottom: 1px solid var(--border); position: sticky; top: 0; background: #0a0f22; }
+  .table td { color: var(--muted); font-variant-numeric: tabular-nums; }
+  .table tr:hover td { background: var(--card-hover); }
+
+  footer { margin-top: 26px; color: var(--faint); font-size: 12.5px; text-align: center; }
+  @media (max-width: 640px) {
+    .tiles { grid-template-columns: 1fr 1fr; }
+    .tile .t-value { font-size: 24px; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <div>
+      <h1>Site Statistics</h1>
+      <div class="sub">xiongzuping.com · daily page views</div>
+    </div>
+    <a href="/">← back to site</a>
+  </header>
+
+  <div class="tiles">
+    <div class="tile"><div class="t-label">Total views</div><div class="t-value" id="tPv">–</div><div class="t-note">all-time page views</div></div>
+    <div class="tile"><div class="t-label">Visitors</div><div class="t-value" id="tUv">–</div><div class="t-note">unique visitors per day</div></div>
+    <div class="tile"><div class="t-label">Today</div><div class="t-value" id="tToday">–</div><div class="t-note">page views today</div></div>
+  </div>
+
+  <div class="panel">
+    <div class="filters">
+      <span class="f-label">Range</span>
+      <button data-days="7">7 days</button>
+      <button data-days="30" class="sel">30 days</button>
+      <button data-days="90">90 days</button>
+      <button data-days="365">365 days</button>
+    </div>
+
+    <div class="sc-plot" id="plot">
+      <div class="sc-yaxis" id="yAxis"></div>
+      <div class="sc-grid" id="grid"></div>
+      <div class="sc-bars" id="bars" tabindex="0" aria-label="Daily page views bar chart. Use left and right arrow keys to move between days.">
+        <div class="sc-bars-inner" id="barsInner"></div>
+      </div>
+      <div class="tooltip" id="tooltip"><div class="tt-val" id="ttVal"></div><div class="tt-date" id="ttDate"></div></div>
+    </div>
+    <div class="sc-xaxis"><div class="sc-xaxis-inner" id="xAxis"></div></div>
+
+    <details class="table">
+      <summary>View data table</summary>
+      <div class="tbl"><table id="dataTable"><thead><tr><th>Date</th><th>Views</th></tr></thead><tbody id="dataBody"></tbody></table></div>
+    </details>
+  </div>
+
+  <footer>Visit counter &amp; statistics powered by Cloudflare Workers · counting since Oct 27, 2026</footer>
+</div>
+
+<script src="js/counter-config.js"></script>
+<script>
+(function () {
+  "use strict";
+  const API = window.COUNTER_URL || "https://xzp-counter.zuping.workers.dev";
+  const PLOT_H = 280;
+
+  const $ = id => document.getElementById(id);
+  const plot = $("plot"), yAxis = $("yAxis"), grid = $("grid"), bars = $("bars"),
+        barsInner = $("barsInner"), xAxis = $("xAxis"), tooltip = $("tooltip"),
+        ttVal = $("ttVal"), ttDate = $("ttDate"), dataBody = $("dataBody");
+
+  let days = 30, points = [], selIdx = -1, band = 10, barW = 6, yMax = 1;
+
+  /* ---------- helpers ---------- */
+  function compact(n) {
+    if (n >= 10000) return (n / 1000).toFixed(1).replace(/\.0$/, "") + "K";
+    return n.toLocaleString("en-US");
+  }
+  function full(n) { return n.toLocaleString("en-US"); }
+  function niceStep(max) {
+    if (max <= 0) return 1;
+    const raw = max / 4;
+    const p = Math.pow(10, Math.floor(Math.log10(raw)));
+    const m = raw / p;
+    const mul = m <= 1 ? 1 : m <= 2 ? 2 : m <= 2.5 ? 2.5 : m <= 5 ? 5 : 10;
+    return mul * p;
+  }
+  function tickLabel(v) { return v >= 1000 ? (v / 1000) + "K" : String(v); }
+  function fmtDate(iso) {
+    const d = new Date(iso + "T00:00:00Z");
+    const m = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"][d.getUTCMonth()];
+    return m + " " + d.getUTCDate() + ", " + d.getUTCFullYear();
+  }
+  function shortDate(iso) { return iso.slice(5); } // MM-DD
+
+  /* ---------- render ---------- */
+  function render() {
+    // geometry
+    const W = bars.clientWidth - 2;
+    band = Math.max(8, Math.min(24, Math.floor(W / days)));
+    barW = Math.max(band - 4, 2);
+    const totalW = days * band;
+
+    const maxV = Math.max(1, ...points.map(p => p.pv));
+    const step = niceStep(maxV);
+    yMax = Math.ceil(maxV / step) * step;
+
+    // y ticks + gridlines
+    yAxis.innerHTML = ""; grid.innerHTML = "";
+    const nTicks = Math.round(yMax / step);
+    for (let t = 0; t <= nTicks; t++) {
+      const v = t * step;
+      const bottomPct = (v / yMax) * 100;
+      const line = document.createElement("div");
+      line.className = "line";
+      line.style.bottom = bottomPct + "%";
+      grid.appendChild(line);
+      const lab = document.createElement("div");
+      lab.className = "tick";
+      lab.style.bottom = bottomPct + "%";
+      lab.textContent = tickLabel(v);
+      yAxis.appendChild(lab);
+    }
+
+    // bars
+    barsInner.innerHTML = "";
+    barsInner.style.width = totalW + "px";
+    const maxIdx = points.reduce((a, p, i) => (p.pv > points[a].pv ? i : a), 0);
+    const todayIdx = points.length - 1;
+    points.forEach((p, i) => {
+      const wrap = document.createElement("div");
+      wrap.className = "bar-wrap" + (i === todayIdx ? " today" : "");
+      wrap.style.width = band + "px";
+      if (p.pv > 0) {
+        const b = document.createElement("div");
+        b.className = "bar";
+        b.style.height = Math.max((p.pv / yMax) * PLOT_H, 2) + "px";
+        b.style.width = barW + "px";
+        wrap.appendChild(b);
+      }
+      // selective direct labels: today's tip + max (if far enough apart)
+      const labelIdx = i === todayIdx ? i : (i === maxIdx && Math.abs(maxIdx - todayIdx) >= 3 ? i : -1);
+      if (labelIdx >= 0 && p.pv > 0) {
+        const lab = document.createElement("div");
+        lab.className = "v-label";
+        lab.style.bottom = Math.min((p.pv / yMax) * PLOT_H + 4, PLOT_H - 12) + "px";
+        lab.textContent = compact(p.pv);
+        wrap.appendChild(lab);
+      }
+      barsInner.appendChild(wrap);
+    });
+    bars.scrollLeft = Math.max(totalW - bars.clientWidth, 0);
+
+    // x labels: ~5 non-colliding ticks
+    xAxis.innerHTML = "";
+    const inner = document.createElement("div");
+    inner.style.width = totalW + "px";
+    const tickCount = Math.min(6, days);
+    for (let k = 0; k < tickCount; k++) {
+      const i = Math.round((days - 1) * k / (tickCount - 1));
+      const t = document.createElement("div");
+      t.className = "tick";
+      t.style.left = (i * band + band / 2) + "px";
+      t.textContent = shortDate(points[i].date);
+      inner.appendChild(t);
+    }
+    xAxis.appendChild(inner);
+
+    // table
+    dataBody.innerHTML = "";
+    for (let i = points.length - 1; i >= 0; i--) {
+      const tr = document.createElement("tr");
+      const td1 = document.createElement("td");
+      td1.textContent = points[i].date;
+      const td2 = document.createElement("td");
+      td2.textContent = full(points[i].pv);
+      tr.appendChild(td1); tr.appendChild(td2);
+      dataBody.appendChild(tr);
+    }
+
+    if (selIdx >= 0 && selIdx < points.length) showTip(selIdx);
+  }
+
+  /* ---------- tooltip ---------- */
+  function showTip(i) {
+    const p = points[i];
+    ttVal.textContent = full(p.pv) + " views";
+    ttDate.textContent = fmtDate(p.date);
+    const wraps = barsInner.children;
+    for (let k = 0; k < wraps.length; k++) wraps[k].classList.toggle("sel", k === i);
+    const plotR = plot.getBoundingClientRect();
+    const x = 44 + i * band + band / 2 - bars.scrollLeft; // 44 = bars area offset inside plot
+    let left = x + 14;
+    if (left + 160 > plotR.width) left = x - 160;
+    const tipY = PLOT_H - (p.pv / yMax) * PLOT_H; // bar tip, top-anchored
+    tooltip.style.display = "block";
+    tooltip.style.left = left + "px";
+    tooltip.style.top = Math.min(Math.max(tipY - 8, 4), PLOT_H - 64) + "px";
+  }
+  function hideTip() {
+    tooltip.style.display = "none";
+    const wraps = barsInner.children;
+    for (let k = 0; k < wraps.length; k++) wraps[k].classList.remove("sel");
+    selIdx = -1;
+  }
+
+  /* ---------- data ---------- */
+  function fetchStats() {
+    fetch(API + "/stats").then(r => r.ok ? r.json() : Promise.reject()).then(d => {
+      $("tPv").textContent = compact(d.pv || 0);
+      $("tUv").textContent = compact(d.uv || 0);
+      $("tToday").textContent = full(d.pvToday || 0);
+    }).catch(() => {});
+  }
+  function fetchTrend(d) {
+    plot.classList.add("loading");
+    fetch(API + "/trend?days=" + d).then(r => r.ok ? r.json() : Promise.reject()).then(d => {
+      points = d.points || [];
+      days = points.length;
+      render();
+      plot.classList.remove("loading");
+    }).catch(() => { plot.classList.remove("loading"); });
+  }
+
+  /* ---------- events ---------- */
+  document.querySelectorAll(".filters button").forEach(btn => {
+    btn.addEventListener("click", () => {
+      document.querySelectorAll(".filters button").forEach(b => b.classList.remove("sel"));
+      btn.classList.add("sel");
+      hideTip();
+      fetchTrend(parseInt(btn.dataset.days, 10));
+    });
+  });
+
+  bars.addEventListener("pointermove", e => {
+    const r = barsInner.getBoundingClientRect();
+    const i = Math.floor((e.clientX - r.left + bars.scrollLeft) / band);
+    if (i >= 0 && i < points.length) { selIdx = i; showTip(i); }
+  });
+  bars.addEventListener("pointerleave", hideTip);
+  bars.addEventListener("scroll", () => { xAxis.scrollLeft = bars.scrollLeft; });
+  bars.addEventListener("keydown", e => {
+    if (e.key === "ArrowLeft" || e.key === "ArrowRight") {
+      e.preventDefault();
+      const delta = e.key === "ArrowLeft" ? -1 : 1;
+      selIdx = selIdx < 0 ? (points.length - 1) : selIdx + delta;
+      selIdx = Math.max(0, Math.min(points.length - 1, selIdx));
+      showTip(selIdx);
+      const w = barsInner.children[selIdx];
+      if (w) bars.scrollLeft = Math.max(0, Math.min(selIdx * band - bars.clientWidth / 2, bars.scrollWidth - bars.clientWidth));
+    } else if (e.key === "Escape") { hideTip(); }
+  });
+
+  fetchStats();
+  fetchTrend(30);
+})();
+</script>
+</body>
+</html>

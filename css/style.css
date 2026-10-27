@@ -583,6 +583,8 @@ footer .sc-num {
   -webkit-text-fill-color: transparent; color: transparent;
 }
 footer .sc-dot { color: var(--faint); }
+footer .sc-link { color: var(--muted); text-decoration: none; }
+footer .sc-link:hover { color: var(--text); border-bottom: 1px solid var(--border-strong); }
 
 /* ---------- hero π-stacking animation ---------- */
 .hero-mol .pi-top { animation: piApproach 7s ease-in-out infinite; }

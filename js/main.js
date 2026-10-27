@@ -719,7 +719,7 @@
 /* ---------------- site visit counter (Cloudflare Worker) ---------------- */
 (function () {
   "use strict";
-  const COUNTER_URL = "https://xzp-counter.zuping.workers.dev";
+  const COUNTER_URL = (window.COUNTER_URL) || "https://xzp-counter.zuping.workers.dev";
   const el = document.getElementById("siteCounter");
   if (!el) return;
 
@@ -736,10 +736,13 @@
   fetch(COUNTER_URL + "/hit" + q)
     .then(r => (r.ok ? r.json() : Promise.reject()))
     .then(d => {
+      const fmt = n => Number(n || 0).toLocaleString("en-US");
       const pv = document.getElementById("scPv");
       const uv = document.getElementById("scUv");
-      if (pv) pv.textContent = Number(d.pv || 0).toLocaleString("en-US");
-      if (uv) uv.textContent = Number(d.uv || 0).toLocaleString("en-US");
+      const today = document.getElementById("scToday");
+      if (pv) pv.textContent = fmt(d.pv);
+      if (uv) uv.textContent = fmt(d.uv);
+      if (today) today.textContent = fmt(d.pvToday);
       el.hidden = false;
     })
     .catch(() => { /* offline or blocked: keep the chip hidden */ });
