@@ -715,3 +715,32 @@
     });
   }
 })();
+
+/* ---------------- site visit counter (Cloudflare Worker) ---------------- */
+(function () {
+  "use strict";
+  const COUNTER_URL = "https://xzp-counter.zuping.workers.dev";
+  const el = document.getElementById("siteCounter");
+  if (!el) return;
+
+  let vid = null;
+  try {
+    vid = localStorage.getItem("xzp_vid");
+    if (!vid) {
+      vid = crypto.randomUUID().replaceAll("-", "");
+      localStorage.setItem("xzp_vid", vid);
+    }
+  } catch (e) { /* storage unavailable — count PV only */ }
+
+  const q = vid ? "?vid=" + encodeURIComponent(vid) : "";
+  fetch(COUNTER_URL + "/hit" + q)
+    .then(r => (r.ok ? r.json() : Promise.reject()))
+    .then(d => {
+      const pv = document.getElementById("scPv");
+      const uv = document.getElementById("scUv");
+      if (pv) pv.textContent = Number(d.pv || 0).toLocaleString("en-US");
+      if (uv) uv.textContent = Number(d.uv || 0).toLocaleString("en-US");
+      el.hidden = false;
+    })
+    .catch(() => { /* offline or blocked: keep the chip hidden */ });
+})();
