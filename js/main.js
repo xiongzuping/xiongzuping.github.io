@@ -642,6 +642,23 @@
   }, { threshold: 0.12 });
   document.querySelectorAll(".reveal").forEach(el => revealObs.observe(el));
 
+  /* ---------------- emission videos: play only while on screen ---------------- */
+  const emitVids = document.querySelectorAll(".emit-video");
+  if (emitVids.length) {
+    const vidObs = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        const v = e.target;
+        if (e.isIntersecting) {
+          const p = v.play();
+          if (p && typeof p.catch === "function") p.catch(() => {});
+        } else {
+          v.pause();
+        }
+      });
+    }, { threshold: 0.12 });
+    emitVids.forEach(v => vidObs.observe(v));
+  }
+
   /* ---------------- counters ---------------- */
   const counterObs = new IntersectionObserver((entries) => {
     entries.forEach(e => {
