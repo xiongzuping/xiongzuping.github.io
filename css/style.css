@@ -544,6 +544,8 @@ img { display: block; max-width: 100%; }
 @keyframes emitPulse { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: .55; transform: scale(.78); } }
 .emit-name { font-weight: 600; font-size: 15px; letter-spacing: .3px; }
 .emit-name .zh { display: block; margin-top: 3px; color: var(--muted); font-weight: 400; font-size: 13px; }
+.emit-sub { font-size: 12.5px; color: var(--muted); line-height: 1.65; letter-spacing: .2px; }
+.emit-sub b { color: #fbbf24; font-weight: 600; }
 .emit-stage { position: relative; }
 .emit-video {
   display: block; width: 100%; aspect-ratio: 16 / 9; object-fit: cover;
