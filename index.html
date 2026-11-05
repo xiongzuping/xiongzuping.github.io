@@ -7,6 +7,7 @@
 <meta name="description" content="Zuping Xiong — RGC Junior Research Fellow at HKUST. Polymer materials, aggregation-induced emission (AIE), clusteroluminescence, through-space interactions, photophysics and computational chemistry.">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%236d7cff'/%3E%3Cstop offset='1' stop-color='%2322d3ee'/%3E%3C/linearGradient%3E%3C/defs%3E%3Ccircle cx='16' cy='16' r='13' fill='url(%23g)'/%3E%3C/svg%3E">
 <link rel="stylesheet" href="css/style.css">
+<noscript><style>.reveal { opacity: 1; transform: none; }</style></noscript>
 <!-- Baidu Tongji analytics -->
 <script>
 var _hmt = _hmt || [];
@@ -27,9 +28,10 @@ var _hmt = _hmt || [];
 <canvas id="starfield" aria-hidden="true"></canvas>
 
 <!-- ================= NAV ================= -->
-<nav class="nav" id="nav">
+<nav class="nav" id="nav" aria-label="Main navigation">
   <div class="nav-inner">
     <a class="logo" href="#home"><span class="dot"></span>Zuping Xiong <span class="zh">熊祖平</span></a>
+    <button type="button" class="nav-burger" id="navBurger" aria-label="Menu" aria-controls="navLinks" aria-expanded="false"><span></span><span></span><span></span></button>
     <ul class="nav-links" id="navLinks">
       <li><a href="#home">Home</a></li>
       <li><a href="#about">About</a></li>
@@ -42,7 +44,6 @@ var _hmt = _hmt || [];
       <li><a href="#gallery">Gallery</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
-    <button class="nav-burger" id="navBurger" aria-label="Menu"><span></span><span></span><span></span></button>
   </div>
 </nav>
 
@@ -206,23 +207,18 @@ var _hmt = _hmt || [];
   </div>
   <div class="wrap hero-inner">
     <div class="hero-text">
-      <div class="hero-kicker"><a class="jrfs-link" href="https://hkrfa.hk/en/membership/listing/369/" target="_blank" rel="noopener" title="RGC Junior Research Fellow Scheme — 香港研资局官方页面 https://hkrfa.hk/en/membership/listing/369/">RGC Junior Research Fellow</a> · HKUST</div>
-      <h1>Zuping <span class="grad">Xiong</span></h1>
-      <div class="zh-name">熊 祖 平</div>
-      <div class="hero-role"><b><a class="jrfs-link" href="https://hkrfa.hk/en/membership/listing/369/" target="_blank" rel="noopener" title="RGC Junior Research Fellow Scheme — 香港研资局官方页面 https://hkrfa.hk/en/membership/listing/369/">RGC Junior Research Fellow</a></b></div>
-      <div class="hero-org">The Hong Kong University of Science and Technology (HKUST)<br>
-        Ph.D. in Polymer Materials, Zhejiang University · AIE &amp; Clusteroluminescence</div>
-      <div class="hero-quote">"Life is nothing but an electron looking for a place to rest."</div>
+      <h1>Zuping <span class="grad">Xiong</span><span class="zh-name" lang="zh-CN">熊祖平</span></h1>
+      <div class="hero-role"><a class="jrfs-link" href="https://hkrfa.hk/en/membership/listing/369/" target="_blank" rel="noopener">RGC Junior Research Fellow</a></div>
+      <div class="hero-org">The Hong Kong University of Science and Technology</div>
+      <p class="hero-research">I study how optical properties emerge from interactions among atoms within biological macromolecules and materials.</p>
+      <p class="hero-research-zh" lang="zh-CN">我研究生物大分子及材料内部的原子间相互作用，以及由此涌现的光学性能。</p>
       <div class="hero-cta">
-        <a class="btn btn-primary" href="#publications">View Publications
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
-        </a>
-        <a class="btn" href="#contact">Get in Touch
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
-        </a>
-        <a class="btn" href="https://scholar.google.com/citations?user=pMjAS_4AAAAJ" target="_blank" rel="noopener">Google Scholar
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><path d="M15 3h6v6"/><path d="M10 14L21 3"/></svg>
-        </a>
+        <a class="btn btn-primary" href="#emission">Selected work <span lang="zh-CN">代表成果</span></a>
+        <a class="btn" href="#publications">Publications <span lang="zh-CN">论文</span></a>
+      </div>
+      <div class="hero-more">
+        <a href="#contact">Contact</a>
+        <a href="https://scholar.google.com/citations?user=pMjAS_4AAAAJ" target="_blank" rel="noopener">Google Scholar <span aria-hidden="true">↗</span></a>
       </div>
     </div>
     <div class="hero-visual">
@@ -244,8 +240,8 @@ var _hmt = _hmt || [];
 <section class="section section-tight" id="stats" style="padding-top:10px">
   <div class="wrap">
     <div class="stats reveal">
-      <div class="stat"><div class="num" data-count="53">0</div><div class="lab">Research Articles</div></div>
-      <div class="stat"><div class="num" data-count="29">0</div><div class="lab">First / Corresponding Author</div></div>
+      <div class="stat"><div class="num"><span data-publication-total>53</span>+</div><div class="lab">Publications</div></div>
+      <div class="stat"><div class="num">29+</div><div class="lab">First / Corresponding Author</div></div>
       <div class="stat"><div class="num" data-count="11">0</div><div class="lab">Invited &amp; Oral Talks</div></div>
       <div class="stat"><div class="num" data-count="15">0</div><div class="lab">Honors &amp; Awards</div></div>
     </div>
@@ -263,8 +259,8 @@ var _hmt = _hmt || [];
       <div class="about-text reveal">
         <p class="hl"><b>Dr. Zuping Xiong</b> is currently a recipient of the <b><a class="jrfs-link" href="https://hkrfa.hk/en/membership/listing/369/" target="_blank" rel="noopener" title="RGC Junior Research Fellow Scheme — 香港研资局官方页面 https://hkrfa.hk/en/membership/listing/369/">RGC Junior Research Fellow Scheme (JRFS)</a></b> at The Hong Kong University of Science and Technology (HKUST). He was invited to serve as an <b>Editorial Board Member</b> of <em>Scientific Reports</em> and <em>Discover Chemistry</em> (Springer Nature), 2026–Present.</p>
         <p>He received his Ph.D. degree from <b>Zhejiang University</b> ahead of schedule, under the supervision of <b>Prof. Ben Zhong Tang</b>, <b>Prof. Haoke Zhang</b> and <b>Prof. Jing Zhi Sun</b>, with interdisciplinary supervision by <b>Dr. Jun Qian</b>. In 2022, he joined Prof. Tang's group (admitted with first rank) and began research on <b>aggregation-induced emission (AIE)</b>.</p>
-        <p>He has authored <b>53 research articles</b>, with <b>29 papers as first or corresponding author</b> in <em>Nat. Chem.</em>, <em>Nat. Rev. Chem.</em>, <em>J. Am. Chem. Soc.</em> (×2), <em>Chem</em> (×2), <em>Nat. Commun.</em>, <em>Angew. Chem. Int. Ed.</em> (×3), <em>ACS Materials Lett.</em>, <em>CCS Chem.</em>, <em>Chem. Sci.</em> and related journals.</p>
-        <p>He has delivered <b>more than 11 oral / invited presentations</b> at international and national conferences and received the <b>Best Oral Presentation</b> award.</p>
+        <p>He has authored <b><span data-publication-total>53</span> publications</b>, with <b>29 papers as first or corresponding author</b> in <em>Nat. Chem.</em>, <em>Nat. Rev. Chem.</em>, <em>J. Am. Chem. Soc.</em> (×2), <em>Chem</em> (×2), <em>Nat. Commun.</em>, <em>Angew. Chem. Int. Ed.</em> (×3), <em>ACS Materials Lett.</em>, <em>CCS Chem.</em>, <em>Chem. Sci.</em> and related journals.</p>
+        <p>He has delivered <b>at least 11 invited or oral presentations</b> at international and national conferences and received the <b>Best Oral Presentation</b> award.</p>
       </div>
       <div class="card info-card reveal d1">
         <div class="info-row"><span class="k">Position</span><span class="v"><a class="jrfs-link" href="https://hkrfa.hk/en/membership/listing/369/" target="_blank" rel="noopener" title="RGC Junior Research Fellow Scheme — 香港研资局官方页面 https://hkrfa.hk/en/membership/listing/369/">RGC Junior Research Fellow</a><br>HKUST, Hong Kong SAR, China</span></div>
@@ -380,11 +376,11 @@ var _hmt = _hmt || [];
 
     <!-- ============ Discovery 3 ============ -->
     <div class="section-head reveal disc3-head">
-      <h2 class="section-title"><span class="title-num">3</span>First Realization of NIR Cluster-chemiluminescence<span class="zh zh-block">First proposal of the Cluster-chemiluminescence concept</span></h2>
+      <h2 class="section-title"><span class="title-num">3</span>First Proposal and Validation of the Cluster-chemiluminescence Concept</h2>
     </div>
     <div class="disc3-stage reveal">
       <span class="emit-loop">⟳ loop</span>
-      <video class="emit-video disc3-video" autoplay loop muted playsinline preload="metadata" aria-label="First realization of NIR cluster-chemiluminescence animation">
+      <video class="emit-video disc3-video" autoplay loop muted playsinline preload="metadata" aria-label="Near-infrared cluster-chemiluminescence animation">
         <source src="assets/videos/nir-cluster-chemiluminescence.mp4" type="video/mp4">
       </video>
     </div>
@@ -423,15 +419,15 @@ var _hmt = _hmt || [];
     <div class="section-head reveal">
       <div class="kicker">Publications</div>
       <h2 class="section-title">Publications<span class="zh">论文发表</span></h2>
-      <p class="section-sub">53 research articles · 29 as first or corresponding author in <em>Nat. Chem.</em>, <em>Nat. Rev. Chem.</em>, <em>JACS</em>, <em>Angew. Chem.</em>, <em>Chem</em>, <em>Nat. Commun.</em> and more.</p>
+      <p class="section-sub"><span data-publication-total>53</span> publications, including reviews, perspectives and work in press · 29 as first or corresponding author in <em>Nat. Chem.</em>, <em>Nat. Rev. Chem.</em>, <em>JACS</em>, <em>Angew. Chem.</em>, <em>Chem</em>, <em>Nat. Commun.</em> and more.</p>
     </div>
 
 
     <!-- full list -->
     <div style="margin-top:36px">
       <div class="pub-tabs reveal">
-        <button class="pub-tab active" data-tab="tab2026">2026 – Present<span class="cnt">14</span></button>
-        <button class="pub-tab" data-tab="tab2025">2025 &amp; Earlier<span class="cnt">37</span></button>
+        <button class="pub-tab active" data-tab="tab2026" aria-controls="tab2026" aria-pressed="true">2026 – Present<span class="cnt">15</span></button>
+        <button class="pub-tab" data-tab="tab2025" aria-controls="tab2025" aria-pressed="false">2025 &amp; Earlier<span class="cnt">38</span></button>
       </div>
       <div class="legend reveal">
         <span><span class="tag first">1st</span> (co-)first author</span>
@@ -442,18 +438,19 @@ var _hmt = _hmt || [];
 
       <!-- 2026+ -->
       <div class="pub-group active" id="tab2026">
-        <div class="pub-year"><b>2027</b><span>1 paper</span></div>
-        <article class="paper reveal">
+        <div class="pub-year"><b>In press</b><span>1 paper</span></div>
+        <article class="paper reveal" id="peptide-hydrogen-bond-paper">
           <div class="paper-fig">
             <img src="assets/tocs/natchem-2027-hbond.jpg" class="cover" alt="Cover: Hydrogen-Bond Disruption in Non-Aromatic Peptidomimetics and Peptides Drives Record-Long Intrinsic Near-Infrared Emission" loading="lazy" onerror="this.classList.add('gone')">
-            <div class="paper-ph"><b>NAT. CHEM.</b><span>2027</span></div>
+            <div class="paper-ph"><b>NAT. CHEM.</b><span>In press</span></div>
           </div>
           <div class="paper-body">
             <h3 class="paper-title">Hydrogen-Bond Disruption in Non-Aromatic Peptidomimetics and Peptides Drives Record-Long Intrinsic Near-Infrared Emission</h3>
             <p class="paper-authors">Changyi Zhu†; Ziwei Wang†; Xiong Liu†; Guanjun Xiao†; Yingying Wang; Xihan Yu; Bo Zou; Nan Jiang*; Martin R. Bryce*; <span class="me">Zuping Xiong</span>*.</p>
             <div class="paper-meta">
-              <span><b>Nat. Chem.</b> 2027, in press</span>
+              <span><b>Nat. Chem.</b> · In press</span>
               <span class="tag corr">Corr</span><span class="tag star">Featured</span>
+              <a class="doi" href="https://scholar.google.com/scholar?q=%22Hydrogen-Bond+Disruption+in+Non-Aromatic+Peptidomimetics+and+Peptides+Drives+Record-Long+Intrinsic+Near-Infrared+Emission%22" target="_blank" rel="noopener" aria-label="Search the exact title on Google Scholar: Hydrogen-Bond Disruption in Non-Aromatic Peptidomimetics and Peptides Drives Record-Long Intrinsic Near-Infrared Emission">Search title</a>
             </div>
           </div>
         </article>
@@ -505,42 +502,46 @@ var _hmt = _hmt || [];
           </div>
         </article>
         <article class="paper reveal">
-          <div class="paper-fig">
+          <a class="paper-fig" href="https://doi.org/10.1039/d3cs00996c" target="_blank" rel="noopener" tabindex="-1" aria-label="Open paper">
             <img src="assets/tocs/csr-2026-tsi.jpg" alt="TOC: Through-Space Interactions of Optoelectronic Materials" loading="lazy" onerror="this.classList.add('gone')">
             <div class="paper-ph"><b>CHEM. SOC. REV.</b><span>2026</span></div>
-          </div>
+          </a>
           <div class="paper-body">
-            <h3 class="paper-title">Through-Space Interactions of Optoelectronic Materials</h3>
+            <h3 class="paper-title"><a href="https://doi.org/10.1039/d3cs00996c" target="_blank" rel="noopener">Through-Space Interactions of Optoelectronic Materials</a></h3>
             <p class="paper-authors">Jianyu Zhang†; <span class="me">Zuping Xiong</span>†; Xiong Liu; Qingyang Xu; Jacky W. Y. Lam; Jing Zhi Sun; Haoke Zhang*; Ben Zhong Tang*.</p>
             <div class="paper-meta">
               <span><b>Chem. Soc. Rev.</b> 2026, 55, 2493–2573</span>
               <span class="tag first">1st</span>
+              <span class="tag">Review</span>
+              <a class="doi" href="https://doi.org/10.1039/d3cs00996c" target="_blank" rel="noopener" aria-label="Read publication: Through-Space Interactions of Optoelectronic Materials">DOI</a>
             </div>
           </div>
         </article>
         <article class="paper reveal">
-          <div class="paper-fig">
+          <a class="paper-fig" href="https://doi.org/10.1002/asia.202501011" target="_blank" rel="noopener" tabindex="-1" aria-label="Open paper">
             <img src="assets/tocs/chem-asian-j-2026-carbohelicene.svg" alt="TOC: Synthesis and Functionalization of π-Extended [7]Carbohelicene" loading="lazy" onerror="this.classList.add('gone')">
             <div class="paper-ph"><b>CHEM. ASIAN J.</b><span>2026</span></div>
-          </div>
+          </a>
           <div class="paper-body">
-            <h3 class="paper-title">Synthesis and Functionalization of π-Extended [7]Carbohelicene</h3>
+            <h3 class="paper-title"><a href="https://doi.org/10.1002/asia.202501011" target="_blank" rel="noopener">Synthesis and Functionalization of π-Extended [7]Carbohelicene</a></h3>
             <p class="paper-authors">Qing-Yue Song; <span class="me">Zuping Xiong</span>; Guiyi Yang; Yujie Tu; Yue Zhang; Yang Yu; Junzhi Liu; Klaus Müllen*; Zijie Qiu*.</p>
             <div class="paper-meta">
               <span><b>Chem. Asian J.</b> 2026, 21, e01011</span>
+              <a class="doi" href="https://doi.org/10.1002/asia.202501011" target="_blank" rel="noopener" aria-label="Read publication: Synthesis and Functionalization of π-Extended [7]Carbohelicene">DOI</a>
             </div>
           </div>
         </article>
         <article class="paper reveal">
-          <div class="paper-fig">
+          <a class="paper-fig" href="https://doi.org/10.1039/d5sc08358c" target="_blank" rel="noopener" tabindex="-1" aria-label="Open paper">
             <img src="assets/tocs/chem-sci-2026-bipyrenyl.svg" alt="TOC: Unlocking Intrinsically Chiral Bipyrenyl-Based AIE Luminogens" loading="lazy" onerror="this.classList.add('gone')">
             <div class="paper-ph"><b>CHEM. SCI.</b><span>2026</span></div>
-          </div>
+          </a>
           <div class="paper-body">
-            <h3 class="paper-title">Unlocking Intrinsically Chiral Bipyrenyl-Based Aggregation-Induced Emission Luminogens: Circularly Polarized Luminescence and Dynamic Chirality Amplification</h3>
+            <h3 class="paper-title"><a href="https://doi.org/10.1039/d5sc08358c" target="_blank" rel="noopener">Unlocking Intrinsically Chiral Bipyrenyl-Based Aggregation-Induced Emission Luminogens: Circularly Polarized Luminescence and Dynamic Chirality Amplification</a></h3>
             <p class="paper-authors">Zhixin Xie; Junpeng Deng; Dan Liu; Jieyu Lin; Tao Jiang; Xiaohui Wang; Wei Liu; Lin Ma; Fengyan Song; <span class="me">Zuping Xiong</span>; Junru Chen; Jianyu Zhang; Carl Redshaw; Zujin Zhao; Xing Feng; Ben Zhong Tang*.</p>
             <div class="paper-meta">
               <span><b>Chem. Sci.</b> 2026, Advance Article</span>
+              <a class="doi" href="https://doi.org/10.1039/d5sc08358c" target="_blank" rel="noopener" aria-label="Read publication: Unlocking Intrinsically Chiral Bipyrenyl-Based Aggregation-Induced Emission Luminogens: Circularly Polarized Luminescence and Dynamic Chirality Amplification">DOI</a>
             </div>
           </div>
         </article>
@@ -560,70 +561,75 @@ var _hmt = _hmt || [];
           </div>
         </article>
         <article class="paper reveal">
-          <div class="paper-fig">
+          <a class="paper-fig" href="https://doi.org/10.1038/s41467-026-69109-5" target="_blank" rel="noopener" tabindex="-1" aria-label="Open paper">
             <img src="assets/tocs/ncomms-2026-atropisomer.jpg" alt="TOC: Fluorescence Mapping of Atropisomer Populations Enabled by Through-Space Conjugation" loading="lazy" onerror="this.classList.add('gone')">
             <div class="paper-ph"><b>NAT. COMMUN.</b><span>2026</span></div>
-          </div>
+          </a>
           <div class="paper-body">
-            <h3 class="paper-title">Fluorescence Mapping of Atropisomer Populations Enabled by Through-Space Conjugation</h3>
+            <h3 class="paper-title"><a href="https://doi.org/10.1038/s41467-026-69109-5" target="_blank" rel="noopener">Fluorescence Mapping of Atropisomer Populations Enabled by Through-Space Conjugation</a></h3>
             <p class="paper-authors">Qingyang Xu; Kangwei Luo; Yipu Wang; Jiajie Wu; Hongwei Lu; Manyu Chen; <span class="me">Zuping Xiong</span>; Jing Zhi Sun; Jianyu Zhang; Feihe Huang; Ben Zhong Tang; Haoke Zhang.</p>
             <div class="paper-meta">
               <span><b>Nat. Commun.</b> 2026, 17, 2211</span>
+              <a class="doi" href="https://doi.org/10.1038/s41467-026-69109-5" target="_blank" rel="noopener" aria-label="Read publication: Fluorescence Mapping of Atropisomer Populations Enabled by Through-Space Conjugation">DOI</a>
             </div>
           </div>
         </article>
         <article class="paper reveal">
-          <div class="paper-fig">
+          <a class="paper-fig" href="https://doi.org/10.1021/acs.chemmater.6c00954" target="_blank" rel="noopener" tabindex="-1" aria-label="Open paper">
             <img src="assets/tocs/chemmater-2026-rotaxane.jpg" alt="TOC: Multiparameter Fluorescence Regulation via Mechanical Motion in AIE-Active Rotaxanes" loading="lazy" onerror="this.classList.add('gone')">
             <div class="paper-ph"><b>CHEM. MATER.</b><span>2026</span></div>
-          </div>
+          </a>
           <div class="paper-body">
-            <h3 class="paper-title">Multiparameter Fluorescence Regulation via Mechanical Motion in Aggregation-Induced-Emission-Active Rotaxanes</h3>
+            <h3 class="paper-title"><a href="https://doi.org/10.1021/acs.chemmater.6c00954" target="_blank" rel="noopener">Multiparameter Fluorescence Regulation via Mechanical Motion in Aggregation-Induced-Emission-Active Rotaxanes</a></h3>
             <p class="paper-authors">Maolin Wang†; <span class="me">Zuping Xiong</span>†; Qimo Mao; Dejing Xu; Xiaoqing Wang; Haoke Zhang; Yuping Wang*.</p>
             <div class="paper-meta">
               <span><b>Chem. Mater.</b> 2026, 38, 5790–5798</span>
               <span class="tag first">1st</span>
+              <a class="doi" href="https://doi.org/10.1021/acs.chemmater.6c00954" target="_blank" rel="noopener" aria-label="Read publication: Multiparameter Fluorescence Regulation via Mechanical Motion in Aggregation-Induced-Emission-Active Rotaxanes">DOI</a>
             </div>
           </div>
         </article>
         <article class="paper reveal">
-          <div class="paper-fig">
+          <a class="paper-fig" href="https://doi.org/10.1021/acsami.6c01099" target="_blank" rel="noopener" tabindex="-1" aria-label="Open paper">
             <img src="assets/tocs/acsami-2026-saccharide.jpg" alt="TOC: Clusteroluminescent Monosaccharide, Oligosaccharide, and Polysaccharide" loading="lazy" onerror="this.classList.add('gone')">
             <div class="paper-ph"><b>ACS AMI</b><span>2026</span></div>
-          </div>
+          </a>
           <div class="paper-body">
-            <h3 class="paper-title">Clusteroluminescent Monosaccharide, Oligosaccharide, and Polysaccharide</h3>
+            <h3 class="paper-title"><a href="https://doi.org/10.1021/acsami.6c01099" target="_blank" rel="noopener">Clusteroluminescent Monosaccharide, Oligosaccharide, and Polysaccharide</a></h3>
             <p class="paper-authors">Yuchen Cen†; Mingxiu Lv†; Tianxiao Yao†; Lijin Li†; Hanguang Sun†; Niandong Chen†; Zhaoyu Lv†; Shengpeng Yao†; Ziyi Yang†; <span class="me">Zuping Xiong</span>†; Haoke Zhang*.</p>
             <div class="paper-meta">
               <span><b>ACS Appl. Mater. Interfaces</b> 2026, 18, 23905–23921</span>
               <span class="tag first">1st</span>
+              <a class="doi" href="https://doi.org/10.1021/acsami.6c01099" target="_blank" rel="noopener" aria-label="Read publication: Clusteroluminescent Monosaccharide, Oligosaccharide, and Polysaccharide">DOI</a>
             </div>
           </div>
         </article>
         <article class="paper reveal">
-          <div class="paper-fig">
+          <a class="paper-fig" href="https://doi.org/10.1016/j.mtbio.2026.103639" target="_blank" rel="noopener" tabindex="-1" aria-label="Open paper">
             <img src="assets/tocs/mater-today-bio-2026-orchitis.svg" alt="TOC: Intrinsic AIE Drug Nanocrystals Enable Imaging-Guided Orchitis Theranostics" loading="lazy" onerror="this.classList.add('gone')">
             <div class="paper-ph"><b>MATER. TODAY BIO</b><span>2026</span></div>
-          </div>
+          </a>
           <div class="paper-body">
-            <h3 class="paper-title">Intrinsic AIE Drug Nanocrystals Enable Imaging-Guided Orchitis Theranostics</h3>
+            <h3 class="paper-title"><a href="https://doi.org/10.1016/j.mtbio.2026.103639" target="_blank" rel="noopener">Intrinsic AIE Drug Nanocrystals Enable Imaging-Guided Orchitis Theranostics</a></h3>
             <p class="paper-authors">Lingling Wang†; Wenbo Tang†; <span class="me">Zuping Xiong</span>†; Fengfei Zhao†; Rendy Hosea; Yujun Zhang; Ben Zhong Tang*; Fei Sun*; Feiyi Sun*; Xinghua Yu*.</p>
             <div class="paper-meta">
               <span><b>Mater. Today Bio</b> 2026, in press</span>
               <span class="tag first">1st</span>
+              <a class="doi" href="https://doi.org/10.1016/j.mtbio.2026.103639" target="_blank" rel="noopener" aria-label="Read publication: Intrinsic AIE Drug Nanocrystals Enable Imaging-Guided Orchitis Theranostics">DOI</a>
             </div>
           </div>
         </article>
         <article class="paper reveal">
-          <div class="paper-fig">
+          <a class="paper-fig" href="https://doi.org/10.1002/adhm.71490" target="_blank" rel="noopener" tabindex="-1" aria-label="Open paper">
             <img src="assets/tocs/advhealthcare-2026-hydrogel.svg" alt="TOC: Anion–π Interaction-Triggered Self-Healing Zwitterionic Hydrogel" loading="lazy" onerror="this.classList.add('gone')">
             <div class="paper-ph"><b>ADV. HEALTHC.</b><span>2026</span></div>
-          </div>
+          </a>
           <div class="paper-body">
-            <h3 class="paper-title">Anion–π Interaction-Triggered Self-Healing Zwitterionic Hydrogel as an Immunocompatible Platform for Injectable Therapies</h3>
+            <h3 class="paper-title"><a href="https://doi.org/10.1002/adhm.71490" target="_blank" rel="noopener">Anion–π Interaction-Triggered Self-Healing Zwitterionic Hydrogel as an Immunocompatible Platform for Injectable Therapies</a></h3>
             <p class="paper-authors">Zihao Zhu; <span class="me">Zuping Xiong</span>; Kexin Chen; Xianchi Zhou; Wenzhong Cao; Yu Yan; Bo Yu; Fan Jia; Haoke Zhang; Youxiang Wang; Jian Ji; Peng Zhang*.</p>
             <div class="paper-meta">
               <span><b>Adv. Healthcare Mater.</b> 2026, 15, e71490</span>
+              <a class="doi" href="https://doi.org/10.1002/adhm.71490" target="_blank" rel="noopener" aria-label="Read publication: Anion–π Interaction-Triggered Self-Healing Zwitterionic Hydrogel as an Immunocompatible Platform for Injectable Therapies">DOI</a>
             </div>
           </div>
         </article>
@@ -680,54 +686,59 @@ var _hmt = _hmt || [];
           </div>
         </article>
         <article class="paper reveal">
-          <div class="paper-fig">
+          <a class="paper-fig" href="https://doi.org/10.1038/s41467-025-59212-4" target="_blank" rel="noopener" tabindex="-1" aria-label="Open paper">
             <img src="assets/tocs/ncomms-2025-emergent.jpg" alt="TOC: Emergent Clusteroluminescence from Nonemissive Molecules" loading="lazy" onerror="this.classList.add('gone')">
             <div class="paper-ph"><b>NAT. COMMUN.</b><span>2025</span></div>
-          </div>
+          </a>
           <div class="paper-body">
-            <h3 class="paper-title">Emergent Clusteroluminescence from Nonemissive Molecules</h3>
+            <h3 class="paper-title"><a href="https://doi.org/10.1038/s41467-025-59212-4" target="_blank" rel="noopener">Emergent Clusteroluminescence from Nonemissive Molecules</a></h3>
             <p class="paper-authors">Jianyu Zhang; <span class="me">Zuping Xiong</span>; Haoke Zhang*; Ben Zhong Tang*.</p>
             <div class="paper-meta">
               <span><b>Nat. Commun.</b> 2025, 16, 3910</span>
+              <span class="tag">Perspective</span>
+              <a class="doi" href="https://doi.org/10.1038/s41467-025-59212-4" target="_blank" rel="noopener" aria-label="Read publication: Emergent Clusteroluminescence from Nonemissive Molecules">DOI</a>
             </div>
           </div>
         </article>
         <article class="paper reveal">
-          <div class="paper-fig">
+          <a class="paper-fig" href="https://doi.org/10.1002/anie.202424860" target="_blank" rel="noopener" tabindex="-1" aria-label="Open paper">
             <img src="assets/tocs/angew-2025-cof.jpg" alt="TOC: Structural Regulation of Three-Dimensional Covalent Organic Frameworks" loading="lazy" onerror="this.classList.add('gone')">
             <div class="paper-ph"><b>ANGEW. CHEM.</b><span>2025</span></div>
-          </div>
+          </a>
           <div class="paper-body">
-            <h3 class="paper-title">Structural Regulation of Three-Dimensional Covalent Organic Frameworks for Efficient Photoredox Catalysis Toward Atom Transfer Radical Polymerization</h3>
+            <h3 class="paper-title"><a href="https://doi.org/10.1002/anie.202424860" target="_blank" rel="noopener">Structural Regulation of Three-Dimensional Covalent Organic Frameworks for Efficient Photoredox Catalysis Toward Atom Transfer Radical Polymerization</a></h3>
             <p class="paper-authors">Sheng Niu; Zhenyang Hu; Xiaoyi Xu; <span class="me">Zuping Xiong</span>; Hongzheng Chen; Alex K.-Y. Jen; Ning Huang.</p>
             <div class="paper-meta">
               <span><b>Angew. Chem. Int. Ed.</b> 2025, 64, e202424860</span>
+              <a class="doi" href="https://doi.org/10.1002/anie.202424860" target="_blank" rel="noopener" aria-label="Read publication: Structural Regulation of Three-Dimensional Covalent Organic Frameworks for Efficient Photoredox Catalysis Toward Atom Transfer Radical Polymerization">DOI</a>
             </div>
           </div>
         </article>
         <article class="paper reveal">
-          <div class="paper-fig">
+          <a class="paper-fig" href="https://doi.org/10.1002/adfm.202420830" target="_blank" rel="noopener" tabindex="-1" aria-label="Open paper">
             <img src="assets/tocs/afm-2025-sulfur.jpg" alt="TOC: Sulfur-Bridged Pure Organic Ester Clusters Exhibiting Near-Infrared Fluorescence" loading="lazy" onerror="this.classList.add('gone')">
             <div class="paper-ph"><b>AFM</b><span>2025</span></div>
-          </div>
+          </a>
           <div class="paper-body">
-            <h3 class="paper-title">Sulfur-Bridged Pure Organic Ester Clusters Exhibiting Near-Infrared Fluorescence</h3>
+            <h3 class="paper-title"><a href="https://doi.org/10.1002/adfm.202420830" target="_blank" rel="noopener">Sulfur-Bridged Pure Organic Ester Clusters Exhibiting Near-Infrared Fluorescence</a></h3>
             <p class="paper-authors">Xiong Liu; Jiafang Guo; <span class="me">Zuping Xiong</span>; Xiang Li; Yanbing Lv; Ziteng Zhang; Bo Chu; Haoke Zhang; Jing Zhi Sun; Xinghong Zhang; Ben Zhong Tang.</p>
             <div class="paper-meta">
               <span><b>Adv. Funct. Mater.</b> 2025, 35, 2420830</span>
+              <a class="doi" href="https://doi.org/10.1002/adfm.202420830" target="_blank" rel="noopener" aria-label="Read publication: Sulfur-Bridged Pure Organic Ester Clusters Exhibiting Near-Infrared Fluorescence">DOI</a>
             </div>
           </div>
         </article>
         <article class="paper reveal">
-          <div class="paper-fig">
+          <a class="paper-fig" href="https://doi.org/10.1039/d4py01459f" target="_blank" rel="noopener" tabindex="-1" aria-label="Open paper">
             <img src="assets/tocs/polymchem-2025-magnetism.svg" alt="TOC: Room-Temperature Magnetism in the Crystal of a 1,6-Heptadiyne Derivative" loading="lazy" onerror="this.classList.add('gone')">
             <div class="paper-ph"><b>POLYM. CHEM.</b><span>2025</span></div>
-          </div>
+          </a>
           <div class="paper-body">
-            <h3 class="paper-title">Room-Temperature Magnetism in the Crystal of a 1,6-Heptadiyne Derivative and Its Processable Polymer</h3>
+            <h3 class="paper-title"><a href="https://doi.org/10.1039/d4py01459f" target="_blank" rel="noopener">Room-Temperature Magnetism in the Crystal of a 1,6-Heptadiyne Derivative and Its Processable Polymer</a></h3>
             <p class="paper-authors">Manyu Chen; Guangze Hu; <span class="me">Zuping Xiong</span>; Haoyuan Hu; Jing Zhi Sun; Haoke Zhang; Ben Zhong Tang*.</p>
             <div class="paper-meta">
               <span><b>Polym. Chem.</b> 2025, 16, 1120–1125</span>
+              <a class="doi" href="https://doi.org/10.1039/d4py01459f" target="_blank" rel="noopener" aria-label="Read publication: Room-Temperature Magnetism in the Crystal of a 1,6-Heptadiyne Derivative and Its Processable Polymer">DOI</a>
             </div>
           </div>
         </article>
@@ -764,16 +775,17 @@ var _hmt = _hmt || [];
           </div>
         </article>
         <article class="paper reveal">
-          <div class="paper-fig">
+          <a class="paper-fig" href="https://doi.org/10.1021/acsmaterialslett.4c01182" target="_blank" rel="noopener" tabindex="-1" aria-label="Open paper">
             <img src="assets/tocs/acsmaterlett-2024-lonepair.jpg" alt="TOC: Activating Electronic Delocalization" loading="lazy" onerror="this.classList.add('gone')">
             <div class="paper-ph"><b>ACS MATER. LETT.</b><span>2024</span></div>
-          </div>
+          </a>
           <div class="paper-body">
-            <h3 class="paper-title">Activating Electronic Delocalization: Through-Space Lone-Pair Interactions versus Hydrogen Bonding</h3>
+            <h3 class="paper-title"><a href="https://doi.org/10.1021/acsmaterialslett.4c01182" target="_blank" rel="noopener">Activating Electronic Delocalization: Through-Space Lone-Pair Interactions versus Hydrogen Bonding</a></h3>
             <p class="paper-authors"><span class="me">Zuping Xiong</span>†; Jianyu Zhang; Ziteng Zhang; Lei Wang; Shuaitong Wei; Xiong Liu; Jing Zhi Sun; Haoke Zhang*; Ben Zhong Tang*.</p>
             <div class="paper-meta">
               <span><b>ACS Materials Lett.</b> 2024, 6, 3941–3950</span>
               <span class="tag first">1st</span>
+              <a class="doi" href="https://doi.org/10.1021/acsmaterialslett.4c01182" target="_blank" rel="noopener" aria-label="Read publication: Activating Electronic Delocalization: Through-Space Lone-Pair Interactions versus Hydrogen Bonding">DOI</a>
             </div>
           </div>
         </article>
@@ -793,96 +805,103 @@ var _hmt = _hmt || [];
           </div>
         </article>
         <article class="paper reveal">
-          <div class="paper-fig">
+          <a class="paper-fig" href="https://doi.org/10.1002/anie.202420502" target="_blank" rel="noopener" tabindex="-1" aria-label="Open paper">
             <img src="assets/tocs/angew-2024-pressure.jpg" alt="TOC: Pressure-Engineered Through-Space Conjugation" loading="lazy" onerror="this.classList.add('gone')">
             <div class="paper-ph"><b>ANGEW. CHEM.</b><span>2024</span></div>
-          </div>
+          </a>
           <div class="paper-body">
-            <h3 class="paper-title">Pressure-Engineered Through-Space Conjugation for Precise Control of Clusteroluminescence</h3>
+            <h3 class="paper-title"><a href="https://doi.org/10.1002/anie.202420502" target="_blank" rel="noopener">Pressure-Engineered Through-Space Conjugation for Precise Control of Clusteroluminescence</a></h3>
             <p class="paper-authors">Yayun Wang†; <span class="me">Zuping Xiong</span>†; Yanan Wang; Aisen Li; Yuanyuan Fang; Lei Li; Kai Wang*; Qian Li*; Haoke Zhang*.</p>
             <div class="paper-meta">
               <span><b>Angew. Chem. Int. Ed.</b> 2024, e202420502</span>
               <span class="tag first">1st</span>
+              <a class="doi" href="https://doi.org/10.1002/anie.202420502" target="_blank" rel="noopener" aria-label="Read publication: Pressure-Engineered Through-Space Conjugation for Precise Control of Clusteroluminescence">DOI</a>
             </div>
           </div>
         </article>
         <article class="paper reveal">
-          <div class="paper-fig">
+          <a class="paper-fig" href="https://doi.org/10.1002/anie.202413751" target="_blank" rel="noopener" tabindex="-1" aria-label="Open paper">
             <img src="assets/tocs/angew-2024-twophoton.jpg" alt="TOC: Two-Photon Clusteroluminescence Enabled by Through-Space Conjugation" loading="lazy" onerror="this.classList.add('gone')">
             <div class="paper-ph"><b>ANGEW. CHEM.</b><span>2024</span></div>
-          </div>
+          </a>
           <div class="paper-body">
-            <h3 class="paper-title">Two-Photon Clusteroluminescence Enabled by Through-Space Conjugation for In Vivo Bioimaging</h3>
+            <h3 class="paper-title"><a href="https://doi.org/10.1002/anie.202413751" target="_blank" rel="noopener">Two-Photon Clusteroluminescence Enabled by Through-Space Conjugation for In Vivo Bioimaging</a></h3>
             <p class="paper-authors">Jianyu Zhang†; Hanchen Shen†; <span class="me">Zuping Xiong</span>†; Lidong Du; Moxin Li; Xinwen Ou; Xinyan Zhu; Jacky W. Y. Lam; Tzu-Ming Liu; Changhuo Xu; Haoke Zhang*; Ben Zhong Tang*.</p>
             <div class="paper-meta">
               <span><b>Angew. Chem. Int. Ed.</b> 2024, 63, e202413751</span>
               <span class="tag first">1st</span>
+              <a class="doi" href="https://doi.org/10.1002/anie.202413751" target="_blank" rel="noopener" aria-label="Read publication: Two-Photon Clusteroluminescence Enabled by Through-Space Conjugation for In Vivo Bioimaging">DOI</a>
             </div>
           </div>
         </article>
         <article class="paper reveal">
-          <div class="paper-fig">
+          <a class="paper-fig" href="https://doi.org/10.1007/s11426-024-2015-9" target="_blank" rel="noopener" tabindex="-1" aria-label="Open paper">
             <img src="assets/tocs/scichinachem-2024-tsvstb.jpg" alt="TOC: The Superiority of Nonconjugated Structures in Fluorescence" loading="lazy" onerror="this.classList.add('gone')">
             <div class="paper-ph"><b>SCI. CHINA CHEM.</b><span>2024</span></div>
-          </div>
+          </a>
           <div class="paper-body">
-            <h3 class="paper-title">The Superiority of Nonconjugated Structures in Fluorescence: Through-Space vs. Through-Bond Charge Transfer</h3>
+            <h3 class="paper-title"><a href="https://doi.org/10.1007/s11426-024-2015-9" target="_blank" rel="noopener">The Superiority of Nonconjugated Structures in Fluorescence: Through-Space vs. Through-Bond Charge Transfer</a></h3>
             <p class="paper-authors">Weihao Tu†; <span class="me">Zuping Xiong</span>†; Lei Wang; Jianyu Zhang; Jing Zhi Sun; Haoke Zhang*; Ben Zhong Tang*.</p>
             <div class="paper-meta">
               <span><b>Sci. China Chem.</b> 2024, 67, 3121–3130</span>
               <span class="tag first">1st</span>
+              <a class="doi" href="https://doi.org/10.1007/s11426-024-2015-9" target="_blank" rel="noopener" aria-label="Read publication: The Superiority of Nonconjugated Structures in Fluorescence: Through-Space vs. Through-Bond Charge Transfer">DOI</a>
             </div>
           </div>
         </article>
         <article class="paper reveal">
-          <div class="paper-fig">
+          <a class="paper-fig" href="https://doi.org/10.1039/d4ta04759a" target="_blank" rel="noopener" tabindex="-1" aria-label="Open paper">
             <img src="assets/tocs/jmca-2024-picric.svg" alt="TOC: Ultrahigh Sensitivity and Extremely Low Limit of Detection of Picric Acid" loading="lazy" onerror="this.classList.add('gone')">
             <div class="paper-ph"><b>J. MATER. CHEM. A</b><span>2024</span></div>
-          </div>
+          </a>
           <div class="paper-body">
-            <h3 class="paper-title">Ultrahigh Sensitivity and Extremely Low Limit of Detection of Picric Acid with Ionic-Liquid Modified Poly(Diphenylacetylene)</h3>
+            <h3 class="paper-title"><a href="https://doi.org/10.1039/d4ta04759a" target="_blank" rel="noopener">Ultrahigh Sensitivity and Extremely Low Limit of Detection of Picric Acid with Ionic-Liquid Modified Poly(Diphenylacetylene)</a></h3>
             <p class="paper-authors">Guangze Hu; Manyu Chen; <span class="me">Zuping Xiong</span>; Haoyuan Hu; Haoke Zhang; Jing Zhi Sun; Ben Zhong Tang*.</p>
             <div class="paper-meta">
               <span><b>J. Mater. Chem. A</b> 2024, 12, 28039–28045</span>
+              <a class="doi" href="https://doi.org/10.1039/d4ta04759a" target="_blank" rel="noopener" aria-label="Read publication: Ultrahigh Sensitivity and Extremely Low Limit of Detection of Picric Acid with Ionic-Liquid Modified Poly(Diphenylacetylene)">DOI</a>
             </div>
           </div>
         </article>
         <article class="paper reveal">
-          <div class="paper-fig">
+          <a class="paper-fig" href="https://doi.org/10.1002/anie.202411415" target="_blank" rel="noopener" tabindex="-1" aria-label="Open paper">
             <img src="assets/tocs/angew-2024-cycloarene.jpg" alt="TOC: Four-Membered Ring-Embedded Cycloarene" loading="lazy" onerror="this.classList.add('gone')">
             <div class="paper-ph"><b>ANGEW. CHEM.</b><span>2024</span></div>
-          </div>
+          </a>
           <div class="paper-body">
-            <h3 class="paper-title">Four-Membered Ring-Embedded Cycloarene Enabling Anti-Aromaticity and Ultra-Narrowband Emission</h3>
+            <h3 class="paper-title"><a href="https://doi.org/10.1002/anie.202411415" target="_blank" rel="noopener">Four-Membered Ring-Embedded Cycloarene Enabling Anti-Aromaticity and Ultra-Narrowband Emission</a></h3>
             <p class="paper-authors">Rong Zhang; <span class="me">Zuping Xiong</span>; Dongyue An; Jiangyu Zhu; Yuanhe Gu; Haoke Zhang; Gang Zhou; Yunqi Liu; Xuefeng Lu*.</p>
             <div class="paper-meta">
               <span><b>Angew. Chem. Int. Ed.</b> 2024, 63, e202411415</span>
+              <a class="doi" href="https://doi.org/10.1002/anie.202411415" target="_blank" rel="noopener" aria-label="Read publication: Four-Membered Ring-Embedded Cycloarene Enabling Anti-Aromaticity and Ultra-Narrowband Emission">DOI</a>
             </div>
           </div>
         </article>
         <article class="paper reveal">
-          <div class="paper-fig">
+          <a class="paper-fig" href="https://doi.org/10.1002/anie.202403827" target="_blank" rel="noopener" tabindex="-1" aria-label="Open paper">
             <img src="assets/tocs/angew-2024-radicals.jpg" alt="TOC: Near-Infrared Emission Beyond 900 nm from Stable Radicals" loading="lazy" onerror="this.classList.add('gone')">
             <div class="paper-ph"><b>ANGEW. CHEM.</b><span>2024</span></div>
-          </div>
+          </a>
           <div class="paper-body">
-            <h3 class="paper-title">Near-Infrared Emission Beyond 900 nm from Stable Radicals in Nonconjugated Poly(Diphenylmethane)</h3>
+            <h3 class="paper-title"><a href="https://doi.org/10.1002/anie.202403827" target="_blank" rel="noopener">Near-Infrared Emission Beyond 900 nm from Stable Radicals in Nonconjugated Poly(Diphenylmethane)</a></h3>
             <p class="paper-authors">Ziteng Zhang; <span class="me">Zuping Xiong</span>; Jianyu Zhang; Bo Chu; Xiong Liu; Weihao Tu; Lei Wang; Jing Zhi Sun; Chengjian Zhang; Haoke Zhang*; Xinghong Zhang*; Ben Zhong Tang*.</p>
             <div class="paper-meta">
               <span><b>Angew. Chem. Int. Ed.</b> 2024, 63, e202403827</span>
+              <a class="doi" href="https://doi.org/10.1002/anie.202403827" target="_blank" rel="noopener" aria-label="Read publication: Near-Infrared Emission Beyond 900 nm from Stable Radicals in Nonconjugated Poly(Diphenylmethane)">DOI</a>
             </div>
           </div>
         </article>
         <article class="paper reveal">
-          <div class="paper-fig">
+          <a class="paper-fig" href="https://doi.org/10.1038/s41566-023-01358-y" target="_blank" rel="noopener" tabindex="-1" aria-label="Open paper">
             <img src="assets/tocs/natphotonics-2024-scintillator.jpg" alt="TOC: Efficient and Ultrafast Organic Scintillators by Hot Exciton Manipulation" loading="lazy" onerror="this.classList.add('gone')">
             <div class="paper-ph"><b>NAT. PHOTONICS</b><span>2024</span></div>
-          </div>
+          </a>
           <div class="paper-body">
-            <h3 class="paper-title">Efficient and Ultrafast Organic Scintillators by Hot Exciton Manipulation</h3>
+            <h3 class="paper-title"><a href="https://doi.org/10.1038/s41566-023-01358-y" target="_blank" rel="noopener">Efficient and Ultrafast Organic Scintillators by Hot Exciton Manipulation</a></h3>
             <p class="paper-authors">Xinyuan Du; Shan Zhao; Lu Wang; Haodi Wu; Fan Ye; Kan-Hao Xue; Shaoqian Peng; Jianlong Xia; Ziru Sang; Dongdong Zhang; <span class="me">Zuping Xiong</span>; Zhiping Zheng; Ling Xu; Guangda Niu*; Jiang Tang*.</p>
             <div class="paper-meta">
               <span><b>Nat. Photonics</b> 2024, 18, 162–169</span>
+              <a class="doi" href="https://doi.org/10.1038/s41566-023-01358-y" target="_blank" rel="noopener" aria-label="Read publication: Efficient and Ultrafast Organic Scintillators by Hot Exciton Manipulation">DOI</a>
             </div>
           </div>
         </article>
@@ -901,15 +920,16 @@ var _hmt = _hmt || [];
           </div>
         </article>
         <article class="paper reveal">
-          <div class="paper-fig">
+          <a class="paper-fig" href="https://doi.org/10.1039/d3mh01732j" target="_blank" rel="noopener" tabindex="-1" aria-label="Open paper">
             <img src="assets/tocs/materhoriz-2024-polyester.svg" alt="TOC: Heteroatom-Facilitated Blue to Near-Infrared Emission of Nonconjugated Polyesters" loading="lazy" onerror="this.classList.add('gone')">
             <div class="paper-ph"><b>MATER. HORIZ.</b><span>2024</span></div>
-          </div>
+          </a>
           <div class="paper-body">
-            <h3 class="paper-title">Heteroatom-Facilitated Blue to Near-Infrared Emission of Nonconjugated Polyesters</h3>
+            <h3 class="paper-title"><a href="https://doi.org/10.1039/d3mh01732j" target="_blank" rel="noopener">Heteroatom-Facilitated Blue to Near-Infrared Emission of Nonconjugated Polyesters</a></h3>
             <p class="paper-authors">Xiong Liu; Bo Chu; <span class="me">Zuping Xiong</span>; Bin Liu; Weihao Tu; Ziteng Zhang; Haoke Zhang; Jing Zhi Sun; Xinghong Zhang*; Ben Zhong Tang*.</p>
             <div class="paper-meta">
               <span><b>Mater. Horiz.</b> 2024, 11, 1579–1587</span>
+              <a class="doi" href="https://doi.org/10.1039/d3mh01732j" target="_blank" rel="noopener" aria-label="Read publication: Heteroatom-Facilitated Blue to Near-Infrared Emission of Nonconjugated Polyesters">DOI</a>
             </div>
           </div>
         </article>
@@ -931,97 +951,104 @@ var _hmt = _hmt || [];
           </div>
         </article>
         <article class="paper reveal">
-          <div class="paper-fig">
+          <a class="paper-fig" href="https://doi.org/10.31635/ccschem.023.202302815" target="_blank" rel="noopener" tabindex="-1" aria-label="Open paper">
             <img src="assets/tocs/ccschem-2023-clusterolum.jpg" alt="TOC: Controllable Secondary Through-Space Interaction and Clusteroluminescence" loading="lazy" onerror="this.classList.add('gone')">
             <div class="paper-ph"><b>CCS CHEM.</b><span>2023</span></div>
-          </div>
+          </a>
           <div class="paper-body">
-            <h3 class="paper-title">Controllable Secondary Through-Space Interaction and Clusteroluminescence</h3>
+            <h3 class="paper-title"><a href="https://doi.org/10.31635/ccschem.023.202302815" target="_blank" rel="noopener">Controllable Secondary Through-Space Interaction and Clusteroluminescence</a></h3>
             <p class="paper-authors"><span class="me">Zuping Xiong</span>†; Jianyu Zhang; Lei Wang; Yuan Xie; Yipu Wang; Zujin Zhao; Haoke Zhang*; Jing Zhi Sun*; Feihe Huang*; Ben Zhong Tang*.</p>
             <div class="paper-meta">
               <span><b>CCS Chem.</b> 2023, 5, 2832–2844</span>
               <span class="tag first">1st</span>
+              <a class="doi" href="https://doi.org/10.31635/ccschem.023.202302815" target="_blank" rel="noopener" aria-label="Read publication: Controllable Secondary Through-Space Interaction and Clusteroluminescence">DOI</a>
             </div>
           </div>
         </article>
         <article class="paper reveal">
-          <div class="paper-fig">
+          <a class="paper-fig" href="https://doi.org/10.1016/j.cej.2022.139030" target="_blank" rel="noopener" tabindex="-1" aria-label="Open paper">
             <img src="assets/tocs/cej-2023-heavyatom.jpg" alt="TOC: Reexamining the Heavy-Atom-Effect" loading="lazy" onerror="this.classList.add('gone')">
             <div class="paper-ph"><b>CHEM. ENG. J.</b><span>2023</span></div>
-          </div>
+          </a>
           <div class="paper-body">
-            <h3 class="paper-title">Reexamining the Heavy-Atom-Effect: The Universal Heavy-Atom-Induced Fluorescence Enhancement Principle for Through-Space Conjugated AIEgens</h3>
+            <h3 class="paper-title"><a href="https://doi.org/10.1016/j.cej.2022.139030" target="_blank" rel="noopener">Reexamining the Heavy-Atom-Effect: The Universal Heavy-Atom-Induced Fluorescence Enhancement Principle for Through-Space Conjugated AIEgens</a></h3>
             <p class="paper-authors"><span class="me">Zuping Xiong</span>†; Wenqi Gong; Pengfei Xu; Mengyi Jiang; Xuting Cai; Yuqing Zhu; Xinni Ping; Hui Feng; Huili Ma; Zhaosheng Qian*.</p>
             <div class="paper-meta">
               <span><b>Chem. Eng. J.</b> 2023, 451, 139030</span>
               <span class="tag first">1st</span>
+              <a class="doi" href="https://doi.org/10.1016/j.cej.2022.139030" target="_blank" rel="noopener" aria-label="Read publication: Reexamining the Heavy-Atom-Effect: The Universal Heavy-Atom-Induced Fluorescence Enhancement Principle for Through-Space Conjugated AIEgens">DOI</a>
             </div>
           </div>
         </article>
         <article class="paper reveal">
-          <div class="paper-fig">
+          <a class="paper-fig" href="https://doi.org/10.1016/j.tet.2023.133269" target="_blank" rel="noopener" tabindex="-1" aria-label="Open paper">
             <img src="assets/tocs/tetrahedron-2023-photochromism.jpg" alt="TOC: Base-Gated Photochromism of C3-Symmetric AIEgens" loading="lazy" onerror="this.classList.add('gone')">
             <div class="paper-ph"><b>TETRAHEDRON</b><span>2023</span></div>
-          </div>
+          </a>
           <div class="paper-body">
-            <h3 class="paper-title">Base-Gated Photochromism of C3-Symmetric AIEgens through Multicyano-Sensitized Benzene Rings</h3>
+            <h3 class="paper-title"><a href="https://doi.org/10.1016/j.tet.2023.133269" target="_blank" rel="noopener">Base-Gated Photochromism of C3-Symmetric AIEgens through Multicyano-Sensitized Benzene Rings</a></h3>
             <p class="paper-authors">Yuqing Zhu†; Yangbing Chen†; <span class="me">Zuping Xiong</span>*†; Mengyi Jiang; Hui Feng; Zhaosheng Qian*.</p>
             <div class="paper-meta">
               <span><b>Tetrahedron</b> 2023, 133, 133269</span>
               <span class="tag first">1st</span><span class="tag corr">Corr</span>
+              <a class="doi" href="https://doi.org/10.1016/j.tet.2023.133269" target="_blank" rel="noopener" aria-label="Read publication: Base-Gated Photochromism of C3-Symmetric AIEgens through Multicyano-Sensitized Benzene Rings">DOI</a>
             </div>
           </div>
         </article>
         <article class="paper reveal">
-          <div class="paper-fig">
+          <a class="paper-fig" href="https://doi.org/10.1002/smo.20220006" target="_blank" rel="noopener" tabindex="-1" aria-label="Open paper">
             <img src="assets/tocs/smartmol-2023-diphenylmethane.jpg" alt="TOC: Manipulation of the Through-Space Interactions in Diphenylmethane" loading="lazy" onerror="this.classList.add('gone')">
             <div class="paper-ph"><b>SMART MOL.</b><span>2023</span></div>
-          </div>
+          </a>
           <div class="paper-body">
-            <h3 class="paper-title">Manipulation of the Through-Space Interactions in Diphenylmethane</h3>
+            <h3 class="paper-title"><a href="https://doi.org/10.1002/smo.20220006" target="_blank" rel="noopener">Manipulation of the Through-Space Interactions in Diphenylmethane</a></h3>
             <p class="paper-authors">Weihao Tu†; <span class="me">Zuping Xiong</span>†; Ziteng Zhang; Jianyu Zhang; Lei Wang; Yuan Xie; Yipu Wang; Haoke Zhang*; Jing Zhi Sun*; Ben Zhong Tang*.</p>
             <div class="paper-meta">
               <span><b>Smart Molecules</b> 2023, 1, e20220006</span>
               <span class="tag first">1st</span>
+              <a class="doi" href="https://doi.org/10.1002/smo.20220006" target="_blank" rel="noopener" aria-label="Read publication: Manipulation of the Through-Space Interactions in Diphenylmethane">DOI</a>
             </div>
           </div>
         </article>
         <article class="paper reveal">
-          <div class="paper-fig">
+          <a class="paper-fig" href="https://doi.org/10.1021/acs.macromol.3c01977" target="_blank" rel="noopener" tabindex="-1" aria-label="Open paper">
             <img src="assets/tocs/macromolecules-2023-enolate.jpg" alt="TOC: Enolate Enables Unexpected Red Luminescence" loading="lazy" onerror="this.classList.add('gone')">
             <div class="paper-ph"><b>MACROMOLECULES</b><span>2023</span></div>
-          </div>
+          </a>
           <div class="paper-body">
-            <h3 class="paper-title">Enolate Enables Unexpected Red Luminescence from Through-Bond/Through-Space Complexation between Imide and Organic Base</h3>
+            <h3 class="paper-title"><a href="https://doi.org/10.1021/acs.macromol.3c01977" target="_blank" rel="noopener">Enolate Enables Unexpected Red Luminescence from Through-Bond/Through-Space Complexation between Imide and Organic Base</a></h3>
             <p class="paper-authors">Yuan Xie; Weihao Tu; <span class="me">Zuping Xiong</span>; Dan Liu; Jianyu Zhang; Jing Zhi Sun; Zheng Zhao*; Dong Wang*; Feihe Huang*; Haoke Zhang*; Ben Zhong Tang*.</p>
             <div class="paper-meta">
               <span><b>Macromolecules</b> 2023, 56, 10082–10091</span>
+              <a class="doi" href="https://doi.org/10.1021/acs.macromol.3c01977" target="_blank" rel="noopener" aria-label="Read publication: Enolate Enables Unexpected Red Luminescence from Through-Bond/Through-Space Complexation between Imide and Organic Base">DOI</a>
             </div>
           </div>
         </article>
         <article class="paper reveal">
-          <div class="paper-fig">
+          <a class="paper-fig" href="https://doi.org/10.1002/anie.202306762" target="_blank" rel="noopener" tabindex="-1" aria-label="Open paper">
             <img src="assets/tocs/angew-2023-phenolic.jpg" alt="TOC: NIR Clusteroluminescence of Non-Conjugated Phenolic Resins" loading="lazy" onerror="this.classList.add('gone')">
             <div class="paper-ph"><b>ANGEW. CHEM.</b><span>2023</span></div>
-          </div>
+          </a>
           <div class="paper-body">
-            <h3 class="paper-title">NIR Clusteroluminescence of Non-Conjugated Phenolic Resins Enabled by Through-Space Interactions</h3>
+            <h3 class="paper-title"><a href="https://doi.org/10.1002/anie.202306762" target="_blank" rel="noopener">NIR Clusteroluminescence of Non-Conjugated Phenolic Resins Enabled by Through-Space Interactions</a></h3>
             <p class="paper-authors">Ziteng Zhang; Jianyu Zhang; <span class="me">Zuping Xiong</span>; Bo Chu; Chengjian Zhang; Jing Zhi Sun; Haoke Zhang*; Xing-Hong Zhang*; Ben Zhong Tang*.</p>
             <div class="paper-meta">
               <span><b>Angew. Chem. Int. Ed.</b> 2023, 62, e202306762</span>
+              <a class="doi" href="https://doi.org/10.1002/anie.202306762" target="_blank" rel="noopener" aria-label="Read publication: NIR Clusteroluminescence of Non-Conjugated Phenolic Resins Enabled by Through-Space Interactions">DOI</a>
             </div>
           </div>
         </article>
         <article class="paper reveal">
-          <div class="paper-fig">
+          <a class="paper-fig" href="https://doi.org/10.1016/j.bios.2023.115405" target="_blank" rel="noopener" tabindex="-1" aria-label="Open paper">
             <img src="assets/tocs/biosens-2023-porphyrin.svg" alt="TOC: In Situ Electrostatic Assembly of Porphyrin as Enhanced PEC Photosensitizer" loading="lazy" onerror="this.classList.add('gone')">
             <div class="paper-ph"><b>BIOSENS. BIOELEC.</b><span>2023</span></div>
-          </div>
+          </a>
           <div class="paper-body">
-            <h3 class="paper-title">In Situ Electrostatic Assembly of Porphyrin as Enhanced PEC Photosensitizer for Bioassay of Single HCT-116 Cells via Competitive Reaction</h3>
+            <h3 class="paper-title"><a href="https://doi.org/10.1016/j.bios.2023.115405" target="_blank" rel="noopener">In Situ Electrostatic Assembly of Porphyrin as Enhanced PEC Photosensitizer for Bioassay of Single HCT-116 Cells via Competitive Reaction</a></h3>
             <p class="paper-authors">Xiang Hu; Xiajunpeng Wu; <span class="me">Zuping Xiong</span>; Xin-Tao Wang; Ai-Jun Wang; Pei-Xin Yuan*; Tiejun Zhao*; Jiu-Ju Feng*.</p>
             <div class="paper-meta">
               <span><b>Biosens. Bioelectron.</b> 2023, 236, 115405</span>
+              <a class="doi" href="https://doi.org/10.1016/j.bios.2023.115405" target="_blank" rel="noopener" aria-label="Read publication: In Situ Electrostatic Assembly of Porphyrin as Enhanced PEC Photosensitizer for Bioassay of Single HCT-116 Cells via Competitive Reaction">DOI</a>
             </div>
           </div>
         </article>
@@ -1040,152 +1067,163 @@ var _hmt = _hmt || [];
           </div>
         </article>
         <article class="paper reveal">
-          <div class="paper-fig">
+          <a class="paper-fig" href="https://doi.org/10.1039/d2qo01388f" target="_blank" rel="noopener" tabindex="-1" aria-label="Open paper">
             <img src="assets/tocs/ocf-2023-pyrone.svg" alt="TOC: Synthesis of α-Pyrones via Gold-Catalyzed Cycloisomerization" loading="lazy" onerror="this.classList.add('gone')">
             <div class="paper-ph"><b>ORG. CHEM. FRONT.</b><span>2023</span></div>
-          </div>
+          </a>
           <div class="paper-body">
-            <h3 class="paper-title">Synthesis of α-Pyrones via Gold-Catalyzed Cycloisomerization/[2+1] Cycloaddition/Rearrangement of Enyne-Amides and Sulfur Ylides</h3>
+            <h3 class="paper-title"><a href="https://doi.org/10.1039/d2qo01388f" target="_blank" rel="noopener">Synthesis of α-Pyrones via Gold-Catalyzed Cycloisomerization/[2+1] Cycloaddition/Rearrangement of Enyne-Amides and Sulfur Ylides</a></h3>
             <p class="paper-authors">Jinhang Yu; Xinyuan Wang; Mengjiao Xu; Bei Zhang; <span class="me">Zuping Xiong</span>; Hui Mao; Xin Lv*; Liejin Zhou*.</p>
             <div class="paper-meta">
               <span><b>Org. Chem. Front.</b> 2023, 10, 916–922</span>
+              <a class="doi" href="https://doi.org/10.1039/d2qo01388f" target="_blank" rel="noopener" aria-label="Read publication: Synthesis of α-Pyrones via Gold-Catalyzed Cycloisomerization/[2+1] Cycloaddition/Rearrangement of Enyne-Amides and Sulfur Ylides">DOI</a>
             </div>
           </div>
         </article>
 
         <div class="pub-year"><b>2022</b><span>7 papers</span></div>
         <article class="paper reveal">
-          <div class="paper-fig">
+          <a class="paper-fig" href="https://doi.org/10.1021/acs.analchem.2c00219" target="_blank" rel="noopener" tabindex="-1" aria-label="Open paper">
             <img src="assets/tocs/analchem-2022-esterase.jpg" alt="TOC: Esterase-Activated Precipitating Strategy" loading="lazy" onerror="this.classList.add('gone')">
             <div class="paper-ph"><b>ANAL. CHEM.</b><span>2022</span></div>
-          </div>
+          </a>
           <div class="paper-body">
-            <h3 class="paper-title">Esterase-Activated Precipitating Strategy to Achieve Highly Specific Detection and Long-Term Imaging of Calcium Ions by Aggregation-Induced Phosphorescence Probe</h3>
+            <h3 class="paper-title"><a href="https://doi.org/10.1021/acs.analchem.2c00219" target="_blank" rel="noopener">Esterase-Activated Precipitating Strategy to Achieve Highly Specific Detection and Long-Term Imaging of Calcium Ions by Aggregation-Induced Phosphorescence Probe</a></h3>
             <p class="paper-authors">Zhenni Wang†; <span class="me">Zuping Xiong</span>†; Weidong Liu; Qiaozhi Zhu; Xiaoxiao Zhang; Yuqing Ding; Chunyan Huang; Hui Feng; Kewei Zhang; Engao Zhu*; Zhaosheng Qian*.</p>
             <div class="paper-meta">
               <span><b>Anal. Chem.</b> 2022, 94, 5406–5414</span>
               <span class="tag first">1st</span>
+              <a class="doi" href="https://doi.org/10.1021/acs.analchem.2c00219" target="_blank" rel="noopener" aria-label="Read publication: Esterase-Activated Precipitating Strategy to Achieve Highly Specific Detection and Long-Term Imaging of Calcium Ions by Aggregation-Induced Phosphorescence Probe">DOI</a>
             </div>
           </div>
         </article>
         <article class="paper reveal">
-          <div class="paper-fig">
+          <a class="paper-fig" href="https://doi.org/10.1364/prj.472419" target="_blank" rel="noopener" tabindex="-1" aria-label="Open paper">
             <img src="assets/tocs/photonicsres-2022-led.svg" alt="TOC: Solution-Processed Electroluminescent White-Light-Emitting Devices" loading="lazy" onerror="this.classList.add('gone')">
             <div class="paper-ph"><b>PHOTONICS RES.</b><span>2022</span></div>
-          </div>
+          </a>
           <div class="paper-body">
-            <h3 class="paper-title">Solution-Processed Electroluminescent White-Light-Emitting Devices Based on AIE Molecules and Cu-In-Zn-S Nanocrystals</h3>
+            <h3 class="paper-title"><a href="https://doi.org/10.1364/prj.472419" target="_blank" rel="noopener">Solution-Processed Electroluminescent White-Light-Emitting Devices Based on AIE Molecules and Cu-In-Zn-S Nanocrystals</a></h3>
             <p class="paper-authors">Peiwei Lv; Zhenyang Liu; Jinxing Zhao; <span class="me">Zuping Xiong</span>; Lijin Wang; Xu Li; Zhaosheng Qian; Aiwei Tang*.</p>
             <div class="paper-meta">
               <span><b>Photonics Res.</b> 2022, 10, 2622–2627</span>
+              <a class="doi" href="https://doi.org/10.1364/prj.472419" target="_blank" rel="noopener" aria-label="Read publication: Solution-Processed Electroluminescent White-Light-Emitting Devices Based on AIE Molecules and Cu-In-Zn-S Nanocrystals">DOI</a>
             </div>
           </div>
         </article>
         <article class="paper reveal">
-          <div class="paper-fig">
+          <a class="paper-fig" href="https://doi.org/10.1002/agt2.278" target="_blank" rel="noopener" tabindex="-1" aria-label="Open paper">
             <img src="assets/tocs/aggregate-2022-carbonyl.svg" alt="TOC: Manipulation of Clusteroluminescence in Carbonyl-Based Aliphatic Polymers" loading="lazy" onerror="this.classList.add('gone')">
             <div class="paper-ph"><b>AGGREGATE</b><span>2022</span></div>
-          </div>
+          </a>
           <div class="paper-body">
-            <h3 class="paper-title">Manipulation of Clusteroluminescence in Carbonyl-Based Aliphatic Polymers</h3>
+            <h3 class="paper-title"><a href="https://doi.org/10.1002/agt2.278" target="_blank" rel="noopener">Manipulation of Clusteroluminescence in Carbonyl-Based Aliphatic Polymers</a></h3>
             <p class="paper-authors">Ziteng Zhang; <span class="me">Zuping Xiong</span>; Bo Chu; Zhiming Zhang; Yuan Xie; Lei Wang; Jing Zhi Sun; Haoke Zhang*; Xing-Hong Zhang*; Ben Zhong Tang*.</p>
             <div class="paper-meta">
               <span><b>Aggregate</b> 2022, 3, e278</span>
+              <a class="doi" href="https://doi.org/10.1002/agt2.278" target="_blank" rel="noopener" aria-label="Read publication: Manipulation of Clusteroluminescence in Carbonyl-Based Aliphatic Polymers">DOI</a>
             </div>
           </div>
         </article>
         <article class="paper reveal">
-          <div class="paper-fig">
+          <a class="paper-fig" href="https://doi.org/10.1039/d2cc03809a" target="_blank" rel="noopener" tabindex="-1" aria-label="Open paper">
             <img src="assets/tocs/chemcommun-2022-antihae.jpg" alt="TOC: Dramatic Emission Enhancement of AIE Luminogens by Dynamic Metal Coordination Bonds" loading="lazy" onerror="this.classList.add('gone')">
             <div class="paper-ph"><b>CHEM. COMMUN.</b><span>2022</span></div>
-          </div>
+          </a>
           <div class="paper-body">
-            <h3 class="paper-title">Dramatic Emission Enhancement of Aggregation-Induced Emission Luminogens by Dynamic Metal Coordination Bonds and the Anti-Heavy-Atom Effect</h3>
+            <h3 class="paper-title"><a href="https://doi.org/10.1039/d2cc03809a" target="_blank" rel="noopener">Dramatic Emission Enhancement of Aggregation-Induced Emission Luminogens by Dynamic Metal Coordination Bonds and the Anti-Heavy-Atom Effect</a></h3>
             <p class="paper-authors">Xuting Cai; <span class="me">Zuping Xiong</span>; Jiale Zhan; Xinni Ping; Yuqing Zhu; Jiaqi Zuo; Hui Feng; Zhaosheng Qian*.</p>
             <div class="paper-meta">
               <span><b>Chem. Commun.</b> 2022, 58, 10837–10840</span>
+              <a class="doi" href="https://doi.org/10.1039/d2cc03809a" target="_blank" rel="noopener" aria-label="Read publication: Dramatic Emission Enhancement of Aggregation-Induced Emission Luminogens by Dynamic Metal Coordination Bonds and the Anti-Heavy-Atom Effect">DOI</a>
             </div>
           </div>
         </article>
         <article class="paper reveal">
-          <div class="paper-fig">
+          <a class="paper-fig" href="https://doi.org/10.1039/d2tc00907b" target="_blank" rel="noopener" tabindex="-1" aria-label="Open paper">
             <img src="assets/tocs/jmcc-2022-photochromism.svg" alt="TOC: Multiwavelength-Controlled Multicolor Photochromism and Fluorescence Switching" loading="lazy" onerror="this.classList.add('gone')">
             <div class="paper-ph"><b>J. MATER. CHEM. C</b><span>2022</span></div>
-          </div>
+          </a>
           <div class="paper-body">
-            <h3 class="paper-title">Multiwavelength-Controlled Multicolor Photochromism and Fluorescence Switching Based on an Efficient Photocyclization Reaction by Introducing Two Photoactive Subunits into AIEgens</h3>
+            <h3 class="paper-title"><a href="https://doi.org/10.1039/d2tc00907b" target="_blank" rel="noopener">Multiwavelength-Controlled Multicolor Photochromism and Fluorescence Switching Based on an Efficient Photocyclization Reaction by Introducing Two Photoactive Subunits into AIEgens</a></h3>
             <p class="paper-authors">Qiaozhi Zhu; Jiaqi Zuo; Xinni Ping; Yuqing Zhu; Xuting Cai; <span class="me">Zuping Xiong</span>; Zhaosheng Qian*; Hui Feng*.</p>
             <div class="paper-meta">
               <span><b>J. Mater. Chem. C</b> 2022, 10, 8674–8683</span>
+              <a class="doi" href="https://doi.org/10.1039/d2tc00907b" target="_blank" rel="noopener" aria-label="Read publication: Multiwavelength-Controlled Multicolor Photochromism and Fluorescence Switching Based on an Efficient Photocyclization Reaction by Introducing Two Photoactive Subunits into AIEgens">DOI</a>
             </div>
           </div>
         </article>
         <article class="paper reveal">
-          <div class="paper-fig">
+          <a class="paper-fig" href="https://doi.org/10.1021/acs.analchem.1c05345" target="_blank" rel="noopener" tabindex="-1" aria-label="Open paper">
             <img src="assets/tocs/analchem-2022-membrane.jpg" alt="TOC: Antipermeability Strategy to Achieve Extremely High Specificity" loading="lazy" onerror="this.classList.add('gone')">
             <div class="paper-ph"><b>ANAL. CHEM.</b><span>2022</span></div>
-          </div>
+          </a>
           <div class="paper-body">
-            <h3 class="paper-title">Antipermeability Strategy to Achieve Extremely High Specificity and Ultralong Imaging of Diverse Cell Membranes Based on Restriction-Induced Emission of AIEgens</h3>
+            <h3 class="paper-title"><a href="https://doi.org/10.1021/acs.analchem.1c05345" target="_blank" rel="noopener">Antipermeability Strategy to Achieve Extremely High Specificity and Ultralong Imaging of Diverse Cell Membranes Based on Restriction-Induced Emission of AIEgens</a></h3>
             <p class="paper-authors">Xiaoxiao Zhang; Zhenni Wang; Hao Chu; <span class="me">Zuping Xiong</span>; Yanjiang Li; Yi Chen; Qiaozhi Zhu; Hui Feng; Engao Zhu; Jin Zhou*; Peng Huang*; Zhaosheng Qian*.</p>
             <div class="paper-meta">
               <span><b>Anal. Chem.</b> 2022, 94, 4048–4058</span>
+              <a class="doi" href="https://doi.org/10.1021/acs.analchem.1c05345" target="_blank" rel="noopener" aria-label="Read publication: Antipermeability Strategy to Achieve Extremely High Specificity and Ultralong Imaging of Diverse Cell Membranes Based on Restriction-Induced Emission of AIEgens">DOI</a>
             </div>
           </div>
         </article>
         <article class="paper reveal">
-          <div class="paper-fig">
+          <a class="paper-fig" href="https://doi.org/10.1021/acs.analchem.1c05578" target="_blank" rel="noopener" tabindex="-1" aria-label="Open paper">
             <img src="assets/tocs/analchem-2022-pec.jpg" alt="TOC: Novel Aggregation-Enhanced PEC Photosensitizer" loading="lazy" onerror="this.classList.add('gone')">
             <div class="paper-ph"><b>ANAL. CHEM.</b><span>2022</span></div>
-          </div>
+          </a>
           <div class="paper-body">
-            <h3 class="paper-title">Novel Aggregation-Enhanced PEC Photosensitizer Based on Electrostatic Linkage of Ionic Liquid with Protoporphyrin IX for Ultrasensitive Detection of Molt-4 Cells</h3>
+            <h3 class="paper-title"><a href="https://doi.org/10.1021/acs.analchem.1c05578" target="_blank" rel="noopener">Novel Aggregation-Enhanced PEC Photosensitizer Based on Electrostatic Linkage of Ionic Liquid with Protoporphyrin IX for Ultrasensitive Detection of Molt-4 Cells</a></h3>
             <p class="paper-authors">Xiang Hu; Ying Wang; <span class="me">Zuping Xiong</span>; Pei Song; Ai-Jun Wang; Zhaosheng Qian; Pei-Xin Yuan*; Tiejun Zhao*; Jiu-Ju Feng*.</p>
             <div class="paper-meta">
               <span><b>Anal. Chem.</b> 2022, 94, 3708–3717</span>
+              <a class="doi" href="https://doi.org/10.1021/acs.analchem.1c05578" target="_blank" rel="noopener" aria-label="Read publication: Novel Aggregation-Enhanced PEC Photosensitizer Based on Electrostatic Linkage of Ionic Liquid with Protoporphyrin IX for Ultrasensitive Detection of Molt-4 Cells">DOI</a>
             </div>
           </div>
         </article>
 
         <div class="pub-year"><b>2021</b><span>3 papers</span></div>
         <article class="paper reveal">
-          <div class="paper-fig">
+          <a class="paper-fig" href="https://doi.org/10.1039/d1sc02168k" target="_blank" rel="noopener" tabindex="-1" aria-label="Open paper">
             <img src="assets/tocs/chemsci-2021-photochromism.jpg" alt="TOC: Achieving Highly Efficient Aggregation-Induced Emission, Reversible and Irreversible Photochromism" loading="lazy" onerror="this.classList.add('gone')">
             <div class="paper-ph"><b>CHEM. SCI.</b><span>2021</span></div>
-          </div>
+          </a>
           <div class="paper-body">
-            <h3 class="paper-title">Achieving Highly Efficient Aggregation-Induced Emission, Reversible and Irreversible Photochromism by Heavy Halogen-Regulated Photophysics and D–A Molecular Pattern-Controlled Photochemistry of Through-Space Conjugated Luminogens</h3>
+            <h3 class="paper-title"><a href="https://doi.org/10.1039/d1sc02168k" target="_blank" rel="noopener">Achieving Highly Efficient Aggregation-Induced Emission, Reversible and Irreversible Photochromism by Heavy Halogen-Regulated Photophysics and D–A Molecular Pattern-Controlled Photochemistry of Through-Space Conjugated Luminogens</a></h3>
             <p class="paper-authors"><span class="me">Zuping Xiong</span>†; Xiaoxiao Zhang; Longxiang Liu; Qiaozhi Zhu; Zhenni Wang; Hui Feng; Zhaosheng Qian*.</p>
             <div class="paper-meta">
               <span><b>Chem. Sci.</b> 2021, 12, 10710–10723</span>
               <span class="tag first">1st</span>
+              <a class="doi" href="https://doi.org/10.1039/d1sc02168k" target="_blank" rel="noopener" aria-label="Read publication: Achieving Highly Efficient Aggregation-Induced Emission, Reversible and Irreversible Photochromism by Heavy Halogen-Regulated Photophysics and D–A Molecular Pattern-Controlled Photochemistry of Through-Space Conjugated Luminogens">DOI</a>
             </div>
           </div>
         </article>
         <article class="paper reveal">
-          <div class="paper-fig">
+          <a class="paper-fig" href="https://doi.org/10.1002/adom.202101228" target="_blank" rel="noopener" tabindex="-1" aria-label="Open paper">
             <img src="assets/tocs/aom-2021-silole.jpg" alt="TOC: Breaking Classic Heavy-Atom Effect" loading="lazy" onerror="this.classList.add('gone')">
             <div class="paper-ph"><b>ADV. OPT. MATER.</b><span>2021</span></div>
-          </div>
+          </a>
           <div class="paper-body">
-            <h3 class="paper-title">Breaking Classic Heavy-Atom Effect to Achieve Heavy-Atom-Induced Dramatic Emission Enhancement of Silole-Based AIEgens with Through-Bond and Through-Space Conjugation</h3>
+            <h3 class="paper-title"><a href="https://doi.org/10.1002/adom.202101228" target="_blank" rel="noopener">Breaking Classic Heavy-Atom Effect to Achieve Heavy-Atom-Induced Dramatic Emission Enhancement of Silole-Based AIEgens with Through-Bond and Through-Space Conjugation</a></h3>
             <p class="paper-authors"><span class="me">Zuping Xiong</span>†; Zhenni Wang; Longxiang Liu; Mengyi Jiang; Xiaoxiao Zhang; Qiaozhi Zhu; Hui Feng; Zhaosheng Qian*.</p>
             <div class="paper-meta">
               <span><b>Adv. Opt. Mater.</b> 2021, 9, 2101228</span>
               <span class="tag first">1st</span>
+              <a class="doi" href="https://doi.org/10.1002/adom.202101228" target="_blank" rel="noopener" aria-label="Read publication: Breaking Classic Heavy-Atom Effect to Achieve Heavy-Atom-Induced Dramatic Emission Enhancement of Silole-Based AIEgens with Through-Bond and Through-Space Conjugation">DOI</a>
             </div>
           </div>
         </article>
         <article class="paper reveal">
-          <div class="paper-fig">
+          <a class="paper-fig" href="https://doi.org/10.1021/acs.analchem.1c04608" target="_blank" rel="noopener" tabindex="-1" aria-label="Open paper">
             <img src="assets/tocs/analchem-2021-hof.svg" alt="TOC: Hydrogen Bond Organic Frameworks as a Novel Electrochemiluminescence Luminophore" loading="lazy" onerror="this.classList.add('gone')">
             <div class="paper-ph"><b>ANAL. CHEM.</b><span>2021</span></div>
-          </div>
+          </a>
           <div class="paper-body">
-            <h3 class="paper-title">Hydrogen Bond Organic Frameworks as a Novel Electrochemiluminescence Luminophore: Simple Synthesis and Ultrasensitive Biosensing</h3>
+            <h3 class="paper-title"><a href="https://doi.org/10.1021/acs.analchem.1c04608" target="_blank" rel="noopener">Hydrogen Bond Organic Frameworks as a Novel Electrochemiluminescence Luminophore: Simple Synthesis and Ultrasensitive Biosensing</a></h3>
             <p class="paper-authors">Nuo Zhang; Xin-Tao Wang; <span class="me">Zuping Xiong</span>; Li-Yan Huang; Yu Jin; Ai-Jun Wang; Pei-Xin Yuan*; Ya-Bing He; Jiu-Ju Feng*.</p>
             <div class="paper-meta">
               <span><b>Anal. Chem.</b> 2021, 93, 17110–17118</span>
+              <a class="doi" href="https://doi.org/10.1021/acs.analchem.1c04608" target="_blank" rel="noopener" aria-label="Read publication: Hydrogen Bond Organic Frameworks as a Novel Electrochemiluminescence Luminophore: Simple Synthesis and Ultrasensitive Biosensing">DOI</a>
             </div>
           </div>
         </article>
@@ -1318,5 +1356,6 @@ var _hmt = _hmt || [];
 
 <script src="js/counter-config.js"></script>
 <script src="js/main.js"></script>
+<script src="js/publications.js"></script>
 </body>
 </html>
