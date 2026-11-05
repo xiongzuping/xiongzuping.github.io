@@ -606,6 +606,13 @@ img { display: block; max-width: 100%; }
   border-color: rgba(167, 139, 250, .42);
   box-shadow: 0 0 46px -14px rgba(167, 139, 250, .55);
 }
+.disc3-head { margin-top: 68px; margin-bottom: 28px; }
+.disc3-stage { position: relative; }
+.disc3-video {
+  display: block; width: 100%; max-width: 800px; margin: 0 auto;
+  border-color: rgba(34, 211, 238, .42);
+  box-shadow: 0 0 46px -14px rgba(34, 211, 238, .55);
+}
 .emit-vs .chv {
   fill: none; stroke: #6d7cff; stroke-width: 3.5;
   stroke-linecap: round; stroke-linejoin: round;
