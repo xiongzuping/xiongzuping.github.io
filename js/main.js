@@ -4,44 +4,42 @@
 (function () {
   "use strict";
 
-  /* ---------------- gallery data ----------------
-     Photos taken from the original site; captions left blank
-     so the user can add their own descriptions. */
+  /* Gallery thumbnails preserve the orientation of their originals. */
   const GALLERY = [
-    { src: "assets/gallery/FvtiKzZJJKSCe_0qt3OCgo_3VHFz.jpg", cap: "", feat: true },
-    { src: "assets/gallery/Fg-Kr75cFwshh248uMyn0yPJJoSc.jpg", cap: "" },
-    { src: "assets/gallery/FsvhFuDwjsmgQLcY0qKgWYpK3NrG.jpg", cap: "" },
-    { src: "assets/gallery/ltfZeDQtESP2UWfnDu6oo0VgAW8-.jpg", cap: "" },
-    { src: "assets/gallery/Fnpw8V-URjSuqURwEj-hZwHT1hQf.png", cap: "" },
-    { src: "assets/gallery/lmuPnGAVaJZqsLdlAilxUqGYYwLX.jpg", cap: "" },
-    { src: "assets/gallery/FhyTKCpV-4ySxdDBoaM9WF-i-4I-.jpg", cap: "" },
-    { src: "assets/gallery/looTgEqvXfptXmW2u8yKsYOGhtBH.jpg", cap: "" },
-    { src: "assets/gallery/lu551NUkSZVHZ2UquqqFl3L4jQNT.jpg", cap: "" },
-    { src: "assets/gallery/Fredt5bYfXdWS_rkMapxW7SdBmE3.jpg", cap: "" },
-    { src: "assets/gallery/lg0Ek8BWKQUBF9OZQGMzrFFZv7zT.jpg", cap: "" },
-    { src: "assets/gallery/Frsv2Cni2TUQ9DKNPBnRrAEnWWSV.png", cap: "" },
-    { src: "assets/gallery/lliZA9sFpk1p1rJc0yRAPoMuKxrJ.jpg", cap: "" },
-    { src: "assets/gallery/FvnDNBp2WvZDkvEQB0o1rwng2nTU.jpg", cap: "" },
-    { src: "assets/gallery/FgAY1PyH1N7rFP2aS1RkbdGf_kGE.jpg", cap: "" },
-    { src: "assets/gallery/FjLGqXNuQpuFP2i_H7Sam_trNgzT.jpg", cap: "" },
-    { src: "assets/gallery/FscNWplVzxrYqMjDAUu0dI7OccbF.jpg", cap: "" },
-    { src: "assets/gallery/FpUpseUplFlEzdTl_WUsT4FT3hVr.jpg", cap: "" },
-    { src: "assets/gallery/FlIJq7ZyyAUcpUg4GC7UhDUDFoYn.png", cap: "" },
-    { src: "assets/gallery/FnrUPsjxIskMZY0cpl2OGrGMAaLJ.jpg", cap: "" },
-    { src: "assets/gallery/Foh71UDhcYCyDouBAsvCvcNAn9Lm.jpg", cap: "" },
-    { src: "assets/gallery/FgMOyTad4sgU_5G6qHf-XMkFQ6Qv.jpg", cap: "" },
-    { src: "assets/gallery/FpGWaVCLRUAsBNTPPZexEPzx6G6K.png", cap: "" },
-    { src: "assets/gallery/FrWHSiE28i6Kdlrzh4lZaaThqWad.jpg", cap: "" },
-    { src: "assets/gallery/FssG3YlERCi5BxAtQgpYco-7Oo15.jpg", cap: "" },
-    { src: "assets/gallery/FswSrLfA8SROodmC4xTkFMsyxlFR.jpg", cap: "" },
-    { src: "assets/gallery/lsJADwKHtOlSJctDdIsB8-6od7H4.jpg", cap: "" },
-    { src: "assets/gallery/FmLxs4MgmUPMtkEe8zeS2HIncGX2.jpg", cap: "" },
-    { src: "assets/gallery/Fgf4b1JTK8h5G8FlDWVgTmDdyCg0.jpg", cap: "" },
-    { src: "assets/gallery/Fth4-vlAPzn1mHiq6-G6Kvbb_Frn.png", cap: "" },
-    { src: "assets/gallery/FsEa3ecXDbc0JEFW_sVxxkSbBzg4.png", cap: "" },
-    { src: "assets/gallery/FqyjvoPPH_vrX2vmdGY5ZwEjY8eO.png", cap: "" },
-    { src: "assets/gallery/FmPvsruouz1KTPYDNgF2xjFbAeZ1.png", cap: "" },
-    { src: "assets/gallery/ljDwaz0dEq8Bqir7KbjSHVkajKHD.jpg", cap: "" }
+    { src: "assets/gallery/FvtiKzZJJKSCe_0qt3OCgo_3VHFz.jpg", width: 1448, height: 1086, description: "Two conference attendees at a banquet table" },
+    { src: "assets/gallery/Fg-Kr75cFwshh248uMyn0yPJJoSc.jpg", width: 1708, height: 1280, description: "Delegates taking a group selfie in a conference hall" },
+    { src: "assets/gallery/FsvhFuDwjsmgQLcY0qKgWYpK3NrG.jpg", width: 1702, height: 1276, description: "Participants on stage at a Sino-German research symposium" },
+    { src: "assets/gallery/ltfZeDQtESP2UWfnDu6oo0VgAW8-.jpg", width: 4032, height: 3024, description: "Audience selfie in front of a conference projection screen" },
+    { src: "assets/gallery/Fnpw8V-URjSuqURwEj-hZwHT1hQf.png", width: 1406, height: 984, description: "Three conference attendees seated together in an auditorium" },
+    { src: "assets/gallery/lmuPnGAVaJZqsLdlAilxUqGYYwLX.jpg", width: 5712, height: 3664, description: "Graduate in academic dress holding a certificate with a presenter", large: "assets/gallery/previews/lmuPnGAVaJZqsLdlAilxUqGYYwLX-2560.webp" },
+    { src: "assets/gallery/FhyTKCpV-4ySxdDBoaM9WF-i-4I-.jpg", width: 2508, height: 1864, description: "Certificate presentation in front of a green young scholars forum screen" },
+    { src: "assets/gallery/looTgEqvXfptXmW2u8yKsYOGhtBH.jpg", width: 6960, height: 4640, description: "Panelists standing together behind a conference table" },
+    { src: "assets/gallery/lu551NUkSZVHZ2UquqqFl3L4jQNT.jpg", width: 5712, height: 4284, description: "Two attendees at the Aggregate journal graduate forum" },
+    { src: "assets/gallery/Fredt5bYfXdWS_rkMapxW7SdBmE3.jpg", width: 1706, height: 1279, description: "Five participants posing together at a conference venue" },
+    { src: "assets/gallery/lg0Ek8BWKQUBF9OZQGMzrFFZv7zT.jpg", width: 4284, height: 5712, description: "Two attendees in the lobby holding a conference folder" },
+    { src: "assets/gallery/Frsv2Cni2TUQ9DKNPBnRrAEnWWSV.png", width: 943, height: 1199, description: "A researcher beside a scientific poster in an exhibition hall" },
+    { src: "assets/gallery/lliZA9sFpk1p1rJc0yRAPoMuKxrJ.jpg", width: 3024, height: 4032, description: "Visitor beside a large mirrored sculpture in a city plaza" },
+    { src: "assets/gallery/FvnDNBp2WvZDkvEQB0o1rwng2nTU.jpg", width: 1206, height: 2113, description: "A CAS Future Leaders badge held up at the venue" },
+    { src: "assets/gallery/FgAY1PyH1N7rFP2aS1RkbdGf_kGE.jpg", width: 1600, height: 900, description: "Conference group gathered by windows overlooking a city" },
+    { src: "assets/gallery/FjLGqXNuQpuFP2i_H7Sam_trNgzT.jpg", width: 1160, height: 644, description: "Visitor beside a Northwestern Chemistry display" },
+    { src: "assets/gallery/FscNWplVzxrYqMjDAUu0dI7OccbF.jpg", width: 1440, height: 1920, description: "Participants in front of projected CAS Future Leaders profiles" },
+    { src: "assets/gallery/FpUpseUplFlEzdTl_WUsT4FT3hVr.jpg", width: 1920, height: 2560, description: "Zuping Xiong beside his projected researcher profile" },
+    { src: "assets/gallery/FlIJq7ZyyAUcpUg4GC7UhDUDFoYn.png", width: 1200, height: 1066, description: "Three attendees beside a scientific poster" },
+    { src: "assets/gallery/FnrUPsjxIskMZY0cpl2OGrGMAaLJ.jpg", width: 1706, height: 1279, description: "Conference group on the steps outside a building" },
+    { src: "assets/gallery/Foh71UDhcYCyDouBAsvCvcNAn9Lm.jpg", width: 1279, height: 1706, description: "Meeting badge hanging beside a window" },
+    { src: "assets/gallery/FgMOyTad4sgU_5G6qHf-XMkFQ6Qv.jpg", width: 2048, height: 1536, description: "Seven conference attendees posing in front of a whiteboard" },
+    { src: "assets/gallery/FpGWaVCLRUAsBNTPPZexEPzx6G6K.png", width: 423, height: 279, description: "Certificate presentation on the Aggregate forum stage" },
+    { src: "assets/gallery/FrWHSiE28i6Kdlrzh4lZaaThqWad.jpg", width: 2048, height: 1536, description: "Two conference attendees holding drinks at an evening reception" },
+    { src: "assets/gallery/FssG3YlERCi5BxAtQgpYco-7Oo15.jpg", width: 1279, height: 2275, description: "Two spectators watching fireworks by the water" },
+    { src: "assets/gallery/FswSrLfA8SROodmC4xTkFMsyxlFR.jpg", width: 1279, height: 1706, description: "Two attendees with badges at a wood-paneled venue" },
+    { src: "assets/gallery/lsJADwKHtOlSJctDdIsB8-6od7H4.jpg", width: 4284, height: 5712, description: "Three meeting attendees posing by a white wall" },
+    { src: "assets/gallery/FmLxs4MgmUPMtkEe8zeS2HIncGX2.jpg", width: 1702, height: 1276, description: "Speaker at the lectern of a Sino-German research symposium" },
+    { src: "assets/gallery/Fgf4b1JTK8h5G8FlDWVgTmDdyCg0.jpg", width: 1536, height: 2049, description: "Spectator watching a nighttime colored light display" },
+    { src: "assets/gallery/Fth4-vlAPzn1mHiq6-G6Kvbb_Frn.png", width: 500, height: 648, description: "Chem journal cover with a glowing molecular illustration" },
+    { src: "assets/gallery/FsEa3ecXDbc0JEFW_sVxxkSbBzg4.png", width: 400, height: 636, description: "Chinese-language research news feature with two people in the photograph" },
+    { src: "assets/gallery/FqyjvoPPH_vrX2vmdGY5ZwEjY8eO.png", width: 1316, height: 1038, description: "Gloved researcher working with laboratory glassware" },
+    { src: "assets/gallery/FmPvsruouz1KTPYDNgF2xjFbAeZ1.png", width: 1789, height: 1342, description: "Researcher holding a glowing blue sample in the laboratory" },
+    { src: "assets/gallery/ljDwaz0dEq8Bqir7KbjSHVkajKHD.jpg", width: 5184, height: 7776, description: "Studio portrait of Zuping Xiong wearing a tie and dark sweater" }
   ];
 
   /* ---------------- materials-chemistry background ----------------
@@ -608,19 +606,46 @@
   const nav = document.getElementById("nav");
   const burger = document.getElementById("navBurger");
   const links = document.getElementById("navLinks");
+  const compactNav = matchMedia("(max-width: 1100px)");
+  function setMenu(open) {
+    burger.setAttribute("aria-expanded", String(open && compactNav.matches));
+    links.hidden = compactNav.matches && !open;
+  }
+  function syncMenu() {
+    const active = document.activeElement;
+    nav.dataset.menuReady = "";
+    setMenu(false);
+    if (compactNav.matches && links.contains(active)) burger.focus();
+    if (!compactNav.matches && active === burger) links.querySelector("a").focus();
+  }
+  syncMenu();
+  compactNav.addEventListener("change", syncMenu);
   addEventListener("scroll", () => {
     nav.classList.toggle("scrolled", scrollY > 10);
   }, { passive: true });
-  burger.addEventListener("click", () => {
-    burger.classList.toggle("open");
-    links.classList.toggle("open");
+  burger.addEventListener("click", () => setMenu(links.hidden));
+  nav.addEventListener("keydown", event => {
+    if (event.key === "Escape" && compactNav.matches && !links.hidden) {
+      setMenu(false);
+      burger.focus();
+    }
   });
-  links.querySelectorAll("a").forEach(a =>
-    a.addEventListener("click", () => {
-      burger.classList.remove("open");
-      links.classList.remove("open");
-    })
-  );
+  links.addEventListener("click", event => {
+    const link = event.target.closest("a[href^='#']");
+    if (!link || !compactNav.matches || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+    setMenu(false);
+    const section = document.getElementById(link.hash.slice(1));
+    if (section) {
+      section.tabIndex = -1;
+      section.focus({ preventScroll: true });
+    }
+  });
+  nav.addEventListener("focusout", event => {
+    if (compactNav.matches && event.relatedTarget && !nav.contains(event.relatedTarget)) setMenu(false);
+  });
+  document.addEventListener("pointerdown", event => {
+    if (compactNav.matches && !nav.contains(event.target) && !links.hidden) setMenu(false);
+  });
 
   /* ---------------- scrollspy ---------------- */
   const spy = new IntersectionObserver((entries) => {
@@ -642,22 +667,16 @@
   }, { threshold: 0.12 });
   document.querySelectorAll(".reveal").forEach(el => revealObs.observe(el));
 
-  /* ---------------- emission videos: play only while on screen ---------------- */
-  const emitVids = document.querySelectorAll(".emit-video");
-  if (emitVids.length) {
-    const vidObs = new IntersectionObserver((entries) => {
-      entries.forEach(e => {
-        const v = e.target;
-        if (e.isIntersecting) {
-          const p = v.play();
-          if (p && typeof p.catch === "function") p.catch(() => {});
-        } else {
-          v.pause();
-        }
-      });
-    }, { threshold: 0.12 });
-    emitVids.forEach(v => vidObs.observe(v));
-  }
+  /* Keep playback user-controlled and stop off-screen audio. */
+  const videoVisibility = new IntersectionObserver(entries => {
+    for (const { target, isIntersecting } of entries) {
+      if (!isIntersecting && !target.paused && !target.matches(':fullscreen') &&
+          target !== document.pictureInPictureElement) {
+        target.pause();
+      }
+    }
+  });
+  document.querySelectorAll('.emit-video').forEach(video => videoVisibility.observe(video));
 
   /* ---------------- counters ---------------- */
   const counterObs = new IntersectionObserver((entries) => {
@@ -687,35 +706,57 @@
   /* ---------------- gallery ---------------- */
   const gBox = document.getElementById("galleryBox");
   const lightbox = document.getElementById("lightbox");
-  const lbImg = document.getElementById("lbImg");
-  const lbCap = document.getElementById("lbCap");
+  if (gBox && lightbox) {
+    const preview = document.getElementById("lbImg");
+    const caption = document.getElementById("lbCap");
+    const closer = document.getElementById("lbClose");
+    let opener = null;
 
-  function renderGallery() {
-    if (!GALLERY.length) {
-      gBox.innerHTML = '<p style="color:var(--faint);font-size:14px;grid-column:1/-1">Photos coming soon…</p>';
-      return;
-    }
-    gBox.innerHTML = GALLERY.map(it =>
-      '<figure class="g-item' + (it.feat ? " g-feat" : "") + '" data-cap="' + it.cap.replace(/"/g, "&quot;") + '">' +
-      '<img src="' + it.src + '" alt="' + it.cap.replace(/"/g, "&quot;") + '" loading="lazy">' +
-      (it.cap ? '<figcaption class="cap">' + it.cap + "</figcaption>" : "") +
-      "</figure>"
-    ).join("");
-    gBox.querySelectorAll(".g-item").forEach(f => {
-      f.addEventListener("click", () => {
-        lbImg.src = f.querySelector("img").src;
-        lbCap.textContent = f.dataset.cap || "";
-        lightbox.classList.add("open");
-        lightbox.setAttribute("aria-hidden", "false");
+    GALLERY.forEach((photo, index) => {
+      const trigger = document.createElement("button");
+      trigger.type = "button";
+      trigger.className = index === 0 ? "g-item g-feat" : "g-item";
+      trigger.setAttribute("aria-label", "Enlarge photo: " + photo.description);
+      trigger.setAttribute("aria-haspopup", "dialog");
+
+      const image = document.createElement("img");
+      const base = photo.src.replace("assets/gallery/", "assets/gallery/previews/").replace(/\.[^.]+$/, "");
+      const widths = [...new Set([Math.min(480, photo.width), Math.min(960, photo.width)])];
+      image.loading = "lazy";
+      image.decoding = "async";
+      image.width = photo.width;
+      image.height = photo.height;
+      image.alt = photo.description;
+      image.sizes = "(max-width: 560px) calc(100vw - 56px), (max-width: 900px) calc((100vw - 72px) / 2), (max-width: 1180px) calc((100vw - 88px) / 3), 364px";
+      image.srcset = widths.map(w => base + "-" + w + ".webp " + w + "w").join(", ");
+      image.src = base + "-" + widths[0] + ".webp";
+      trigger.append(image);
+
+      trigger.addEventListener("click", () => {
+        opener = trigger;
+        // Show the loaded thumbnail immediately while the enlarged photo arrives.
+        preview.style.backgroundImage = 'url("' + image.currentSrc + '")';
+        preview.style.aspectRatio = photo.width + "/" + photo.height;
+        preview.width = photo.width;
+        preview.height = photo.height;
+        preview.alt = photo.description;
+        preview.src = photo.large || photo.src;
+        caption.textContent = photo.description;
+        lightbox.showModal();
+        closer.focus({ preventScroll: true });
       });
+      gBox.append(trigger);
     });
-  }
-  if (gBox) renderGallery();
-  function closeLB() { lightbox.classList.remove("open"); lightbox.setAttribute("aria-hidden", "true"); }
-  if (lightbox) {
-    lightbox.addEventListener("click", closeLB);
-    document.getElementById("lbClose").addEventListener("click", closeLB);
-    addEventListener("keydown", e => { if (e.key === "Escape") closeLB(); });
+
+    closer.addEventListener("click", () => lightbox.close());
+    lightbox.addEventListener("click", e => {
+      if (e.target === lightbox) lightbox.close();
+    });
+    lightbox.addEventListener("close", () => {
+      preview.removeAttribute("src");
+      preview.style.backgroundImage = "";
+      opener?.focus({ preventScroll: true });
+    });
   }
 
   /* ---------------- contact form (mailto) ---------------- */
