@@ -517,11 +517,10 @@ img { display: block; max-width: 100%; }
 .acad-item a.lk:hover { text-decoration: underline; }
 
 /* ---------- gallery ---------- */
-.gallery { column-count: 3; column-gap: 16px; }
-@media (max-width: 900px) { .gallery { column-count: 2; } }
-@media (max-width: 560px) { .gallery { column-count: 1; } }
+.gallery { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; align-items: start; }
+@media (max-width: 900px) { .gallery { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 560px) { .gallery { grid-template-columns: 1fr; } }
 .g-item {
-  break-inside: avoid; margin-bottom: 16px;
   border-radius: var(--radius-sm); overflow: hidden; position: relative;
   border: 1px solid var(--border); cursor: zoom-in; background: var(--bg-2);
 }
