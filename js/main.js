@@ -8,6 +8,7 @@
      Photos taken from the original site; captions left blank
      so the user can add their own descriptions. */
   const GALLERY = [
+    { src: "assets/gallery/FvtiKzZJJKSCe_0qt3OCgo_3VHFz.jpg", cap: "", feat: true },
     { src: "assets/gallery/Frsv2Cni2TUQ9DKNPBnRrAEnWWSV.png", cap: "" },
     { src: "assets/gallery/lliZA9sFpk1p1rJc0yRAPoMuKxrJ.jpg", cap: "" },
     { src: "assets/gallery/FvnDNBp2WvZDkvEQB0o1rwng2nTU.jpg", cap: "" },
@@ -23,7 +24,6 @@
     { src: "assets/gallery/FgMOyTad4sgU_5G6qHf-XMkFQ6Qv.jpg", cap: "" },
     { src: "assets/gallery/ltfZeDQtESP2UWfnDu6oo0VgAW8-.jpg", cap: "" },
     { src: "assets/gallery/FpGWaVCLRUAsBNTPPZexEPzx6G6K.png", cap: "" },
-    { src: "assets/gallery/FvtiKzZJJKSCe_0qt3OCgo_3VHFz.jpg", cap: "" },
     { src: "assets/gallery/Fnpw8V-URjSuqURwEj-hZwHT1hQf.png", cap: "" },
     { src: "assets/gallery/lmuPnGAVaJZqsLdlAilxUqGYYwLX.jpg", cap: "" },
     { src: "assets/gallery/FhyTKCpV-4ySxdDBoaM9WF-i-4I-.jpg", cap: "" },
@@ -696,7 +696,7 @@
       return;
     }
     gBox.innerHTML = GALLERY.map(it =>
-      '<figure class="g-item" data-cap="' + it.cap.replace(/"/g, "&quot;") + '">' +
+      '<figure class="g-item' + (it.feat ? " g-feat" : "") + '" data-cap="' + it.cap.replace(/"/g, "&quot;") + '">' +
       '<img src="' + it.src + '" alt="' + it.cap.replace(/"/g, "&quot;") + '" loading="lazy">' +
       (it.cap ? '<figcaption class="cap">' + it.cap + "</figcaption>" : "") +
       "</figure>"
