@@ -538,6 +538,17 @@ img { display: block; max-width: 100%; }
   transition: transform .35s ease, border-color .35s ease, background .35s ease, box-shadow .35s ease;
 }
 .emit-card:hover { transform: translateY(-4px); border-color: var(--border-strong); background: var(--card-hover); box-shadow: 0 18px 50px -22px rgba(80, 110, 255, 0.35); }
+.emit-num {
+  position: absolute; top: 14px; right: 14px; z-index: 3;
+  width: 28px; height: 28px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--mono); font-size: 13.5px; font-weight: 700; color: #fff;
+  background: var(--grad);
+  border: 1px solid rgba(139, 155, 255, .45);
+  box-shadow: 0 0 16px -3px rgba(109, 124, 255, .65);
+  pointer-events: none;
+}
+.emit-num + .emit-top { padding-right: 42px; }
 .emit-top { display: flex; align-items: center; gap: 10px; }
 .emit-dot { flex: none; width: 10px; height: 10px; border-radius: 50%; animation: emitPulse 2.4s ease-in-out infinite; }
 .emit-dot.g { background: #34d399; box-shadow: 0 0 12px #34d399; }
