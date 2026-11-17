@@ -232,7 +232,13 @@
       gBox.replaceChildren(rows);
     }
     fitRows(gBox.clientWidth);
-    new ResizeObserver(([entry]) => fitRows(entry.contentRect.width)).observe(gBox);
+    let pendingFit = 0, pendingWidth = gBox.clientWidth;
+    new ResizeObserver(([entry]) => {
+      pendingWidth = entry.contentRect.width;
+      if (pendingFit) return;
+      // Reparenting rows inside observer delivery can trigger a WebKit resize loop.
+      pendingFit = requestAnimationFrame(() => { pendingFit = 0; fitRows(pendingWidth); });
+    }).observe(gBox);
   }
   if (gBox) renderGallery();
   function closeLB() { lightbox.classList.remove("open"); lightbox.setAttribute("aria-hidden", "true"); }

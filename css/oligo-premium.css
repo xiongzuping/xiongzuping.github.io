@@ -14,7 +14,7 @@ body::before { content:""; position:fixed; pointer-events:none; inset:0; z-index
 .hero-eyebrow { color:#7d9aa9; font-size:8px; letter-spacing:1.5px; margin-bottom:26px; line-height:1.8; white-space:normal; }
 .hero-eyebrow>span { background:#9dc9c9; width:4px; height:4px; box-shadow:0 0 8px #a1e9e02a; }
 .premium-hero h1 { font-family:var(--font); font-size:clamp(60px,5.5vw,80px); font-weight:450; line-height:.98; letter-spacing:-4.2px; margin:0 0 24px; color:#e9edef; }
-.premium-hero h1 .grad { display:block; background:none; -webkit-text-fill-color:initial; color:#d7e3e8; }.name-period { color:#84c3c4; }
+.premium-hero h1 .grad { display:block; background:none; -webkit-text-fill-color:initial; color:#d7e3e8; }
 .name-caption { margin-bottom:33px; gap:13px; font-size:8px; letter-spacing:1.4px; color:#8093a2; }.name-caption span:first-child { font-size:14px; letter-spacing:4px; color:#c2cbd1; padding-right:13px; border-color:#a7c0ce2b; }
 .premium-hero .hero-statement { font-size:clamp(23px,2.1vw,31px); line-height:1.35; font-weight:350; letter-spacing:-.8px; margin:0 0 22px; color:#dce4e8; text-wrap:balance; background:none; }
 .premium-hero .hero-research { font-size:12.5px; line-height:1.9; color:#8f9fad; max-width:350px; margin-bottom:28px; background:none; }
@@ -28,6 +28,7 @@ body::before { content:""; position:fixed; pointer-events:none; inset:0; z-index
 .oligo-stage { height:600px; width:100%; position:relative; cursor:grab; touch-action:pan-y; outline:none; background:radial-gradient(ellipse at 54% 48%,#1c515429,transparent 57%); }
 .oligo-stage:active { cursor:grabbing; }.oligo-stage:focus-visible { outline:1px solid #9fd4d881; outline-offset:-1px; border-radius:15px; }
 #oligo-canvas { position:absolute; inset:0; width:100%; height:100%; display:block; outline:none; }
+#oligo-canvas[hidden] { display:none; }
 .scene-fallback { position:absolute; inset:0; display:flex; flex-direction:column; align-items:center; justify-content:center; color:#b4c6d1; font-size:12px; pointer-events:none; gap:11px; }.scene-fallback[hidden] { display:none; }.scene-fallback small { font-size:10px; color:#8297a8; }.scene-loading-dot { width:22px; height:22px; border-radius:50%; border:1px solid #9cdad4a1; box-shadow:0 0 45px #5ee6cf33; }
 .oligo-sequence { position:absolute; top:24px; left:12px; display:flex; align-items:center; gap:8px; font-size:10px; letter-spacing:.1px; pointer-events:none; color:#78909f; }.oligo-sequence b { color:#b0cbd2; font-weight:400; }.oligo-sequence i { width:10px; height:1px; background:#a8c4d431; }
 .oligo-gesture { position:absolute; left:12px; bottom:18px; font-size:9px; color:#7b96a5; pointer-events:none; letter-spacing:.1px; }.oligo-gesture>span { display:inline-block; margin-right:6px; font-size:14px; color:#a0c4ca; }

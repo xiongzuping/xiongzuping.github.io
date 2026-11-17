@@ -28,6 +28,40 @@ const fail = (message) => {
   document.body.classList.add('scene-unavailable');
 };
 
+// Float multisampling is optional; MAX_SAMPLES is not a format-specific limit.
+function chooseFloatSamples(gl, preferred = 4) {
+  try {
+    const counts = Array.from(gl.getInternalformatParameter(gl.RENDERBUFFER, gl.RGBA16F, gl.SAMPLES));
+    return counts.reduce((best, n) => n <= preferred && n > best ? n : best, 0);
+  } catch (_) { return 0; }
+}
+
+function floatTargetWorks(gl, samples = 0) {
+  if (!gl.getExtension('EXT_color_buffer_float') && !gl.getExtension('EXT_color_buffer_half_float')) return false;
+  const oldDraw = gl.getParameter(gl.DRAW_FRAMEBUFFER_BINDING), oldRead = gl.getParameter(gl.READ_FRAMEBUFFER_BINDING);
+  const oldBuffer = gl.getParameter(gl.RENDERBUFFER_BINDING);
+  const framebuffer = gl.createFramebuffer(), color = gl.createRenderbuffer(), depth = gl.createRenderbuffer();
+  let complete = false;
+  try {
+    gl.bindFramebuffer(gl.FRAMEBUFFER, framebuffer); gl.bindRenderbuffer(gl.RENDERBUFFER, color);
+    if (samples) gl.renderbufferStorageMultisample(gl.RENDERBUFFER, samples, gl.RGBA16F, 4, 4);
+    else gl.renderbufferStorage(gl.RENDERBUFFER, gl.RGBA16F, 4, 4);
+    gl.framebufferRenderbuffer(gl.FRAMEBUFFER, gl.COLOR_ATTACHMENT0, gl.RENDERBUFFER, color);
+    gl.bindRenderbuffer(gl.RENDERBUFFER, depth);
+    if (samples) gl.renderbufferStorageMultisample(gl.RENDERBUFFER, samples, gl.DEPTH_COMPONENT24, 4, 4);
+    else gl.renderbufferStorage(gl.RENDERBUFFER, gl.DEPTH_COMPONENT24, 4, 4);
+    gl.framebufferRenderbuffer(gl.FRAMEBUFFER, gl.DEPTH_ATTACHMENT, gl.RENDERBUFFER, depth);
+    const status = gl.checkFramebufferStatus(gl.FRAMEBUFFER), error = gl.getError();
+    complete = status === gl.FRAMEBUFFER_COMPLETE && error === gl.NO_ERROR;
+  } catch (_) { complete = false; }
+  finally {
+    gl.bindFramebuffer(gl.DRAW_FRAMEBUFFER, oldDraw); gl.bindFramebuffer(gl.READ_FRAMEBUFFER, oldRead);
+    gl.bindRenderbuffer(gl.RENDERBUFFER, oldBuffer);
+    gl.deleteFramebuffer(framebuffer); gl.deleteRenderbuffer(color); gl.deleteRenderbuffer(depth);
+  }
+  return complete;
+}
+
 if (canvas && viewport && model) {
   try { createStudio(); }
   catch (error) { console.warn('Molecular view unavailable:', error.message); fail('webgl-unavailable'); }
@@ -119,7 +153,15 @@ function createStudio() {
   }
 
   const motionQuery = matchMedia('(prefers-reduced-motion: reduce)');
-  const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true, premultipliedAlpha: false, powerPreference: 'high-performance', preserveDrawingBuffer: true });
+  // Choose once, so a phone rotation cannot switch rendering pipelines.
+  const coarsePointer = matchMedia('(pointer: coarse)').matches;
+  const compactProfile = coarsePointer || window.innerWidth <= 760;
+  const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true, premultipliedAlpha: true, powerPreference: compactProfile ? 'default' : 'high-performance', preserveDrawingBuffer: true });
+  const gl = renderer.getContext();
+  const floatColorRenderable = floatTargetWorks(gl);
+  const requestedSamples = floatColorRenderable ? chooseFloatSamples(gl) : 0;
+  const hdrSamples = requestedSamples && floatTargetWorks(gl, requestedSamples) ? requestedSamples : 0;
+  const renderPath = compactProfile || !floatColorRenderable ? 'direct' : 'hdr';
   renderer.outputColorSpace = THREE.SRGBColorSpace;
   renderer.toneMapping = THREE.ACESFilmicToneMapping;
   renderer.toneMappingExposure = 1.05;
@@ -135,22 +177,34 @@ function createStudio() {
   light(0xf2f5ff, 3.2, [8, 11, 13]);
   light(0x4fb9ed, 2.6, [-8, 2, -4]);
   light(0xc3adf6, 1.7, [7, -3, -7]);
+  let environmentTarget = null;
+  function refreshEnvironment() {
+  if (!floatColorRenderable) return;
   const pmrem = new THREE.PMREMGenerator(renderer);
   const room = new RoomEnvironment();
-  const environment = pmrem.fromScene(room, .035);
-  scene.environment = environment.texture;
+  const replacement = pmrem.fromScene(room, .035);
+  if (environmentTarget) environmentTarget.dispose();
+  environmentTarget = replacement;
+  scene.environment = environmentTarget.texture;
   scene.environmentIntensity = .55;
   room.dispose(); pmrem.dispose();
+  }
+  refreshEnvironment();
 
-  const bloomComposer = new EffectComposer(renderer);
+  let bloomComposer, bloom, composer, combine;
+  function createPostProcessing() {
+  if (renderPath !== 'hdr') return;
+  bloomComposer = new EffectComposer(renderer);
+  bloomComposer.setPixelRatio(1);
   bloomComposer.renderToScreen = false;
   bloomComposer.addPass(new RenderPass(scene, camera));
-  const bloom = new UnrealBloomPass(new THREE.Vector2(1, 1), .62, .55, .85);
+  bloom = new UnrealBloomPass(new THREE.Vector2(1, 1), .62, .55, .85);
   bloomComposer.addPass(bloom);
-  const antialiasedTarget = new THREE.WebGLRenderTarget(1, 1, { type: THREE.HalfFloatType, samples: Math.min(4, renderer.capabilities.maxSamples) });
-  const composer = new EffectComposer(renderer, antialiasedTarget);
+  const antialiasedTarget = new THREE.WebGLRenderTarget(1, 1, { type: THREE.HalfFloatType, samples: hdrSamples });
+  composer = new EffectComposer(renderer, antialiasedTarget);
+  composer.setPixelRatio(1);
   composer.addPass(new RenderPass(scene, camera));
-  const combine = new ShaderPass(new THREE.ShaderMaterial({
+  combine = new ShaderPass(new THREE.ShaderMaterial({
     uniforms: { baseTexture: { value: null }, bloomTexture: { value: null } },
     vertexShader: 'varying vec2 vUv; void main(){vUv=uv;gl_Position=projectionMatrix*modelViewMatrix*vec4(position,1.0);}',
     fragmentShader: `uniform sampler2D baseTexture; uniform sampler2D bloomTexture; varying vec2 vUv;
@@ -161,6 +215,15 @@ function createStudio() {
     depthTest: false, depthWrite: false
   }), 'baseTexture');
   composer.addPass(combine); composer.addPass(new OutputPass());
+  // Premultiply after ACES and sRGB conversion, matching the canvas compositor.
+  composer.addPass(new ShaderPass(new THREE.ShaderMaterial({
+    uniforms: { tDiffuse: { value: null } },
+    vertexShader: 'varying vec2 vUv;void main(){vUv=uv;gl_Position=projectionMatrix*modelViewMatrix*vec4(position,1.0);}',
+    fragmentShader: 'uniform sampler2D tDiffuse;varying vec2 vUv;void main(){vec4 c=texture2D(tDiffuse,vUv);gl_FragColor=vec4(c.rgb*c.a,c.a);}',
+    depthTest: false, depthWrite: false, toneMapped: false
+  })));
+  }
+  createPostProcessing();
   const bloomMaskMaterial = new THREE.MeshBasicMaterial({ color: 0x000000 });
   const controls = new OrbitControls(camera, canvas);
   controls.enablePan = false; controls.enableZoom = false; controls.enableDamping = false;
@@ -194,23 +257,30 @@ function createStudio() {
     { color: new THREE.Color(.45, .28, .65), radius: .021, opacity: .38 },
     { color: new THREE.Color(.18, .72, .88), radius: .024, opacity: .48 }
   ].map((spec) => {
-    const material = new THREE.MeshBasicMaterial({ color: spec.color, transparent: true, opacity: spec.opacity, depthWrite: false, toneMapped: false });
+    const color = spec.color.clone();
+    if (renderPath === 'direct') color.multiplyScalar(1 / Math.max(1, color.r, color.g, color.b));
+    const material = new THREE.MeshBasicMaterial({ color, transparent: true, opacity: spec.opacity, depthWrite: false, toneMapped: false, premultipliedAlpha: renderPath === 'direct' });
     const mesh = new THREE.InstancedMesh(cylinder, material, 640);
     mesh.instanceMatrix.setUsage(THREE.DynamicDrawUsage); mesh.frustumCulled = false; mesh.count = 0;
     chemicalGroup.add(mesh); return { ...spec, mesh, used: 0 };
   });
-  const glowCanvas = document.createElement('canvas'); glowCanvas.width = glowCanvas.height = 128;
-  const gc = glowCanvas.getContext('2d');
-  const gradient = gc.createRadialGradient(64, 64, 0, 64, 64, 64);
-  gradient.addColorStop(0, 'rgba(255,255,255,.62)'); gradient.addColorStop(.13, 'rgba(255,255,255,.3)');
-  gradient.addColorStop(.4, 'rgba(255,255,255,.08)'); gradient.addColorStop(1, 'rgba(255,255,255,0)');
-  gc.fillStyle = gradient; gc.fillRect(0, 0, 128, 128);
-  const glowTexture = new THREE.CanvasTexture(glowCanvas);
+  // Explicit straight RGBA bytes avoid Canvas2D alpha conversion differences.
+  const glowPixels = new Uint8Array(128 * 128 * 4);
+  for (let y = 0; y < 128; y++) for (let x = 0; x < 128; x++) {
+    const offset = (y * 128 + x) * 4, radius = Math.hypot(x - 63.5, y - 63.5) / 63.5;
+    glowPixels[offset] = glowPixels[offset + 1] = glowPixels[offset + 2] = 255;
+    glowPixels[offset + 3] = Math.round(158 * Math.pow(Math.max(0, 1 - radius), 3));
+  }
+  const glowTexture = new THREE.DataTexture(glowPixels, 128, 128, THREE.RGBAFormat);
+  glowTexture.minFilter = glowTexture.magFilter = THREE.LinearFilter;
+  glowTexture.generateMipmaps = false; glowTexture.premultiplyAlpha = false; glowTexture.needsUpdate = true;
   const glows = Array.from({ length: 32 }, () => {
-    const sprite = new THREE.Sprite(new THREE.SpriteMaterial({ map: glowTexture, color: 0x67daee, blending: THREE.AdditiveBlending, transparent: true, depthWrite: false, opacity: .18, toneMapped: false }));
+    // Three r180 SpriteMaterial emits straight RGB (unlike MeshBasicMaterial it
+    // has no premultiplied_alpha_fragment). SRC_ALPHA blending is required here.
+    const sprite = new THREE.Sprite(new THREE.SpriteMaterial({ map: glowTexture, color: 0x67daee, blending: renderPath === 'direct' ? THREE.NormalBlending : THREE.AdditiveBlending, premultipliedAlpha: false, transparent: true, depthWrite: false, opacity: .18, toneMapped: false }));
     sprite.visible = false; chemicalGroup.add(sprite); return sprite;
   });
-  const selectedHalo = new THREE.Mesh(new THREE.SphereGeometry(1, 24, 16), new THREE.MeshBasicMaterial({ color: 0xc9f7ff, transparent: true, opacity: .12, depthWrite: false, blending: THREE.AdditiveBlending }));
+  const selectedHalo = new THREE.Mesh(new THREE.SphereGeometry(1, 24, 16), new THREE.MeshBasicMaterial({ color: 0xc9f7ff, transparent: true, opacity: .12, depthWrite: false, blending: renderPath === 'direct' ? THREE.NormalBlending : THREE.AdditiveBlending, premultipliedAlpha: renderPath === 'direct' }));
   selectedHalo.visible = false; chemicalGroup.add(selectedHalo);
   const matrix = new THREE.Matrix4(), midpoint = new THREE.Vector3(), delta = new THREE.Vector3(), unitY = new THREE.Vector3(0, 1, 0), orientation = new THREE.Quaternion(), scaleVec = new THREE.Vector3();
   const tmpColor = new THREE.Color();
@@ -230,6 +300,7 @@ function createStudio() {
   }
   let state, arrangement = 0, mode = 'auto', elapsed = 0, paused = motionQuery.matches;
   let selected = null, width = 1, height = 1, visible = true, raf = 0, lastTime = 0, lastDraw = 0, orbiting = false, pointerStart = null;
+  let contextLost = false, resumeAfterRestore = false, contextRestores = 0, resizeCount = 0;
   const slider = document.getElementById('arrangement-range');
   const output = document.getElementById('arrangement-output');
   const pauseButton = document.getElementById('field-pause');
@@ -244,7 +315,7 @@ function createStudio() {
   function updateStatus() {
     const c = counts();
     const phase = c.interHBonds && c.interContacts ? 'mixed' : c.interHBonds ? 'hbond' : c.interContacts ? 'contacts' : 'separated';
-    Object.assign(canvas.dataset, { ready: 'true', renderer: 'webgl', phase, hbonds: String(c.hbonds), contacts: String(c.contacts), hbondIntra: String(c.intraHBonds), hbondInter: String(c.interHBonds), contactIntra: String(c.intraContacts), contactInter: String(c.interContacts), mode, arrangement: arrangement.toFixed(2) });
+    Object.assign(canvas.dataset, { ready: String(!contextLost), renderer: 'webgl', renderPath, phase, hbonds: String(c.hbonds), contacts: String(c.contacts), hbondIntra: String(c.intraHBonds), hbondInter: String(c.interHBonds), contactIntra: String(c.intraContacts), contactInter: String(c.interContacts), mode, arrangement: arrangement.toFixed(2) });
     document.body.classList.add('field-ready', 'oligo-ready'); document.body.dataset.fieldPhase = phase;
     const text = (id, value) => { const el = document.getElementById(id); if (el && el.textContent !== value) el.textContent = value; };
     text('hbond-count', String(c.hbonds)); text('contact-count', String(c.contacts));
@@ -347,21 +418,22 @@ function createStudio() {
     camera.near = .1; camera.far = Math.max(200, cameraDistance * 6); camera.updateProjectionMatrix();
   }
   function draw() {
-    if (!hasSized || !visible || document.hidden) return;
+    if (!hasSized || !visible || document.hidden || contextLost) return;
     scene.updateMatrixWorld(true);
+    if (renderPath === 'direct') { renderer.setRenderTarget(null); renderer.render(scene, camera); return; }
     // Only geometric contact markers and their artistic fields bloom. Atoms and
     // bonds occlude the light, but their white specular highlights never glow.
     const saved = atomSets.map((mesh) => mesh.material);
     atomSets.forEach((mesh) => { mesh.material = bloomMaskMaterial; });
     bondMesh.material = bloomMaskMaterial;
-    bloomComposer.render();
-    atomSets.forEach((mesh, i) => { mesh.material = saved[i]; });
-    bondMesh.material = bondMaterial;
-    combine.uniforms.bloomTexture.value = bloomComposer.readBuffer.texture;
+    try { bloomComposer.render(); }
+    finally { atomSets.forEach((mesh, i) => { mesh.material = saved[i]; }); bondMesh.material = bondMaterial; }
+    // This is the bloom-only texture; readBuffer also contains source markers.
+    combine.uniforms.bloomTexture.value = bloom.renderTargetsHorizontal[0].texture;
     composer.render();
   }
   function refresh() { updateGeometry(); draw(); }
-  function running() { return !paused && mode === 'auto' && visible && !document.hidden && !orbiting; }
+  function running() { return !contextLost && !paused && mode === 'auto' && visible && !document.hidden && !orbiting; }
   function frame(now) {
     raf = 0;
     if (!running()) { lastTime = 0; return; }
@@ -428,23 +500,58 @@ function createStudio() {
     if (event.key === 'ArrowDown') spherical.phi = clamp(spherical.phi + .10, .25, Math.PI - .25);
     camera.position.setFromSpherical(spherical).add(controls.target); controls.update(); updateStatus(); draw(); reconcile();
   });
-  function resize() {
+  let lastWidth = 0, lastHeight = 0, lastDpr = 0;
+  function resize(force = false) {
     const rect = viewport.getBoundingClientRect();
-    width = Math.max(1, rect.width); height = Math.max(1, rect.height);
-    const dpr = Math.min(devicePixelRatio || 1, width < 580 ? 1.5 : 1.75);
-    renderer.setPixelRatio(dpr); renderer.setSize(width, height, false);
-    composer.setPixelRatio(dpr); composer.setSize(width, height);
-    bloomComposer.setPixelRatio(dpr); bloomComposer.setSize(width, height);
+    const nextWidth = Math.max(1, Math.round(rect.width)), nextHeight = Math.max(1, Math.round(rect.height));
+    const dpr = Math.min(devicePixelRatio || 1, renderPath === 'direct' ? 1.5 : 1.75);
+    if (contextLost || (!force && nextWidth === lastWidth && nextHeight === lastHeight && dpr === lastDpr)) return;
+    width = nextWidth; height = nextHeight; resizeCount++;
+    // setDrawingBufferSize updates dimensions and DPR in one allocation.
+    renderer.setDrawingBufferSize(width, height, dpr);
+    if (composer) {
+      // Composer target dimensions are physical pixels, so no second DPR resize.
+      composer.setSize(Math.round(width * dpr), Math.round(height * dpr));
+      bloomComposer.setSize(Math.round(width * dpr), Math.round(height * dpr));
+    }
+    lastWidth = width; lastHeight = height; lastDpr = dpr;
     camera.aspect = width / height; camera.updateProjectionMatrix();
     if (!hasSized || Math.abs(camera.aspect - oldAspect) > .04) fitCamera();
     oldAspect = camera.aspect; hasSized = true; draw();
   }
-  new ResizeObserver(resize).observe(viewport);
-  window.addEventListener('resize', resize, { passive: true });
+  let pendingResize = 0;
+  function scheduleResize() {
+    if (pendingResize) return;
+    pendingResize = requestAnimationFrame(() => { pendingResize = 0; resize(); });
+  }
+  new ResizeObserver(scheduleResize).observe(viewport);
+  window.addEventListener('resize', scheduleResize, { passive: true });
   if ('IntersectionObserver' in window) new IntersectionObserver(([entry]) => { visible = entry.isIntersecting; if (visible) draw(); reconcile(); }, { rootMargin: '80px' }).observe(viewport);
   document.addEventListener('visibilitychange', () => { if (!document.hidden) draw(); reconcile(); });
   motionQuery.addEventListener('change', () => { if (motionQuery.matches) { paused = true; updateStatus(); reconcile(); } });
-  canvas.addEventListener('webglcontextlost', (event) => { event.preventDefault(); paused = true; reconcile(); fail('webgl-context-lost'); });
+  canvas.addEventListener('webglcontextlost', (event) => {
+    event.preventDefault(); resumeAfterRestore = !paused; contextLost = true; paused = true;
+    // Context loss already destroys the old GPU allocation. Detach it now;
+    // disposing its old handles after restoration would target a new context.
+    scene.environment = null; environmentTarget = null;
+    // Render-target dispose listeners also belong to the lost context. Detach
+    // the old postprocessing graph instead of resizing/disposal after restore.
+    bloomComposer = null; bloom = null; composer = null; combine = null;
+    reconcile(); fail('webgl-context-lost');
+  });
+  canvas.addEventListener('webglcontextrestored', () => {
+    // Three.js restores GPU state through its own earlier listener. Reuse this
+    // studio and its existing listeners instead of constructing a second scene.
+    contextLost = false; contextRestores++; paused = !resumeAfterRestore;
+    refreshEnvironment();
+    createPostProcessing();
+    atomSets.forEach((mesh) => { mesh.instanceMatrix.needsUpdate = true; });
+    bondMesh.instanceMatrix.needsUpdate = true; if (bondMesh.instanceColor) bondMesh.instanceColor.needsUpdate = true;
+    glowTexture.needsUpdate = true;
+    canvas.hidden = false; if (fallback) fallback.hidden = true;
+    document.body.classList.remove('scene-unavailable');
+    updateGeometry(); resize(true); reconcile();
+  });
 
   function pickableAtoms() {
     scene.updateMatrixWorld(true); const rect = canvas.getBoundingClientRect();
@@ -457,11 +564,11 @@ function createStudio() {
     inspect() {
       const collisions = clashes(state);
       return {
-        renderer: 'webgl', model: model.name, mode, paused, arrangement, orbit: camera.position.toArray(), stericSafe: collisions.length === 0,
+        renderer: 'webgl', renderPath, model: model.name, mode, paused, arrangement, orbit: camera.position.toArray(), stericSafe: collisions.length === 0,
         molecules: state.molecules.map((positions, copy) => ({ copy, atoms: positions.map((xyz, i) => ({ id: atoms[i].id, element: atoms[i].element, xyz, role: atoms[i].role })) })),
         hbonds: state.hbonds.map((h) => ({ scope: h.scope, donor: [h.donorCopy, atoms[h.d].id], hydrogen: [h.donorCopy, atoms[h.h].id], acceptor: [h.acceptorCopy, atoms[h.a].id], hADistance: h.hDistance, dADistance: h.dDistance, angle: h.angle })),
         contacts: state.contacts.map((c) => ({ scope: c.scope, a: [c.aCopy, atoms[c.a].id], b: [c.bCopy, atoms[c.b].id], distance: c.distance })),
-        counts: counts(), clashes: collisions, pickableAtoms: pickableAtoms(), webgl: { version: renderer.capabilities.isWebGL2 ? 2 : 1, drawCalls: renderer.info.render.calls }
+        counts: counts(), clashes: collisions, pickableAtoms: pickableAtoms(), webgl: { version: renderer.capabilities.isWebGL2 ? 2 : 1, drawCalls: renderer.info.render.calls, renderPath, coarsePointer, compactProfile, floatColorRenderable, requestedSamples, samples: renderPath === 'hdr' ? hdrSamples : 0, pixelRatio: renderer.getPixelRatio(), resizeCount, contextLost, contextRestores, postprocessingTargets: renderPath === 'hdr' ? 'RGBA16F' : 'none' }
       };
     }
   });
