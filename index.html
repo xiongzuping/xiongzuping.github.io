@@ -20,11 +20,11 @@ var _hmt = _hmt || [];
   s.parentNode.insertBefore(hm, s);
 })();
 </script>
-<link rel="stylesheet" href="css/interaction-lab.css?v=20261117c">
+<link rel="stylesheet" href="css/oligo-premium.css?v=20261117d">
+<script type="importmap">{"imports":{"three":"./vendor/three/three.module.js","three/addons/":"./vendor/three/addons/"}}</script>
+<link rel="modulepreload" href="vendor/three/three.module.js">
 </head>
 <body>
-<canvas id="peptide-field" aria-hidden="true"></canvas>
-<div class="field-vignette" aria-hidden="true"></div>
 
 <a class="skip-link" href="#about">Skip to content</a>
 
@@ -45,55 +45,48 @@ var _hmt = _hmt || [];
 </nav>
 
 <!-- ================= HERO ================= -->
-<header class="hero" id="home">
+<header class="hero premium-hero" id="home">
   <div class="wrap hero-inner">
     <div class="hero-text">
-      <div class="hero-eyebrow"><span></span> THROUGH-SPACE INTERACTIONS · EMERGENT LIGHT</div>
+      <div class="hero-eyebrow"><span></span> MOLECULAR PHOTOPHYSICS</div>
       <h1>Zuping <span class="grad">Xiong<span class="name-period">.</span></span></h1>
       <div class="name-caption"><span lang="zh-CN">熊祖平</span><span>CHEMISTRY &amp; MATERIALS</span></div>
-      <p class="hero-statement">From through-space interactions<br> to emergent light.</p>
+      <p class="hero-statement">From <span class="keep-term">through-space</span> interactions<br> to emergent light.</p>
       <p class="hero-research">I explore how interactions among atoms shape the optical properties of biological macromolecules and functional materials.</p>
-      <p class="hero-research-zh" lang="zh-CN">探索穿空间相互作用，理解由此涌现的发光。</p>
-      <div class="hero-affiliation">
-        <span class="affiliation-line"></span>
-        <div><a class="jrfs-link" href="https://hkrfa.hk/en/membership/listing/369/" target="_blank" rel="noopener">RGC Junior Research Fellow</a><span>The Hong Kong University of Science and Technology</span></div>
-      </div>
-      <div class="hero-cta">
-        <a class="btn btn-primary" href="#emission">Explore my work <span aria-hidden="true">↗</span></a>
-        <a class="btn btn-text" href="#publications">Publications <span aria-hidden="true">↓</span></a>
-      </div>
-      <div class="hero-more"><a href="https://scholar.google.com/citations?user=pMjAS_4AAAAJ" target="_blank" rel="noopener">Google Scholar ↗</a><a href="mailto:xiongzuping@ust.hk">xiongzuping@ust.hk</a></div>
+      <div class="hero-affiliation"><span class="affiliation-line"></span><div><a class="jrfs-link" href="https://hkrfa.hk/en/membership/listing/369/" target="_blank" rel="noopener">RGC Junior Research Fellow</a><span>The Hong Kong University of Science and Technology</span></div></div>
+      <div class="hero-cta"><a class="btn btn-primary" href="#emission">Explore my work <span aria-hidden="true">↗</span></a><a class="btn btn-text" href="#publications">Publications <span aria-hidden="true">↓</span></a></div>
+      <div class="hero-more"><a href="https://scholar.google.com/citations?user=pMjAS_4AAAAJ" target="_blank" rel="noopener">Google Scholar ↗</a><a href="mailto:xiongzuping@ust.hk">Get in touch ↗</a></div>
     </div>
-    <figure class="field-visual interaction-lab" aria-labelledby="field-caption">
-      <div class="field-topline"><span>COMPETING CONNECTIONS</span><span class="field-live"><i></i> EXPLORE THE ASSEMBLY</span></div>
-      <div class="field-window interaction-window" id="interaction-window" tabindex="0" role="group" aria-label="Interactive molecular assembly. Drag or use left and right arrow keys to rotate. Use the arrangement slider below to explore the presets.">
-        <div class="field-reticle r1" aria-hidden="true"></div><div class="field-reticle r2" aria-hidden="true"></div>
-        <div class="model-identity"><strong>Gly–Sar–Gly</strong><span>Sarcosine-containing tripeptide · neutral reference</span></div>
-        <div class="element-legend" aria-label="Atom colors: carbon gray, nitrogen blue, oxygen red, hydrogen white"><span><i class="carbon"></i>C</span><span><i class="nitrogen"></i>N</span><span><i class="oxygen"></i>O</span><span><i class="hydrogen"></i>H</span></div>
+    <figure class="oligo-visual" aria-labelledby="field-caption">
+      <div class="oligo-topline"><span><i aria-hidden="true"></i> OLIGOPEPTIDE INTERACTIONS</span><span>01 / EXPLORE</span></div>
+      <div class="oligo-stage" id="interaction-window" tabindex="0" role="group" aria-label="Three-dimensional oligopeptide assembly. Drag or use arrow keys to rotate the view. Use the slider below to change the chain arrangement.">
+        <canvas id="oligo-canvas" aria-hidden="true"></canvas>
+        <div id="scene-fallback" class="scene-fallback"><img src="assets/oligo-fallback.png" width="870" height="600" alt="Modeled six-residue Gly–Sar oligopeptide chains with hydrogen-bond and other close-contact indicators."><span class="scene-loading-dot"></span><p>Preparing the molecular scene…</p><small>Six residues. A changing network of contacts.</small></div>
+        <div class="oligo-sequence" aria-label="Glycine, sarcosine, glycine, sarcosine, glycine, sarcosine"><span>Gly</span><i></i><b>Sar</b><i></i><span>Gly</span><i></i><b>Sar</b><i></i><span>Gly</span><i></i><b>Sar</b></div>
         <div class="atom-inspector" id="atom-inspector" aria-live="polite" hidden></div>
-        <div class="interaction-hint">Drag to rotate · Tap an atom <span>or use the slider ↓</span></div>
-        <div class="interaction-limit" id="interaction-limit" role="status"></div>
+        <div class="oligo-gesture"><span aria-hidden="true">⤢</span> Drag to rotate · Select an atom</div>
+        <div class="oligo-atom-key" aria-label="Atom colors"><span><i class="carbon"></i>C</span><span><i class="nitrogen"></i>N</span><span><i class="oxygen"></i>O</span><span><i class="hydrogen"></i>H</span></div>
+        <div id="interaction-limit" class="sr-only" role="status"></div>
       </div>
-      <div class="field-console">
-        <div class="interaction-modes" role="group" aria-label="Assembly arrangement">
-          <button type="button" data-lab-mode="auto" aria-pressed="true">↻ Auto</button>
-          <button type="button" data-lab-mode="hbond" aria-pressed="false">H-bond pose</button>
-          <button type="button" data-lab-mode="contacts" aria-pressed="false">Close-contact pose</button>
-        </div>
-        <div class="interaction-legend"><span><i aria-hidden="true"></i>H-bond geometry <b id="hbond-count">–</b></span><span><i class="contact-key" aria-hidden="true"></i>Other O/N contacts <b id="contact-count">–</b></span></div>
-        <div class="contact-scope" id="contact-scope">Contacts within and between chains</div>
-        <label class="arrangement-label" for="arrangement-range">Rearrange the assembly <output id="arrangement-output" for="arrangement-range">0%</output></label>
-        <input class="arrangement-range" id="arrangement-range" type="range" min="0" max="100" step="1" value="0" aria-describedby="arrangement-note">
-        <div class="arrangement-ends" aria-hidden="true"><span>H-bond alignment</span><span>Other close contacts</span></div>
-        <div class="field-toolbar"><div class="field-status"><i aria-hidden="true"></i><span id="field-phase">Molecular arrangement</span></div><div class="field-controls"><button id="field-replay" type="button">↻ Reset</button><button id="field-pause" type="button" aria-pressed="false">Pause</button></div></div>
-        <p class="interaction-status" id="arrangement-note">Changing chain packing redistributes hydrogen bonds and other close N/O contacts. <strong>Watch them compete — and coexist.</strong></p>
+      <div class="oligo-dock">
+        <div class="dock-heading"><div class="dock-title">A shifting balance<span id="field-phase">Hydrogen bonds &amp; other close contacts</span></div><div class="field-controls"><button id="field-pause" type="button" aria-pressed="false" aria-label="Pause animation">Pause</button><button id="field-replay" type="button" aria-label="Reset the molecular view and arrangement">↻ Reset</button></div></div>
+        <div class="dock-slider"><span>H-bond alignment</span><label class="sr-only" for="arrangement-range">Change the relative arrangement of the oligopeptide chains</label><input id="arrangement-range" class="arrangement-range" type="range" min="0" max="100" value="0" step="1" aria-describedby="arrangement-note"><span>Other contacts</span><output id="arrangement-output" class="sr-only" for="arrangement-range">0</output></div>
+        <div class="dock-legend"><span><i class="hbond-key"></i>Hydrogen bonds <b id="hbond-count">–</b></span><span><i class="contact-key"></i>Other N/O contacts <b id="contact-count">–</b></span><span class="dock-note">Compete. Coexist. Reorganize.</span></div>
       </div>
-      <figcaption id="field-caption">Gly–Sar–Gly reference model · Contact geometry and glow are illustrative.</figcaption>
-      <details class="interaction-science"><summary>About this molecular illustration</summary><p>The central Sar residue is N-methylated and has no N–H donor. The remaining Gly amide N–H can donate a hydrogen bond; amide nitrogens are not acceptors. Atom connectivity and reference coordinates come from PubChem CID 23422785. Assembly poses are constructed for exploring geometry, not measured crystal packing, a molecular-dynamics trajectory or an equilibrium calculation. Hydrogen bonds are themselves heteroatom interactions; the purple dotted lines identify <em>other</em> O/N close contacts. Neither the contact count nor the glow is an energy, emission intensity or proof of electronic coupling.</p><p>Each chain keeps its reference conformation, so contacts within a chain remain fixed while contacts between chains can change. Directly bonded atoms and nearby covalent neighbours are excluded from the intrachain contact display. The geometric display filters are H···A ≤ 2.6 Å, D···A ≤ 3.5 Å and D–H···A ≥ 140° for hydrogen bonds, and 2.7–3.7 Å for other N/O contacts; these are visualization choices, not universal interaction definitions.</p><p><a href="https://pubchem.ncbi.nlm.nih.gov/compound/23422785" target="_blank" rel="noopener">Molecular reference: PubChem</a> · <a href="https://doi.org/10.1021/acsmaterialslett.4c01182" target="_blank" rel="noopener">Related research on competing interactions</a> (different molecular system).</p></details>
-      <noscript><p class="field-noscript">Enable JavaScript to explore the molecular arrangements.</p></noscript>
+      <figcaption id="field-caption">Six-residue oligopeptide · Modeled conformation · Illustrative light effects</figcaption>
+      <details class="interaction-science"><summary>Explore the model</summary>
+        <div class="interaction-modes" role="group" aria-label="Preset molecular arrangements"><button type="button" data-lab-mode="auto" aria-pressed="true">Auto</button><button type="button" data-lab-mode="hbond" aria-pressed="false">Hydrogen-bond pose</button><button type="button" data-lab-mode="contacts" aria-pressed="false">Other-contact pose</button></div>
+        <p id="arrangement-note">Changing chain packing redistributes hydrogen bonds and other close N/O contacts. Both can coexist. The slider explores illustrative arrangements, not an energy scale.</p>
+        <p class="contact-scope" id="contact-scope">Contacts within and between chains</p>
+        <p>The model is the sarcosine-containing hexapeptide Gly–Sar–Gly–Sar–Gly–Sar, C₁₅H₂₆N₆O₇. Sar amide nitrogens are N-methylated and have no N–H donor. Internal Gly amide N–H groups can donate hydrogen bonds; amide nitrogens are not acceptors.</p>
+        <p>The neutral single-chain conformation is computationally modeled. Two-chain arrangements and light effects are explanatory illustrations, not experimental crystal packing, a molecular-dynamics trajectory, calculated interaction energies or measured emission. Each chain keeps its conformation as the relative packing changes.</p>
+        <p>Hydrogen bonds are themselves through-space interactions. Cyan dashes show selected D–H···A geometries; violet dots show other close N/O contacts, without asserting electronic coupling. Covalently connected near-neighbours are excluded. Display filters: H···A ≤ 2.6 Å, D···A ≤ 3.5 Å and D–H···A ≥ 140°; other N/O contacts 2.7–3.7 Å.</p>
+        <p><a href="https://www.rdkit.org/docs/GettingStartedInPython.html#working-with-3d-molecules" target="_blank" rel="noopener">Conformer modeling: RDKit</a> · <a href="https://doi.org/10.1021/acsmaterialslett.4c01182" target="_blank" rel="noopener">Related research on competing interactions</a> (different molecular system).</p>
+      </details>
+      <noscript><style>.scene-loading-dot,#scene-fallback p,#scene-fallback small,.oligo-dock,.interaction-modes{display:none}</style><p class="field-noscript">This six-residue model illustrates hydrogen bonds and other contacts. Enable JavaScript to rotate it and explore different arrangements.</p></noscript>
     </figure>
   </div>
-  <div class="wrap hero-bottom"><span>PERSONAL ACADEMIC WEBSITE</span><a href="#about">Discover more <span aria-hidden="true">↓</span></a><span>HONG KONG SAR, CHINA</span></div>
+  <div class="wrap hero-bottom"><span>ATOMS → INTERACTIONS → OPTICAL PROPERTIES</span><a href="#about">Discover my research <span aria-hidden="true">↓</span></a><span>HONG KONG · HKUST</span></div>
 </header>
 
 <!-- ================= STATS ================= -->
@@ -1232,7 +1225,7 @@ var _hmt = _hmt || [];
 <script src="js/counter-config.js"></script>
 <script src="js/main.js"></script>
 <script src="js/publications.js"></script>
-<script src="js/interaction-model.js?v=20261117c"></script>
-<script src="js/interaction-lab.js?v=20261117c"></script>
+<script src="js/oligo-model.js?v=20261117d"></script>
+<script type="module" src="js/oligo-scene.js?v=20261117d"></script>
 </body>
 </html>
