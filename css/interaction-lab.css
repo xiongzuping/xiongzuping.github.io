@@ -1,0 +1,49 @@
+/* Interactive molecular arrangements; labels are qualitative, never energy scales. */
+.interaction-window { pointer-events:auto; touch-action:pan-y; cursor:grab; }
+.interaction-window:active { cursor:grabbing; }
+.interaction-hint { position:absolute; bottom:16px; left:15px; color:#acc5eb; font-size:10px; letter-spacing:.2px; pointer-events:none; }
+.interaction-hint span { color:#7e9fc9; margin-left:10px; }
+.interaction-modes { display:flex; flex-wrap:wrap; gap:6px; margin-bottom:18px; }
+.interaction-modes button { background:#7b9ff509; border:1px solid #8eade72b; border-radius:5px; padding:8px 12px; color:#9eb7df; font:11px var(--font); min-height:38px; cursor:pointer; transition:background .25s,border-color .25s,color .25s; }
+.interaction-modes button[aria-pressed="true"] { color:#e5eeff; background:#86a9ff23; border-color:#9fbfff70; box-shadow:inset 0 0 14px #9ec8ff09; }
+.interaction-modes button:hover { border-color:#b2caff88; color:#e0ebff; }
+.interaction-legend { display:flex; justify-content:space-between; gap:15px; font-size:10px; color:#b7cae7; }
+.interaction-legend span { display:inline-flex; align-items:center; gap:7px; }
+.interaction-legend i { display:inline-block; width:16px; height:0; border-top:2px dashed #7be3ff; }
+.interaction-legend .contact-key { border-color:#df99ff; border-top-style:dotted; }
+.arrangement-label { margin:19px 0 9px; display:flex; justify-content:space-between; gap:12px; font-size:10px; color:#b5c6df; }
+.arrangement-label output { color:#a7d7ff; }
+.arrangement-range { width:100%; height:5px; accent-color:#b4ccff; cursor:ew-resize; margin:10px 0; border-radius:5px; appearance:none; background:linear-gradient(90deg,#75d9f8,#9dbeff 45%,#d597fa); }
+.arrangement-range::-webkit-slider-thumb { appearance:none; width:16px; height:16px; border:2px solid #f0f5ff; background:#a5bfff; border-radius:50%; box-shadow:0 0 16px #a1b9ff77; }
+.arrangement-range::-moz-range-thumb { width:13px; height:13px; border:2px solid #f0f5ff; background:#a5bfff; border-radius:50%; box-shadow:0 0 16px #a1b9ff77; }
+.arrangement-ends { display:flex; justify-content:space-between; gap:16px; font-size:9px; color:#839bbf; margin-bottom:6px; }
+.interaction-status { border-top:1px solid #8faeec1d; margin-top:15px; padding-top:13px; font-size:11px; color:#bbd0ef; line-height:1.6; }
+.interaction-status strong { font-weight:500; color:#daebff; }
+.atom-inspector { position:absolute; pointer-events:none; top:18px; right:12px; min-width:110px; max-width:200px; border:1px solid #aec8ff3b; border-radius:6px; background:#061025e8; padding:10px 13px; color:#cbdefa; font-size:11px; backdrop-filter:blur(10px); }
+.atom-inspector[hidden] { display:none; }.atom-inspector small { display:block; color:#8fa8cc; margin-top:4px; font-size:9px; line-height:1.6; }
+.interaction-lab .field-window { height:420px; }
+.model-identity { position:absolute; left:16px; top:28px; pointer-events:none; }
+.model-identity strong { display:block; color:#ddeaff; font-size:17px; font-weight:500; letter-spacing:-.3px; }
+.model-identity span { display:block; color:#90abcf; font-size:10px; margin-top:6px; }
+.element-legend { position:absolute; right:15px; top:29px; display:flex; gap:9px; font-size:9px; color:#b6c7de; pointer-events:none; }
+.element-legend span { display:inline-flex; align-items:center; gap:4px; }.element-legend i { width:5px; height:5px; border-radius:50%; background:#97a9ba; }.element-legend .nitrogen { background:#3c85f9; }.element-legend .oxygen { background:#f24c5b; }.element-legend .hydrogen { background:#e1e8f1; }
+.interaction-limit { position:absolute; bottom:40px; left:16px; font-size:10px; color:#e2c39e; pointer-events:none; }
+.interaction-lab .field-console { padding:18px 20px; }
+.interaction-modes { margin-bottom:16px; }
+.interaction-legend b { font-size:13px; color:#e3f1ff; font-weight:500; min-width:12px; text-align:right; }
+.contact-scope { color:#8fa8cc; font-size:9px; margin-top:10px; letter-spacing:.15px; }
+.interaction-lab .interaction-status { margin-bottom:0; font-size:10px; line-height:1.8; }
+.interaction-lab .field-toolbar { margin-top:13px; }
+.interaction-lab .field-status { font-size:11px; }
+.interaction-lab button:focus-visible,.interaction-lab input:focus-visible,.interaction-science summary:focus-visible { outline:2px solid #b3eaff; outline-offset:4px; }
+.interaction-science { color:#8fa7c7; margin:8px 4px 0; font-size:10px; line-height:1.8; }
+.interaction-science summary { cursor:pointer; width:fit-content; color:#acc7e9; }
+.interaction-science p { margin-top:8px; max-width:58em; }
+.interaction-science a { color:#bcd9ff; text-decoration:underline; text-underline-offset:3px; }
+.interaction-science[open] { background:#061023e8; padding:10px 13px; border:1px solid #8faeec24; border-radius:6px; }
+@media(max-width:760px) {
+ .interaction-modes { gap:5px; }.interaction-modes button { min-height:44px; padding:8px 9px; font-size:10px; }.interaction-hint { font-size:9px; bottom:11px; left:4px; }.interaction-hint span { margin-left:6px; }
+ .interaction-legend { font-size:9px; gap:10px; }.arrangement-label { font-size:10px; }.arrangement-range { margin:17px 0; }.atom-inspector { top:12px; right:4px; padding:8px 10px; min-width:95px; }
+ .interaction-lab .field-window { height:350px; }.interaction-lab .field-console { padding:14px; }.model-identity { left:7px; top:24px; }.model-identity strong { font-size:15px; }.model-identity span { font-size:9px; max-width:225px; line-height:1.7; }.element-legend { top:28px; right:4px; gap:6px; font-size:8px; }.interaction-limit { left:7px; font-size:9px; }
+ .interaction-lab .field-status { font-size:10px; }.interaction-lab .field-controls { gap:4px; }.interaction-lab .field-controls button { padding:8px 9px; min-width:49px; }
+}

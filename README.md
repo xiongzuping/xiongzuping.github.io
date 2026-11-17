@@ -2,11 +2,25 @@
 
 多肽组装主题静态个人学术主页。线上地址：**https://xiongzuping.com/**（旧地址 xiongzuping.github.io 自动 301 跳转到新域名）。
 
-## 2026-11-17 动态发光版（当前版本）
+## 2026-11-17 含肌氨酸短肽交互版（当前版本）
+
+首屏使用含肌氨酸的三肽 **Gly–Sar–Gly**，可通过预设、滑块和水平拖动改变两条链的相对排列。青色虚线显示符合几何筛选条件的氢键，紫色点线显示其他 O/N 近接；独立统计允许两类接触共存。中央 Sar 单元的 N-甲基化位置明确标注，不给该酰胺氮虚构 N–H 供体或氢键受体。
+
+- `js/interaction-model.js`：PubChem CID 23422785 的中性参考构象及全部 27 个原子、26 个共价键、3 个羰基双键；显示用两链排列及原子角色。
+- `js/interaction-lab.js`：原子级渲染、刚体变换、几何接触检测、滑块、拖动、原子检查及暂停；尊重减少动态效果设置。
+- `css/interaction-lab.css`：互动面板、原子颜色图例、模型注释和移动端布局；沿用原有正文主题。
+
+**科学边界：** 结构连接和单链坐标来自 [PubChem](https://pubchem.ncbi.nlm.nih.gov/compound/23422785)；两链排列是为解释接触几何构造的示意，不是实验晶体堆积、分子动力学轨迹或平衡能量计算。氢键筛选采用 H···A≤2.6 Å、D···A≤3.5 Å、D–H···A≥140°；其他 O/N 近接采用 2.7–3.7 Å。这些阈值仅服务于显示，并非通用作用定义。共价近邻不计入链内非共价接触，两个链保持刚体，链内接触不随拖动伪造变化。其他近接也不直接等同于已证实的孤对电子耦合。光晕是视觉效果，不是实测发光强度或波长。
+
+参考的相关竞争研究 [ACS Materials Letters 2024, DOI 10.1021/acsmaterialslett.4c01182](https://doi.org/10.1021/acsmaterialslett.4c01182) 使用不同分子体系；本页面不声称 Gly–Sar–Gly 是该论文的实验模型。完整说明在首屏的 “About this molecular illustration” 中。
+
+下方保留历次设计记录。当前页面不加载旧版 `peptide-field.js` 或 `peptide-assembly.js`。
+
+## 2026-11-17 动态发光版（历史记录）
 
 全屏背景展示不同示意序列的肽链接近、形成分子间接触、渐变发光、分离变暗的 18 秒循环。背景使用黑蓝底色、青蓝/紫色光效；正文区域降低背景强度以保持可读性。暂停和重播按钮控制整个背景，系统减少动态模式显示静态聚集状态。
 
-- `js/peptide-field.js`：当前动态背景；残基尺度曲线、距离驱动的接触和发光、缓存柔光、鼠标视差及隐藏标签页暂停。
+- `js/peptide-field.js`：该历史版本的动态背景；残基尺度曲线、距离驱动的接触和发光、缓存柔光、鼠标视差及隐藏标签页暂停。
 - `css/emissive-theme.css`：在已有布局上覆盖当前光效主题；首屏语句为 “From through-space interactions to emergent light.”。
 - 中英文栏目使用直接对应的标题：About Me / 个人简介、Research Interests / 研究方向、Honors & Awards / 荣誉与奖励、Life in Pictures / 生活剪影、Contact / 联系方式等。
 

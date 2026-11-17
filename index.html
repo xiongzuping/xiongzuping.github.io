@@ -20,6 +20,7 @@ var _hmt = _hmt || [];
   s.parentNode.insertBefore(hm, s);
 })();
 </script>
+<link rel="stylesheet" href="css/interaction-lab.css?v=20261117c">
 </head>
 <body>
 <canvas id="peptide-field" aria-hidden="true"></canvas>
@@ -63,16 +64,33 @@ var _hmt = _hmt || [];
       </div>
       <div class="hero-more"><a href="https://scholar.google.com/citations?user=pMjAS_4AAAAJ" target="_blank" rel="noopener">Google Scholar ↗</a><a href="mailto:xiongzuping@ust.hk">xiongzuping@ust.hk</a></div>
     </div>
-    <figure class="field-visual" aria-labelledby="field-caption">
-      <div class="field-topline"><span>WHEN PEPTIDES MEET</span><span class="field-live"><i></i> INTERACTION FIELD</span></div>
-      <div class="field-window" aria-hidden="true"><div class="field-reticle r1"></div><div class="field-reticle r2"></div><span class="field-note">Different sequences. New interactions.</span></div>
-      <div class="field-console">
-        <div class="field-process"><span data-step="dispersed">01 Approach</span><i></i><span data-step="contact">02 Interact</span><i></i><span data-step="emissive">03 Emit</span></div>
-        <div class="field-toolbar"><div class="field-status"><i></i><span id="field-phase">Emission</span><span class="field-glow-label">GLOW <b id="field-intensity">Bright</b></span></div><div class="field-controls"><button id="field-replay" type="button">↻ Replay</button><button id="field-pause" type="button" aria-pressed="false">Pause</button></div></div>
-        <div class="emission-track" id="field-emission" aria-hidden="true"><span></span></div>
+    <figure class="field-visual interaction-lab" aria-labelledby="field-caption">
+      <div class="field-topline"><span>COMPETING CONNECTIONS</span><span class="field-live"><i></i> EXPLORE THE ASSEMBLY</span></div>
+      <div class="field-window interaction-window" id="interaction-window" tabindex="0" role="group" aria-label="Interactive molecular assembly. Drag or use left and right arrow keys to rotate. Use the arrangement slider below to explore the presets.">
+        <div class="field-reticle r1" aria-hidden="true"></div><div class="field-reticle r2" aria-hidden="true"></div>
+        <div class="model-identity"><strong>Gly–Sar–Gly</strong><span>Sarcosine-containing tripeptide · neutral reference</span></div>
+        <div class="element-legend" aria-label="Atom colors: carbon gray, nitrogen blue, oxygen red, hydrogen white"><span><i class="carbon"></i>C</span><span><i class="nitrogen"></i>N</span><span><i class="oxygen"></i>O</span><span><i class="hydrogen"></i>H</span></div>
+        <div class="atom-inspector" id="atom-inspector" aria-live="polite" hidden></div>
+        <div class="interaction-hint">Drag to rotate · Tap an atom <span>or use the slider ↓</span></div>
+        <div class="interaction-limit" id="interaction-limit" role="status"></div>
       </div>
-      <figcaption id="field-caption">Conceptual peptide interactions · Residue-scale model · Illustrative emission colors.</figcaption>
-      <noscript><p class="field-noscript">Enable JavaScript to explore peptide approach, interaction and emission.</p></noscript>
+      <div class="field-console">
+        <div class="interaction-modes" role="group" aria-label="Assembly arrangement">
+          <button type="button" data-lab-mode="auto" aria-pressed="true">↻ Auto</button>
+          <button type="button" data-lab-mode="hbond" aria-pressed="false">H-bond pose</button>
+          <button type="button" data-lab-mode="contacts" aria-pressed="false">Close-contact pose</button>
+        </div>
+        <div class="interaction-legend"><span><i aria-hidden="true"></i>H-bond geometry <b id="hbond-count">–</b></span><span><i class="contact-key" aria-hidden="true"></i>Other O/N contacts <b id="contact-count">–</b></span></div>
+        <div class="contact-scope" id="contact-scope">Contacts within and between chains</div>
+        <label class="arrangement-label" for="arrangement-range">Rearrange the assembly <output id="arrangement-output" for="arrangement-range">0%</output></label>
+        <input class="arrangement-range" id="arrangement-range" type="range" min="0" max="100" step="1" value="0" aria-describedby="arrangement-note">
+        <div class="arrangement-ends" aria-hidden="true"><span>H-bond alignment</span><span>Other close contacts</span></div>
+        <div class="field-toolbar"><div class="field-status"><i aria-hidden="true"></i><span id="field-phase">Molecular arrangement</span></div><div class="field-controls"><button id="field-replay" type="button">↻ Reset</button><button id="field-pause" type="button" aria-pressed="false">Pause</button></div></div>
+        <p class="interaction-status" id="arrangement-note">Changing chain packing redistributes hydrogen bonds and other close N/O contacts. <strong>Watch them compete — and coexist.</strong></p>
+      </div>
+      <figcaption id="field-caption">Gly–Sar–Gly reference model · Contact geometry and glow are illustrative.</figcaption>
+      <details class="interaction-science"><summary>About this molecular illustration</summary><p>The central Sar residue is N-methylated and has no N–H donor. The remaining Gly amide N–H can donate a hydrogen bond; amide nitrogens are not acceptors. Atom connectivity and reference coordinates come from PubChem CID 23422785. Assembly poses are constructed for exploring geometry, not measured crystal packing, a molecular-dynamics trajectory or an equilibrium calculation. Hydrogen bonds are themselves heteroatom interactions; the purple dotted lines identify <em>other</em> O/N close contacts. Neither the contact count nor the glow is an energy, emission intensity or proof of electronic coupling.</p><p>Each chain keeps its reference conformation, so contacts within a chain remain fixed while contacts between chains can change. Directly bonded atoms and nearby covalent neighbours are excluded from the intrachain contact display. The geometric display filters are H···A ≤ 2.6 Å, D···A ≤ 3.5 Å and D–H···A ≥ 140° for hydrogen bonds, and 2.7–3.7 Å for other N/O contacts; these are visualization choices, not universal interaction definitions.</p><p><a href="https://pubchem.ncbi.nlm.nih.gov/compound/23422785" target="_blank" rel="noopener">Molecular reference: PubChem</a> · <a href="https://doi.org/10.1021/acsmaterialslett.4c01182" target="_blank" rel="noopener">Related research on competing interactions</a> (different molecular system).</p></details>
+      <noscript><p class="field-noscript">Enable JavaScript to explore the molecular arrangements.</p></noscript>
     </figure>
   </div>
   <div class="wrap hero-bottom"><span>PERSONAL ACADEMIC WEBSITE</span><a href="#about">Discover more <span aria-hidden="true">↓</span></a><span>HONG KONG SAR, CHINA</span></div>
@@ -1214,6 +1232,7 @@ var _hmt = _hmt || [];
 <script src="js/counter-config.js"></script>
 <script src="js/main.js"></script>
 <script src="js/publications.js"></script>
-<script src="js/peptide-field.js?v=20261117b"></script>
+<script src="js/interaction-model.js?v=20261117c"></script>
+<script src="js/interaction-lab.js?v=20261117c"></script>
 </body>
 </html>
