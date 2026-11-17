@@ -22,10 +22,18 @@ var _hmt = _hmt || [];
 </script>
 <link rel="stylesheet" href="css/oligo-premium.css?v=20261118f">
 <link rel="stylesheet" href="css/readability.css?v=20261118g">
+<link rel="stylesheet" href="css/chemical-atmosphere.css?v=20261118h">
 <script type="importmap">{"imports":{"three":"./vendor/three/three.module.js","three/addons/":"./vendor/three/addons/"}}</script>
 <link rel="modulepreload" href="vendor/three/three.module.js">
 </head>
 <body>
+
+<div class="chemical-atmosphere" id="chemical-atmosphere" aria-hidden="true" data-motion="off">
+  <div class="chem-light chem-light-cyan"></div><div class="chem-light chem-light-violet"></div>
+  <div class="chem-lattice"></div>
+  <div class="chem-trace chem-trace-one"></div><div class="chem-trace chem-trace-two"></div>
+  <i class="chem-glint chem-glint-one"></i><i class="chem-glint chem-glint-two"></i>
+</div>
 
 <a class="skip-link" href="#about">Skip to content</a>
 
@@ -1228,5 +1236,6 @@ var _hmt = _hmt || [];
 <script src="js/publications.js"></script>
 <script src="js/oligo-model.js?v=20261117d"></script>
 <script type="module" src="js/oligo-scene.js?v=20261118f"></script>
+<script src="js/chemical-atmosphere.js?v=20261118h" defer></script>
 </body>
 </html>
