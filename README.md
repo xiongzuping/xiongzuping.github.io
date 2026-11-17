@@ -1,13 +1,25 @@
 # Zuping Xiong — Personal Academic Website
 
-深色科技风静态个人学术主页。线上地址：**https://xiongzuping.com/**（旧地址 xiongzuping.github.io 自动 301 跳转到新域名）。
+多肽组装主题静态个人学术主页。线上地址：**https://xiongzuping.com/**（旧地址 xiongzuping.github.io 自动 301 跳转到新域名）。
+
+## 2026-11-17 视觉升级
+
+首屏为深墨绿背景、青绿/暖金/珊瑚色的交互式多肽结构。桌面双栏、手机纵向布局；首屏结构可暂停、重播及鼠标拖动。全部论文、成果视频、相册、学术活动、联系方式及统计配置保留。
+
+- `css/peptide-theme.css`：新版排版、配色和响应式样式，覆盖原基础样式。
+- `js/peptide-assembly.js`：无外部依赖的 Canvas 结构可视化，约 30 fps，屏外/隐藏页面暂停；尊重系统减少动态效果的设置。
+- `assets/peptide-fallback.svg`：相同结构坐标生成的静态后备图；JavaScript 不可用时仍可见。
+
+**结构来源与边界：** 采用 [PDB 9H7U](https://www.rcsb.org/structure/9H7U) 中央层 18 条链的 162 个 Cα 坐标，按每层升高 4.77 Å、扭转 −0.64° 沿轴传播为 21 个显示层。轨迹连接相邻 Cα，表示主链走向，不是直接 Cα–Cα 共价键。展示局部代表通道，并非完整七孔模型。运动为刚体接近的解释性编排，不代表实验测得的生长路径。颜色和高光用于结构辨识，不表示实际发光。网页可见图注引用 Gačanin et al., *Nature* (2026), DOI [10.1038/s41586-026-11016-2](https://doi.org/10.1038/s41586-026-11016-2)；该参考结构不是主页作者的研究成果。
+
+本项目为静态站点，无需安装构建依赖。预览可在仓库目录运行 `python -m http.server 8000`。
 
 ## 文件结构
 
 ```
 index.html          页面内容（全部文案、论文条目、图片路径都在这里）
 css/style.css       深色科技风设计系统（颜色、卡片、动效）
-js/main.js          交互脚本（星空、滚动动效、画廊、Tab 切换）
+js/main.js          交互脚本（滚动动效、画廊、Tab 切换）
 CNAME               自定义域名绑定（内容为 xiongzuping.com，勿删）
 assets/             图片
   portrait.jpg      头像
