@@ -1,0 +1,115 @@
+/* Readable type across the existing desktop and mobile layouts. */
+body { font-size:17px; }
+.logo { font-size:20px; }
+.logo .zh { font-size:13px; }
+.nav-links a { font-size:15px; }
+.hero-eyebrow { font-size:12px; letter-spacing:1.2px; }
+.name-caption { font-size:12px; letter-spacing:.8px; flex-wrap:wrap; }
+.name-caption span:first-child { font-size:18px; }
+.premium-hero .hero-research { font-size:17px; line-height:1.8; max-width:390px; }
+.hero-affiliation a { font-size:15px; }
+.hero-affiliation div>span { font-size:14px; line-height:1.6; }
+.btn,.hero-cta .btn,.btn-text { font-size:15px; min-height:46px; }
+.hero-more a { font-size:14px; }
+.hero-bottom { font-size:12px; letter-spacing:.5px; flex-wrap:wrap; }
+.hero-bottom a { font-size:14px; }
+
+.oligo-topline,.oligo-topline>span:last-child { font-size:12px; letter-spacing:1px; }
+.oligo-topline { flex-wrap:wrap; gap:8px 16px; }
+.oligo-sequence { font-size:14px; }
+.oligo-gesture,.oligo-atom-key { font-size:12px; }
+.oligo-atom-key { gap:14px; }
+.dock-title { font-size:22px; line-height:1.4; }
+.dock-title>span { font-size:14px; line-height:1.6; max-width:none; }
+.oligo-dock .field-controls button { font-size:14px; min-height:44px; padding:8px 14px; }
+.dock-slider>span { font-size:13px; }
+.dock-legend,.dock-legend b { font-size:13px; }
+.dock-legend .dock-note { font-size:12px; }
+.oligo-visual figcaption { font-size:13px; line-height:1.75; color:#9bafbc; }
+.interaction-science { font-size:16px; line-height:1.8; }
+.interaction-science summary { font-size:14px; padding:5px 0; }
+.interaction-modes button { font-size:14px; min-height:44px; }
+.atom-inspector { font-size:14px; line-height:1.65; max-width:270px; }
+.scene-fallback { font-size:16px; }
+.scene-fallback small,.field-noscript { font-size:14px; }
+
+.stat .lab { font-size:15px; line-height:1.6; }
+.section-head .kicker { font-size:13px; letter-spacing:1.7px; }
+.section-title .zh,.section-title .zh-block { font-size:17px; line-height:1.65; }
+.section-sub,.section-sub.hl,.about-text,.about-text p { font-size:17px; line-height:1.85; }
+.profile-mini strong { font-size:22px; }
+.profile-mini span,.profile-mini a { font-size:15px; }
+.info-row { font-size:16px; }
+.info-row .k { font-size:14px; letter-spacing:.4px; }
+.info-row .v { font-size:16px; min-width:0; overflow-wrap:anywhere; }
+.res-card h3 { font-size:19px; }
+.res-card p { font-size:16px; line-height:1.8; }
+.honor .year { font-size:14px; letter-spacing:.3px; }
+.honor .body { min-width:0; }
+.honor .body h4,.acad-item h4 { font-size:18px; line-height:1.5; }
+.honor .body .sub,.honor .body .zh,.acad-item p,.acad-item a.lk { font-size:15px; line-height:1.75; }
+.pub-tab { font-size:16px; }
+.pub-tab .cnt { font-size:14px; }
+.paper-title { font-size:19px; line-height:1.55; overflow-wrap:anywhere; }
+.paper-authors { font-size:15px; line-height:1.8; }
+.paper-meta,.paper-meta a.doi,.paper-links a,.legend { font-size:14px; }
+.paper-meta a.doi { overflow-wrap:anywhere; }
+.tag { font-size:12px; letter-spacing:.3px; }
+.paper-fig .paper-ph,.paper-fig .paper-ph span { font-size:13px; }
+.emit-name,.emit-name.emit-hl { font-size:19px; }
+.emit-name .zh { font-size:15px; }
+.emit-sub { font-size:15px; line-height:1.75; }
+.emit-medal { font-size:13px; letter-spacing:.5px; }
+.emit-vs,.emit-loop { font-size:13px; }
+.academic-caption,.members-fig figcaption { font-size:15px; line-height:1.7; }
+.g-item .cap,.lightbox .lb-cap { font-size:14px; line-height:1.6; }
+.c-item .k { font-size:14px; letter-spacing:.8px; }
+.c-item .v { font-size:17px; }
+.form label { font-size:15px; }
+.form input,.form textarea { font-size:16px; line-height:1.6; }
+.form-note,footer,footer .motto,.footer-index,footer .site-counter,footer .sc-num { font-size:14px; }
+
+@media(max-width:1150px) {
+  .dock-heading { flex-wrap:wrap; gap:12px; }
+  .dock-title { flex:1 1 200px; }
+  .oligo-dock .field-controls { margin-left:auto; }
+  .dock-slider { grid-template-columns:1fr 1fr; gap:5px 12px; }
+  .dock-slider .arrangement-range { grid-column:1/-1; grid-row:2; margin:12px 0; }
+}
+@media(max-width:900px) {
+  body { font-size:16px; }
+  .hero-eyebrow { font-size:12px; }
+  .premium-hero .hero-research { font-size:16px; max-width:none; }
+  .hero-affiliation a { font-size:15px; }
+  .hero-affiliation div>span { font-size:14px; }
+  .oligo-topline,.oligo-topline>span:last-child { font-size:12px; letter-spacing:.5px; }
+  .oligo-sequence { font-size:13px; }
+  .oligo-gesture { font-size:12px; bottom:43px; }
+  .oligo-atom-key { font-size:12px; bottom:18px; }
+  .dock-title { font-size:21px; }
+  .dock-title>span { font-size:13px; }
+  .dock-legend { gap:8px 16px; }
+  .oligo-visual figcaption { font-size:13px; }
+  .atom-inspector { font-size:14px; max-width:245px; }
+  .section-sub,.section-sub.hl,.about-text,.about-text p { font-size:16px; }
+  .res-card h3 { font-size:18px; }
+  .paper-title { font-size:18px; }
+  .paper-authors { font-size:14px; }
+  .stat .lab { font-size:14px; }
+  .footer-index { gap:14px 22px; }
+}
+@media(max-width:600px) {
+  .logo { font-size:18px; }
+  .logo .zh { font-size:12px; }
+  .hero-cta { flex-wrap:wrap; }
+  .hero-bottom { gap:10px 20px; }
+  .oligo-dock { padding:18px 16px; }
+  .oligo-dock .field-controls { margin-left:0; }
+  .interaction-science[open] { padding:16px; }
+  .info-row { flex-wrap:wrap; gap:4px 12px; }
+  .info-row .v { flex:1 1 180px; }
+  #research .grid-3 { grid-template-columns:1fr; }
+  .paper { grid-template-columns:1fr; gap:14px; }
+  .paper-fig { width:96px; }
+  .pub-tab { font-size:15px; padding:11px 12px; }
+}
